@@ -1,34 +1,19 @@
-`uvm_analysis_imp_decl(_from_write)
-`uvm_analysis_imp_decl(_from_read)
 
 class asyn_fifo_scoreboard extends uvm_scoreboard();
 
-	//bit [7:0] mem [512:0];
 	int pass_count, fail_count;
-	uvm_analysis_imp_from_write #(asyn_fifo_write_sequence_item, asyn_fifo_scoreboard) write_export;
-	uvm_analysis_imp_from_read #(asyn_fifo_read_sequence_item, asyn_fifo_scoreboard) read_export;
 
-	asyn_fifo_write_sequence_item write_queue[$];
-	asyn_fifo_read_sequence_item read_queue[$];
+	uvm_tlm_analysis_fifo  #(asyn_fifo_write_sequence_item) tlm_write_fifo;
+	uvm_tlm_analysis_fifo  #(asyn_fifo_read_sequence_item) tlm_read_fifo;
 
 	`uvm_component_utils(asyn_fifo_scoreboard)
 
 	function new(string name = "asyn_fifo_scoreboard", uvm_component parent = null);
 		super.new(name, parent);
-		write_export = new("inputs_export", this);
-		read_export = new("outputs_export", this);
+		tlm_write_fifo = new("tlm_write_fifo", this);
+		tlm_read_fifo = new("tlm_read_fifo", this);
 		pass_count = 0;
 		fail_count = 0;
-	endfunction
-
-	virtual function void write_from_write(asyn_fifo_write_sequence_item t);
-		`uvm_info(get_type_name,"Scoreboard received write packet", UVM_NONE);
-		write_queue.push_back(t);
-	endfunction
-
-	virtual function void write_from_read(asyn_fifo_read_sequence_item u);
-		`uvm_info(get_type_name,"Scoreboard received Read packet", UVM_NONE);
-		read_queue.push_back(u);
 	endfunction
 
 	virtual task run_phase(uvm_phase phase);
@@ -37,11 +22,11 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 		super.run_phase(phase);
 		forever
 		begin
-			wait((write_queue.size() > 0) && (read_queue.size() > 0));
-			begin
-				write_packet = write_queue.pop_front();
-				read_packet = read_queue.pop_front();
-			end
+			tlm_write_fifo.get(write_packet);
+			tlm_read_fifo.get(read_packet);
+			$display("---------------------------------------Scoreboard @%0t ---------------------------------------", $time);
+			write_packet.print();
+			read_packet.print();
 /*
 			// Writing or reading
 			if(write_packet.PRESETn == 0)

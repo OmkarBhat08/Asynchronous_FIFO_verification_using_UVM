@@ -5,8 +5,8 @@ import uvm_pkg ::*;
 class asyn_fifo_write_sequence_item extends uvm_sequence_item;
 	
 	// Inputs
-	logic [`DSIZE-1:0] wdata;
-	logic winc, wrst_n;
+	rand logic [`DSIZE-1:0] wdata;
+	rand logic winc, wrst_n;
 
 	// Outputs
 	logic wfull;
