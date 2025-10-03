@@ -4,10 +4,10 @@
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 */
-	class asyn_fifo_virtual_sequencer extends uvm_sequencer #(uvm_sequence_item);
+	class asyn_fifo_virtual_sequencer extends uvm_sequencer;
 	
-	asyn_fifo_write_sequencer write_seqr;
-	asyn_fifo_read_sequencer read_seqr;
+	asyn_fifo_write_sequencer wr_seqr;
+	asyn_fifo_read_sequencer rd_seqr;
 
 	`uvm_component_utils(asyn_fifo_virtual_sequencer)
 

@@ -3,10 +3,11 @@
 
 class asyn_fifo_subscriber extends uvm_component;
 
-  uvm_analysis_imp_write_cg #(asyn_fifo_sequence_item, asyn_fifo_subscriber) aport_write;
-  uvm_analysis_imp_read_cg #(asyn_fifo_sequence_item, asyn_fifo_subscriber) aport_read;
+  uvm_analysis_imp_write_cg #(asyn_fifo_write_sequence_item, asyn_fifo_subscriber) aport_write;
+  uvm_analysis_imp_read_cg #(asyn_fifo_read_sequence_item, asyn_fifo_subscriber) aport_read;
 
-  asyn_fifo_sequence_item write_trans, read_trans;
+	asyn_fifo_write_sequence_item write_trans; 
+	asyn_fifo_read_sequence_item read_trans; 
   real inp_cov, out_cov;
 
   `uvm_component_utils(asyn_fifo_subscriber)
@@ -37,12 +38,12 @@ class asyn_fifo_subscriber extends uvm_component;
     aport_read = new("aport_read", this);
   endfunction
 
-  function void write_write_cg(asyn_fifo_sequence_item t);
+  function void write_write_cg(asyn_fifo_write_sequence_item t);
     write_trans = t;
     input_cov.sample();
   endfunction
 
-  function void write_read_cg(asyn_fifo_sequence_item t);
+  function void write_read_cg(asyn_fifo_read_sequence_item t);
     read_trans = t;
     output_cov.sample();
   endfunction

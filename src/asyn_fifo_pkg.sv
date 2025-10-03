@@ -1,12 +1,15 @@
 `include "uvm_macros.svh"
 package asyn_fifo_pkg;
-	`include "asyn_fifo_sequence_item.sv"
+	`include "asyn_fifo_write_sequence_item.sv"
+	`include "asyn_fifo_read_sequence_item.sv"
 
 	`include "asyn_fifo_write_sequencer.sv"
 	`include "asyn_fifo_read_sequencer.sv"
-	`include "asyn_fifo_virtual_sequencer.sv"
 
-	`include "asyn_fifo_sequence.sv"
+	`include "asyn_fifo_write_sequence.sv"
+	`include "asyn_fifo_read_sequence.sv"
+
+	`include "asyn_fifo_virtual_sequencer.sv"
 	`include "asyn_fifo_virtual_sequence.sv"
 	`include "asyn_fifo_write_driver.sv"
 	`include "asyn_fifo_read_driver.sv"

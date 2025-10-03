@@ -4,10 +4,10 @@
 import uvm_pkg ::*; 
 */
 
-class asyn_fifo_write_driver extends uvm_driver #(asyn_fifo_sequence_item);
+class asyn_fifo_write_driver extends uvm_driver #(asyn_fifo_write_sequence_item);
 
 	virtual asyn_fifo_interfs vif;
-	asyn_fifo_sequence_item seq;	
+	asyn_fifo_write_sequence_item seq;	
 	`uvm_component_utils(asyn_fifo_write_driver)
 
 	function new(string name = "asyn_fifo_write_driver", uvm_component parent = null);

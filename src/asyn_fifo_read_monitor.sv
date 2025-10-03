@@ -7,8 +7,8 @@ import uvm_pkg ::*;
 class asyn_fifo_read_monitor extends uvm_monitor;
 
 	virtual asyn_fifo_interfs vif;
-	asyn_fifo_sequence_item read_monitor_sequence_item;
-	uvm_analysis_port #(asyn_fifo_sequence_item) read_item_port;
+	asyn_fifo_read_sequence_item read_monitor_sequence_item;
+	uvm_analysis_port #(asyn_fifo_read_sequence_item) read_item_port;
 
 	`uvm_component_utils(asyn_fifo_read_monitor)
 

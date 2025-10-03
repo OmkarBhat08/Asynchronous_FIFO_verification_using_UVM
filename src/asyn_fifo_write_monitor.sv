@@ -7,8 +7,8 @@ import uvm_pkg ::*;
 class asyn_fifo_write_monitor extends uvm_monitor;
 
 	virtual asyn_fifo_interfs vif;
-	asyn_fifo_sequence_item write_monitor_sequence_item;
-	uvm_analysis_port #(asyn_fifo_sequence_item) write_item_port;
+	asyn_fifo_write_sequence_item write_monitor_sequence_item;
+	uvm_analysis_port #(asyn_fifo_write_sequence_item) write_item_port;
 
 	`uvm_component_utils(asyn_fifo_write_monitor)
 
@@ -38,6 +38,4 @@ class asyn_fifo_write_monitor extends uvm_monitor;
 			repeat(1) @ (posedge vif.write_monitor_cb);
 		end
 	endtask
-
-
 endclass	

@@ -29,7 +29,7 @@ class asyn_fifo_env extends uvm_env;
 		rd_agnt.mon.read_item_port.connect(subcr.aport_read);
 		
 		// Virtual Sequencer connect
-		vir_seqr.write_seqr = wr_agnt.seqr;
-		vir_seqr.read_seqr =	rd_agnt.seqr;
+		vir_seqr.wr_seqr = wr_agnt.seqr;
+		vir_seqr.rd_seqr =	rd_agnt.seqr;
 	endfunction
 endclass

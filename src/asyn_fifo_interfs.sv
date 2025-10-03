@@ -11,14 +11,14 @@ interface asyn_fifo_interfs(input bit wclk, rclk);
 
 	clocking write_driver_cb @(posedge wclk);
 		default input #0 output #0;
-			output wrst_n;
+			input wrst_n;
 			output wdata;
 			output winc;
 	endclocking	
 
 	clocking read_driver_cb	@(posedge rclk);
 		default input #0 output #0;
-			output rrst_n;
+			input rrst_n;
 			output rinc;
 	endclocking	
 
