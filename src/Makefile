@@ -18,6 +18,6 @@ compile:
 
 clean:
 	rm -rf work/	 
-	rm dump.vcd transcript vsim.wlf apb_top.log simulation.log coverage.ucdb
+	rm dump.vcd transcript vsim_stacktrace.vstf
 	clear
 	clear

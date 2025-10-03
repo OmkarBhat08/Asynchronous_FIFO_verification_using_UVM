@@ -33,12 +33,12 @@ class asyn_fifo_write_driver extends uvm_driver #(asyn_fifo_write_sequence_item)
 	virtual task drive();
 		//repeat(1) @(posedge vif.write_driver_cb);
 		$display("---------------------------Write Driver @ %0t---------------------------",$time);
-		vif.wrst_n <= seq.wrst_n;
-		vif.wdata <= seq.wdata;
-		vif.winc <= seq.winc;
-		$display("wrst\t|\t%b",vif.wrst_n);
-		$display("wdata\t|\t%0d",vif.wdata);
-		$display("winc\t|\t%b",vif.winc);
+		vif.wrst_n <= req.wrst_n;
+		vif.wdata <= req.wdata;
+		vif.winc <= req.winc;
+		$display("wrst\t|\t%b",req.wrst_n);
+		$display("wdata\t|\t%0d",req.wdata);
+		$display("winc\t|\t%b",req.winc);
 
 		repeat(1) @(posedge vif.write_driver_cb);
 	endtask

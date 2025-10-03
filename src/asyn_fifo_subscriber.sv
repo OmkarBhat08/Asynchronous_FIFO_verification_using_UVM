@@ -8,55 +8,55 @@ class asyn_fifo_subscriber extends uvm_component;
 
 	asyn_fifo_write_sequence_item write_trans; 
 	asyn_fifo_read_sequence_item read_trans; 
-  real inp_cov, out_cov;
+  real wr_cov, rd_cov;
 
   `uvm_component_utils(asyn_fifo_subscriber)
 
-  covergroup input_cov;
+  covergroup write_cov;
     write_reset: coverpoint write_trans.wrst_n;
-    read_reset: coverpoint read_trans.rrst_n;
     wr_ptr_inc: coverpoint write_trans.winc;
-    rd_ptr_inc: coverpoint read_trans.rinc;
-		write_data: coverpoint write_trans.wdata {
+		write_data: coverpoint write_trans.wdata{
 													option.auto_bin_max = 4;
 			                    }
+    fifo_full: coverpoint write_trans.wfull;
   endgroup
 
-  covergroup output_cov;
-    fifo_full: coverpoint write_trans.wfull;
-    fifo_empty: coverpoint read_trans.rempty;
+  covergroup read_cov;
+    read_reset: coverpoint read_trans.rrst_n;
+    rd_ptr_inc: coverpoint read_trans.rinc;
 		read_data: coverpoint read_trans.rdata{
 													option.auto_bin_max = 4;
 			                    }
+    fifo_empty: coverpoint read_trans.rempty;
   endgroup
 
   function new(string name = "asyn_fifo_subscriber", uvm_component parent = null);
     super.new(name, parent);
-    input_cov = new();
-    output_cov = new();
+    write_cov = new();
+    read_cov = new();
     aport_write = new("aport_write", this);
     aport_read = new("aport_read", this);
   endfunction
 
   function void write_write_cg(asyn_fifo_write_sequence_item t);
     write_trans = t;
-    input_cov.sample();
+    write_cov.sample();
   endfunction
 
   function void write_read_cg(asyn_fifo_read_sequence_item t);
     read_trans = t;
-    output_cov.sample();
+    read_cov.sample();
   endfunction
 
   function void extract_phase(uvm_phase phase);
     super.extract_phase(phase);
-    inp_cov = input_cov.get_coverage();
-    out_cov = output_cov.get_coverage();
+    wr_cov = write_cov.get_coverage();
+    rd_cov = read_cov.get_coverage();
   endfunction
  
 	function void report_phase(uvm_phase phase);
     super.report_phase(phase);
-    `uvm_info(get_type_name(), $sformatf("[Input]: Coverage --> %0.2f", inp_cov), UVM_MEDIUM);
-    `uvm_info(get_type_name(), $sformatf("[Output]: Coverage --> %0.2f", out_cov), UVM_MEDIUM);
+    `uvm_info(get_type_name(), $sformatf("Write Coverage --> %0.2f", wr_cov), UVM_MEDIUM);
+    `uvm_info(get_type_name(), $sformatf("Read Coverage --> %0.2f", rd_cov), UVM_MEDIUM);
   endfunction
 endclass
