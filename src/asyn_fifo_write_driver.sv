@@ -1,9 +1,3 @@
-/*
-`include "uvm_macros.svh"
-//`include "asyn_fifo_sequence_item.sv"
-import uvm_pkg ::*; 
-*/
-
 class asyn_fifo_write_driver extends uvm_driver #(asyn_fifo_write_sequence_item);
 
 	virtual asyn_fifo_interfs vif;
@@ -22,6 +16,7 @@ class asyn_fifo_write_driver extends uvm_driver #(asyn_fifo_write_sequence_item)
 
 	virtual task run_phase(uvm_phase phase);
 		super.run_phase(phase);
+		repeat(1) @(posedge vif.write_driver_cb);
 		forever
 		begin
 			seq_item_port.get_next_item(req);
@@ -31,14 +26,13 @@ class asyn_fifo_write_driver extends uvm_driver #(asyn_fifo_write_sequence_item)
 	endtask
 
 	virtual task drive();
-		//repeat(1) @(posedge vif.write_driver_cb);
 		$display("---------------------------Write Driver @ %0t---------------------------",$time);
 		vif.wrst_n <= req.wrst_n;
 		vif.wdata <= req.wdata;
 		vif.winc <= req.winc;
-		$display("wrst\t|\t%b",req.wrst_n);
-		$display("wdata\t|\t%0d",req.wdata);
-		$display("winc\t|\t%b",req.winc);
+		$display("\t\t\twrst\t|\t%b",req.wrst_n);
+		$display("\t\t\twdata\t|\t%0d",req.wdata);
+		$display("\t\t\twinc\t|\t%b",req.winc);
 
 		repeat(1) @(posedge vif.write_driver_cb);
 	endtask

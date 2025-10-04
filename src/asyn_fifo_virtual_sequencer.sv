@@ -1,9 +1,3 @@
-/*
-`include "asyn_fifo_write_sequencer.sv"
-`include "asyn_fifo_read_sequencer.sv"
-`include "uvm_macros.svh"
-import uvm_pkg::*;
-*/
 	class asyn_fifo_virtual_sequencer extends uvm_sequencer;
 	
 	asyn_fifo_write_sequencer wr_seqr;

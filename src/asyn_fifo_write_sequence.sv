@@ -25,6 +25,34 @@ class write_reset_sequence extends uvm_sequence #(asyn_fifo_write_sequence_item)
 		endfunction
 
 		virtual task body();
-			`uvm_do_with(req,{req.wrst_n == 0;});
+			`uvm_do_with(req,{req.wrst_n == 0;req.winc == 1;});
+		endtask
+endclass
+//-------------------------------------------------------------------------------------------------------------------
+// Low winc
+//-------------------------------------------------------------------------------------------------------------------
+class write_winc0_sequence extends uvm_sequence #(asyn_fifo_write_sequence_item); 
+		`uvm_object_utils(write_winc0_sequence)
+
+		function new(string name = "write_winc0_sequence");
+			super.new(name);
+		endfunction
+
+		virtual task body();
+			`uvm_do_with(req,{req.wrst_n == 1;req.winc == 0;});
+		endtask
+endclass
+//-------------------------------------------------------------------------------------------------------------------
+// Normal working
+//-------------------------------------------------------------------------------------------------------------------
+class write_normal_sequence extends uvm_sequence #(asyn_fifo_write_sequence_item); 
+		`uvm_object_utils(write_normal_sequence)
+
+		function new(string name = "write_normal_sequence");
+			super.new(name);
+		endfunction
+
+		virtual task body();
+			`uvm_do_with(req,{req.wrst_n == 1;req.winc == 1;});
 		endtask
 endclass

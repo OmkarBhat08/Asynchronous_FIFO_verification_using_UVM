@@ -1,9 +1,3 @@
-/*
-`include "uvm_macros.svh"
-`include "asyn_fifo_sequence_item.sv"
-import uvm_pkg ::*; 
-*/
-
 class asyn_fifo_read_driver extends uvm_driver #(asyn_fifo_read_sequence_item);
 
 	asyn_fifo_read_sequence_item seq;
@@ -23,6 +17,7 @@ class asyn_fifo_read_driver extends uvm_driver #(asyn_fifo_read_sequence_item);
 
 	virtual task run_phase(uvm_phase phase);
 		super.run_phase(phase);
+		repeat(1) @(posedge vif.read_driver_cb);
 		forever
 		begin
 			seq_item_port.get_next_item(req);
@@ -32,12 +27,11 @@ class asyn_fifo_read_driver extends uvm_driver #(asyn_fifo_read_sequence_item);
 	endtask
 
 	virtual task drive();
-		//repeat(1) @(posedge vif.read_driver_cb);
 		$display("---------------------------Read Driver @ %0t---------------------------",$time);
 		vif.rrst_n <= req.rrst_n;
 		vif.rinc <= req.rinc;
-		$display("rrst\t|\t%b",req.rrst_n);
-		$display("rinc\t|\t%b",req.rinc);
+		$display("\t\t\trrst\t|\t%b",req.rrst_n);
+		$display("\t\t\trinc\t|\t%b",req.rinc);
 		repeat(1) @(posedge vif.read_driver_cb);
 	endtask
 endclass

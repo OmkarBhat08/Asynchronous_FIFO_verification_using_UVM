@@ -5,7 +5,8 @@ import uvm_pkg ::*;
 class asyn_fifo_read_sequence_item extends uvm_sequence_item;
 	
 	// Inputs
-	rand logic rinc, rrst_n;
+	rand logic rinc;
+	rand logic rrst_n;
 
 	// Outputs
 	logic [`DSIZE-1:0] rdata;

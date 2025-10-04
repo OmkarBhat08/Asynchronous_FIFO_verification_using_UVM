@@ -6,7 +6,8 @@ class asyn_fifo_write_sequence_item extends uvm_sequence_item;
 	
 	// Inputs
 	rand logic [`DSIZE-1:0] wdata;
-	rand logic winc, wrst_n;
+	rand logic winc;
+	rand logic wrst_n;
 
 	// Outputs
 	logic wfull;

@@ -26,16 +26,21 @@ class asyn_fifo_read_monitor extends uvm_monitor;
 
 	virtual task run_phase(uvm_phase phase);
 		super.run_phase(phase);
+		repeat(1) @ (posedge vif.read_monitor_cb);
 		forever
 		begin
 			repeat(1) @ (posedge vif.read_monitor_cb);
 			$display("---------------------------Read Monitor @ %0t---------------------------",$time);
+			read_monitor_sequence_item.rinc = vif.rinc;
+			read_monitor_sequence_item.rrst_n = vif.rrst_n;
 			read_monitor_sequence_item.rempty = vif.rempty;
 			read_monitor_sequence_item.rdata = vif.rdata;
-			read_monitor_sequence_item.rinc = vif.rinc;
-			read_monitor_sequence_item.print();
+
+			$display("\t\t\trrst_n\t|\t%b",read_monitor_sequence_item.rrst_n);
+			$display("\t\t\trinc\t|\t%b",read_monitor_sequence_item.rinc);
+			$display("\t\t\trempty\t|\t%b",read_monitor_sequence_item.rempty);
+			$display("\t\t\trdata\t|\t%0d",read_monitor_sequence_item.rdata);
 			read_item_port.write(read_monitor_sequence_item);
-			repeat(1) @ (posedge vif.read_monitor_cb);
 		end
 	endtask
 endclass	

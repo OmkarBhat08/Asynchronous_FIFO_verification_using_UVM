@@ -13,7 +13,7 @@ module top();
 
 	asyn_fifo_interfs vif(wclk, rclk);
 
-	FIFO #(`DSIZE,`A_SIZE) DUT(
+	FIFO DUT(
 		        .rdata(vif.rdata), 
 		        .wdata(vif.wdata),
 		        .wfull(vif.wfull),

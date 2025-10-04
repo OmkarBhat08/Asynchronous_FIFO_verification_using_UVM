@@ -1,10 +1,3 @@
-/*
-`include "uvm_macros.svh"
-`include "asyn_fifo_read_sequencer.sv"
-`include "asyn_fifo_read_driver.sv"
-`include "asyn_fifo_read_monitor.sv"
-import uvm_pkg ::*;
-*/
 class asyn_fifo_read_agent extends uvm_agent;
 	asyn_fifo_read_sequencer seqr;
 	asyn_fifo_read_driver drv;

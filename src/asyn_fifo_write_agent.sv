@@ -1,11 +1,3 @@
-/*
-`include "uvm_macros.svh"
-`include "asyn_fifo_write_sequencer.sv"
-`include "asyn_fifo_write_driver.sv"
-`include "asyn_fifo_write_monitor.sv"
-import uvm_pkg ::*;
-*/
-
 class asyn_fifo_write_agent extends uvm_agent;
 	asyn_fifo_write_sequencer seqr;
 	asyn_fifo_write_driver drv;
