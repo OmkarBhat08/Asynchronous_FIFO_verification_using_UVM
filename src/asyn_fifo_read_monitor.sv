@@ -1,9 +1,3 @@
-/*
-`include "uvm_macros.svh"
-`include "asyn_fifo_sequence_item.sv"
-import uvm_pkg ::*;
-*/
-
 class asyn_fifo_read_monitor extends uvm_monitor;
 
 	virtual asyn_fifo_interfs vif;
@@ -47,8 +41,10 @@ class asyn_fifo_read_monitor extends uvm_monitor;
 			$display("\t\t\trempty\t|\t%b",read_monitor_sequence_item.rempty);
 			$display("\t\t\trdata\t|\t%0d",read_monitor_sequence_item.rdata);
 			read_item_port.write(read_monitor_sequence_item);
+			/*
 			if(read_monitor_sequence_item.rdata == 'd183)
 				repeat(1) @ (posedge vif.read_monitor_cb);
+			*/
 		end
 	endtask
 endclass	

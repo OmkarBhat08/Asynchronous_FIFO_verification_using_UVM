@@ -15,18 +15,24 @@ class asyn_fifo_subscriber extends uvm_component;
   covergroup write_cov;
     write_reset: coverpoint write_trans.wrst_n;
     wr_ptr_inc: coverpoint write_trans.winc;
-		write_data: coverpoint write_trans.wdata{
-													option.auto_bin_max = 4;
-			                    }
+		write_data: coverpoint write_trans.wdata{bins w_range0 = {[0:50]};
+							                               bins w_range1 = {[51:100]};
+							                               bins w_range2 = {[101:150]};
+							                               bins w_range3 = {[151:200]};
+							                               bins w_range4 = {[201:255]};
+							                              }
     fifo_full: coverpoint write_trans.wfull;
   endgroup
 
   covergroup read_cov;
     read_reset: coverpoint read_trans.rrst_n;
     rd_ptr_inc: coverpoint read_trans.rinc;
-		read_data: coverpoint read_trans.rdata{
-													option.auto_bin_max = 4;
-			                    }
+		read_data: coverpoint read_trans.rdata{bins r_range0 = {[0:50]};
+						                               bins r_range1 = {[51:100]};
+						                               bins r_range2 = {[101:150]};
+						                               bins r_range3 = {[151:200]};
+						                               bins r_range4 = {[201:255]};
+						                              }
     fifo_empty: coverpoint read_trans.rempty;
   endgroup
 

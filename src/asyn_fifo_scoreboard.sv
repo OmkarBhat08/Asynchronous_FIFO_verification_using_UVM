@@ -1,41 +1,17 @@
-/*
-`uvm_analysis_imp_decl(_from_write)
-`uvm_analysis_imp_decl(_from_read)
-*/
-
 class asyn_fifo_scoreboard extends uvm_scoreboard();
-	//uvm_analysis_imp_from_write #(asyn_fifo_write_sequence_item, asyn_fifo_scoreboard) write_export;
-	//uvm_analysis_imp_from_read #(asyn_fifo_read_sequence_item, asyn_fifo_scoreboard) read_export;
 	uvm_tlm_analysis_fifo  #(asyn_fifo_write_sequence_item) tlm_write_fifo;
 	uvm_tlm_analysis_fifo  #(asyn_fifo_read_sequence_item) tlm_read_fifo;
 	int pass_count, fail_count;
 
 	`uvm_component_utils(asyn_fifo_scoreboard)
 
-	/*
-	asyn_fifo_write_sequence_item write_queue[$];
-	asyn_fifo_read_sequence_item read_queue[$];
-	*/
-
 	function new(string name = "asyn_fifo_scoreboard", uvm_component parent = null);
 		super.new(name, parent);
-		//write_export = new("write_export", this);
-		//read_export = new("read_export", this);
 		tlm_write_fifo = new("tlm_write_fifo", this);
 		tlm_read_fifo = new("tlm_read_fifo", this);
 		pass_count = 0;
 		fail_count = 0;
 	endfunction
-
-	/*
-	virtual function void write_from_read(asyn_fifo_read_sequence_item u);
-		read_queue.push_back(u);
-	endfunction
-
-	virtual function void write_from_write(asyn_fifo_write_sequence_item t);
-		write_queue.push_back(t);
-	endfunction
-	*/
 
 	virtual task run_phase(uvm_phase phase);
 		asyn_fifo_write_sequence_item write_packet;
@@ -46,14 +22,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 		begin
 			tlm_read_fifo.get(read_packet);
 			tlm_write_fifo.get(write_packet);
-
-			/*
-			wait((write_queue.size() > 0) && (read_queue.size() > 0));
-			begin
-				write_packet = write_queue.pop_front();
-				read_packet = read_queue.pop_front();
-			end
-			*/
 			$display("---------------------------------------Scoreboard @%0t ---------------------------------------", $time);
 			$display("\t\t\tField\t\t|\t\tValue");
 			$display("--------------------------------------|--------------------------------------");

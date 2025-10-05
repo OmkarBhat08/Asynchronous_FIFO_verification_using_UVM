@@ -27,29 +27,3 @@ class asyn_fifo_base_test extends uvm_test;
 		print();
 	endfunction
 endclass
-
-//---------------------------------------------------------------------------------------------------------
-/*
-class reset_test extends asyn_fifo_base_test;
-	`uvm_component_utils(reset_test)
-
-	function new(string name = "reset_test", uvm_component parent = null);
-		super.new(name, parent);
-	endfunction
-
-	virtual task run_phase(uvm_phase phase);
-		reset_sequence seq;
-		super.run_phase(phase);
-		phase.raise_objection(this, "Objection Raised");
-
-		seq = reset_sequence::type_id::create("seq");	
-		seq.start(env.active_agnt.seqr);
-		$display("############################################################################################################################");
-		phase.drop_objection(this, "Objection Dropped");
-	endtask
-
-	virtual function void end_of_elaboration();
-		print();
-	endfunction
-endclass
-*/

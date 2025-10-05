@@ -1,0 +1,20 @@
+var g_data = {
+c1354:[4,'write_reset',[],,'1353',1,1,'write_cov','1348','/asyn_fifo_pkg/asyn_fifo_subscriber',[[],[0,'1','2',,'auto[0]'],[0,'1','55',,'auto[1]']],[]],
+c1355:[4,'wr_ptr_inc',[],,'1353',1,1,'write_cov','1348','/asyn_fifo_pkg/asyn_fifo_subscriber',[[],[0,'1','2',,'auto[0]'],[0,'1','55',,'auto[1]']],[]],
+c1356:[4,'write_data',[],,'1353',1,1,'write_cov','1348','/asyn_fifo_pkg/asyn_fifo_subscriber',[[],[0,'1','13',,'w_range0'],[0,'1','12',,'w_range1'],[0,'1','12',,'w_range2'],[0,'1','11',,'w_range3'],[0,'1','9',,'w_range4']],[]],
+c1357:[4,'fifo_full',[],,'1353',1,1,'write_cov','1348','/asyn_fifo_pkg/asyn_fifo_subscriber',[[],[0,'1','56',,'auto[0]'],[0,'1','0',1,'auto[1]']],[]],
+c1359:[4,'read_reset',[],,'1358',1,1,'read_cov','1348','/asyn_fifo_pkg/asyn_fifo_subscriber',[[],[0,'1','2',,'auto[0]'],[0,'1','54',,'auto[1]']],[]],
+c1360:[4,'rd_ptr_inc',[],,'1358',1,1,'read_cov','1348','/asyn_fifo_pkg/asyn_fifo_subscriber',[[],[0,'1','1',,'auto[0]'],[0,'1','55',,'auto[1]']],[]],
+c1361:[4,'read_data',[],,'1358',1,1,'read_cov','1348','/asyn_fifo_pkg/asyn_fifo_subscriber',[[],[0,'1','13',,'r_range0'],[0,'1','10',,'r_range1'],[0,'1','11',,'r_range2'],[0,'1','13',,'r_range3'],[0,'1','8',,'r_range4']],[]],
+c1362:[4,'fifo_empty',[],,'1358',1,1,'read_cov','1348','/asyn_fifo_pkg/asyn_fifo_subscriber',[[],[0,'1','49',,'auto[0]'],[0,'1','6',,'auto[1]']],[]],
+c1751:[4,'write_reset',[],,'1750',1,1,'write_cov','1745','work.asyn_fifo_pkg::asyn_fifo_subscriber',[[],[0,'1','2',,'auto[0]'],[0,'1','55',,'auto[1]']],[]],
+c1752:[4,'wr_ptr_inc',[],,'1750',1,1,'write_cov','1745','work.asyn_fifo_pkg::asyn_fifo_subscriber',[[],[0,'1','2',,'auto[0]'],[0,'1','55',,'auto[1]']],[]],
+c1753:[4,'write_data',[],,'1750',1,1,'write_cov','1745','work.asyn_fifo_pkg::asyn_fifo_subscriber',[[],[0,'1','13',,'w_range0'],[0,'1','12',,'w_range1'],[0,'1','12',,'w_range2'],[0,'1','11',,'w_range3'],[0,'1','9',,'w_range4']],[]],
+c1754:[4,'fifo_full',[],,'1750',1,1,'write_cov','1745','work.asyn_fifo_pkg::asyn_fifo_subscriber',[[],[0,'1','56',,'auto[0]'],[0,'1','0',1,'auto[1]']],[]],
+c1756:[4,'read_reset',[],,'1755',1,1,'read_cov','1745','work.asyn_fifo_pkg::asyn_fifo_subscriber',[[],[0,'1','2',,'auto[0]'],[0,'1','54',,'auto[1]']],[]],
+c1757:[4,'rd_ptr_inc',[],,'1755',1,1,'read_cov','1745','work.asyn_fifo_pkg::asyn_fifo_subscriber',[[],[0,'1','1',,'auto[0]'],[0,'1','55',,'auto[1]']],[]],
+c1758:[4,'read_data',[],,'1755',1,1,'read_cov','1745','work.asyn_fifo_pkg::asyn_fifo_subscriber',[[],[0,'1','13',,'r_range0'],[0,'1','10',,'r_range1'],[0,'1','11',,'r_range2'],[0,'1','13',,'r_range3'],[0,'1','8',,'r_range4']],[]],
+c1759:[4,'fifo_empty',[],,'1755',1,1,'read_cov','1745','work.asyn_fifo_pkg::asyn_fifo_subscriber',[[],[0,'1','49',,'auto[0]'],[0,'1','6',,'auto[1]']],[]],
+dummyEnd:0
+};
+processCovergroupsData(g_data);
