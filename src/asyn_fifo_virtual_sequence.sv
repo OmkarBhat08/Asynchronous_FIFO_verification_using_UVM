@@ -42,7 +42,6 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 			rst_write_seq.start(p_sequencer.wr_seqr);
 		join
 		$display("############################################################################################################################");
-	/*
 		// inc0 sequence
 		fork
 			rinc0_read_seq.start(p_sequencer.rd_seqr);
@@ -61,7 +60,6 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 			rst_write_seq.start(p_sequencer.wr_seqr);
 		join
 		$display("############################################################################################################################");
-	*/
 		// 4 times write and 4 times read
 	fork
 			begin
