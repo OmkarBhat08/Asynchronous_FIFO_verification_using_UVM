@@ -42,6 +42,7 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 			rst_write_seq.start(p_sequencer.wr_seqr);
 		join
 		$display("############################################################################################################################");
+	/*
 		// inc0 sequence
 		fork
 			rinc0_read_seq.start(p_sequencer.rd_seqr);
@@ -60,23 +61,21 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 			rst_write_seq.start(p_sequencer.wr_seqr);
 		join
 		$display("############################################################################################################################");
+	*/
 		// 4 times write and 4 times read
+	fork
 			begin
 			normal_write_seq.start(p_sequencer.wr_seqr);
 			normal_write_seq.start(p_sequencer.wr_seqr);
-			//normal_write_seq.start(p_sequencer.wr_seqr);
-			//normal_write_seq.start(p_sequencer.wr_seqr);
-
-			//normal_read_seq.start(p_sequencer.rd_seqr);
-			//normal_read_seq.start(p_sequencer.rd_seqr);
 			normal_read_seq.start(p_sequencer.rd_seqr);
 			normal_read_seq.start(p_sequencer.rd_seqr);
 			end
+	join
 		$display("############################################################################################################################");
 	/*
 		// For full
 		begin
-			repeat(100)
+			for(int i=0;i<100;i++)
 				normal_write_seq.start(p_sequencer.wr_seqr);
 		end
 		$display("############################################################################################################################");

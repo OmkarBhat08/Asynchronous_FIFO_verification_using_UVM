@@ -25,15 +25,15 @@ class asyn_fifo_write_monitor extends uvm_monitor;
 		super.run_phase(phase);
 		forever
 		begin
-			/*
+			//Logic 1
 			if(write_monitor_sequence_item.wdata == temp_write_monitor_sequence_item.wdata)
 				repeat(2) @ (posedge vif.write_monitor_cb);
 			else
 				repeat(1) @ (posedge vif.write_monitor_cb);
-*/
-			repeat(1) @ (posedge vif.write_monitor_cb);
+
+			//Logic 2
+			//repeat(1) @ (posedge vif.write_monitor_cb);
 			$display("---------------------------Write Monitor @ %0t---------------------------",$time);
-			//temp_write_monitor_sequence_item.print();
 			write_monitor_sequence_item.wrst_n = vif.wrst_n;
 			write_monitor_sequence_item.wfull = vif.wfull;
 			write_monitor_sequence_item.wdata = vif.wdata;
@@ -42,9 +42,16 @@ class asyn_fifo_write_monitor extends uvm_monitor;
 			$display("\t\t\twinc\t|\t%b",write_monitor_sequence_item.winc);
 			$display("\t\t\twdata\t|\t%0d",write_monitor_sequence_item.wdata);
 			$display("\t\t\twfull\t|\t%b",write_monitor_sequence_item.wfull);
-			write_item_port.write(write_monitor_sequence_item);
+
+			//if(write_monitor_sequence_item.wdata != temp_write_monitor_sequence_item.wdata)
+				write_item_port.write(write_monitor_sequence_item);
+
+			/*
+			//Logic 2
 			if(write_monitor_sequence_item.wdata != temp_write_monitor_sequence_item.wdata)
 				repeat(1) @ (posedge vif.write_monitor_cb);
+			*/
+
 			temp_write_monitor_sequence_item.copy(write_monitor_sequence_item);
 		end
 	endtask

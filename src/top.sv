@@ -4,7 +4,8 @@
 `include "asyn_fifo_interfs.sv"
 `include "asyn_fifo_pkg.sv"
 `include "FIFO.v"
-//`include "ayn_fifo_assertions.sv"
+`include "asyn_fifo_assertions.sv"
+
 import uvm_pkg::*;  
 import asyn_fifo_pkg::*;
  
@@ -25,6 +26,8 @@ module top();
 		        .wrst_n(vif.wrst_n), 
 		        .rrst_n(vif.rrst_n)
 		    );
+	
+	bind vif asyn_fifo_assertions ASSERTION (.*);
 
 	always
 		#5  wclk = ~wclk;
