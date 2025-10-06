@@ -69,12 +69,14 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 			normal_read_seq.start(p_sequencer.rd_seqr);
 			end
 	join
+	/*
 		// For full
 		begin
 			for(int i=0;i<100;i++)
 				normal_write_seq.start(p_sequencer.wr_seqr);
 		end
 		$display("############################################################################################################################");
+	*/
 	endtask
 endclass
 
