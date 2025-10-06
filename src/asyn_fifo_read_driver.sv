@@ -32,10 +32,7 @@ class asyn_fifo_read_driver extends uvm_driver #(asyn_fifo_read_sequence_item);
 		vif.rinc <= req.rinc;
 		$display("\t\t\trrst\t|\t%b",req.rrst_n);
 		$display("\t\t\trinc\t|\t%b",req.rinc);
-		//if(vif.read_monitor_cb.rdata == 'd183)
-			//repeat(4) @(posedge vif.read_driver_cb);
-		//else
-			repeat(1) @(posedge vif.read_driver_cb);
+		repeat(1) @(posedge vif.read_driver_cb);
 		
 	endtask
 endclass

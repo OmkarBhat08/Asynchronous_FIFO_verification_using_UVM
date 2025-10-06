@@ -22,7 +22,6 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 		base_read_seq = asyn_fifo_base_read_sequence::type_id::create("base_read_seq");
 		rst_write_seq = write_reset_sequence::type_id::create("rst_write_seq");
 		rst_read_seq = read_reset_sequence::type_id::create("rst_read_seq");
-
 		winc0_write_seq = write_winc0_sequence::type_id::create("winc0_write_seq");
 		rinc0_read_seq = read_rinc0_sequence::type_id::create("rinc0_read_seq");
 		normal_write_seq = write_normal_sequence::type_id::create("normal_write_seq");
@@ -63,22 +62,11 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 		// 4 times write and 4 times read
 	fork
 			begin
-			normal_write_seq.start(p_sequencer.wr_seqr);
-			#20;
-			normal_write_seq.start(p_sequencer.wr_seqr);
-			normal_read_seq.start(p_sequencer.rd_seqr);
+				normal_write_seq.start(p_sequencer.wr_seqr);
+				#20;
+				normal_write_seq.start(p_sequencer.wr_seqr);
+				normal_read_seq.start(p_sequencer.rd_seqr);
 				#120;
-				/*
-			normal_read_seq.start(p_sequencer.rd_seqr);
-			normal_read_seq.start(p_sequencer.rd_seqr);
-			normal_read_seq.start(p_sequencer.rd_seqr);
-			normal_read_seq.start(p_sequencer.rd_seqr);
-			normal_read_seq.start(p_sequencer.rd_seqr);
-
-			normal_read_seq.start(p_sequencer.rd_seqr);
-			normal_read_seq.start(p_sequencer.rd_seqr);
-			normal_read_seq.start(p_sequencer.rd_seqr);
-				*/
 			end
 	join
 		$display("############################################################################################################################");

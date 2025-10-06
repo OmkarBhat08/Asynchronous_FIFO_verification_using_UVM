@@ -1,5 +1,5 @@
 # vsim -vopt work.top -voptargs="+acc=npr" -assertdebug -l simulation.log -coverage -c -do "coverage save -onexit -assert -directive -cvg -codeAll coverage.ucdb; run -all; exit" 
-# Start time: 23:56:05 on Oct 06,2025
+# Start time: 00:14:43 on Oct 07,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim
 # //  Version 10.6c linux Jul 25 2017
@@ -61,40 +61,50 @@
 # uvm_test_top               asyn_fifo_base_test          -     @471 
 #   env                      asyn_fifo_env                -     @478 
 #     rd_agnt                asyn_fifo_read_agent         -     @492 
-#       drv                  asyn_fifo_read_driver        -     @748 
-#         rsp_port           uvm_analysis_port            -     @763 
-#         seq_item_port      uvm_seq_item_pull_port       -     @755 
-#       mon                  asyn_fifo_read_monitor       -     @771 
-#         read_item_port     uvm_analysis_port            -     @786 
-#       seqr                 asyn_fifo_read_sequencer     -     @639 
-#         rsp_export         uvm_analysis_export          -     @646 
-#         seq_item_export    uvm_seq_item_pull_imp        -     @740 
+#       drv                  asyn_fifo_read_driver        -     @842 
+#         rsp_port           uvm_analysis_port            -     @857 
+#         seq_item_port      uvm_seq_item_pull_port       -     @849 
+#       mon                  asyn_fifo_read_monitor       -     @865 
+#         read_item_port     uvm_analysis_port            -     @880 
+#       seqr                 asyn_fifo_read_sequencer     -     @733 
+#         rsp_export         uvm_analysis_export          -     @740 
+#         seq_item_export    uvm_seq_item_pull_imp        -     @834 
 #         arbitration_queue  array                        0     -    
 #         lock_queue         array                        0     -    
 #         num_last_reqs      integral                     32    'd1  
 #         num_last_rsps      integral                     32    'd1  
 #     scb                    asyn_fifo_scoreboard         -     @499 
-#       read_export          uvm_analysis_imp_from_read   -     @809 
-#       write_export         uvm_analysis_imp_from_write  -     @801 
-#     subcr                  asyn_fifo_subscriber         -     @506 
-#       aport_read           uvm_analysis_imp_read_cg     -     @521 
-#       aport_write          uvm_analysis_imp_write_cg    -     @513 
-#     vir_seqr               asyn_fifo_virtual_sequencer  -     @529 
-#       rsp_export           uvm_analysis_export          -     @536 
-#       seq_item_export      uvm_seq_item_pull_imp        -     @630 
+#       tlm_read_fifo        uvm_tlm_analysis_fifo #(T)   -     @553 
+#         analysis_export    uvm_analysis_imp             -     @592 
+#         get_ap             uvm_analysis_port            -     @584 
+#         get_peek_export    uvm_get_peek_imp             -     @568 
+#         put_ap             uvm_analysis_port            -     @576 
+#         put_export         uvm_put_imp                  -     @560 
+#       tlm_write_fifo       uvm_tlm_analysis_fifo #(T)   -     @506 
+#         analysis_export    uvm_analysis_imp             -     @545 
+#         get_ap             uvm_analysis_port            -     @537 
+#         get_peek_export    uvm_get_peek_imp             -     @521 
+#         put_ap             uvm_analysis_port            -     @529 
+#         put_export         uvm_put_imp                  -     @513 
+#     subcr                  asyn_fifo_subscriber         -     @600 
+#       aport_read           uvm_analysis_imp_read_cg     -     @615 
+#       aport_write          uvm_analysis_imp_write_cg    -     @607 
+#     vir_seqr               asyn_fifo_virtual_sequencer  -     @623 
+#       rsp_export           uvm_analysis_export          -     @630 
+#       seq_item_export      uvm_seq_item_pull_imp        -     @724 
 #       arbitration_queue    array                        0     -    
 #       lock_queue           array                        0     -    
 #       num_last_reqs        integral                     32    'd1  
 #       num_last_rsps        integral                     32    'd1  
 #     wr_agnt                asyn_fifo_write_agent        -     @485 
-#       drv                  asyn_fifo_write_driver       -     @932 
-#         rsp_port           uvm_analysis_port            -     @947 
-#         seq_item_port      uvm_seq_item_pull_port       -     @939 
-#       mon                  asyn_fifo_write_monitor      -     @955 
-#         write_item_port    uvm_analysis_port            -     @970 
-#       seqr                 asyn_fifo_write_sequencer    -     @823 
-#         rsp_export         uvm_analysis_export          -     @830 
-#         seq_item_export    uvm_seq_item_pull_imp        -     @924 
+#       drv                  asyn_fifo_write_driver       -     @1010
+#         rsp_port           uvm_analysis_port            -     @1025
+#         seq_item_port      uvm_seq_item_pull_port       -     @1017
+#       mon                  asyn_fifo_write_monitor      -     @1033
+#         write_item_port    uvm_analysis_port            -     @1048
+#       seqr                 asyn_fifo_write_sequencer    -     @901 
+#         rsp_export         uvm_analysis_export          -     @908 
+#         seq_item_export    uvm_seq_item_pull_imp        -     @1002
 #         arbitration_queue  array                        0     -    
 #         lock_queue         array                        0     -    
 #         num_last_reqs      integral                     32    'd1  
@@ -125,11 +135,19 @@
 # 			rinc	|	1
 # 			rempty	|	x
 # 			rdata	|	x
-# ------------------------ Fail @30 ----------------------------
-#  Expected Data: x Does not match DUT Read Data: 49
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @30 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		0
+# 			wdata		|		49
+# 			wfull		|		x
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		x
+# 			rempty		|		x
+# TEST FAILED @ 30
+# PASS count = 0 | FAIL count = 1
 ############################################################################################################################
 # ---------------------------Write Driver @ 30---------------------------
 # 			wrst	|	0
@@ -154,11 +172,22 @@
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	69
-# ------------------------ Pass @50 ----------------------------
-#   Expected Data: 69 Read Data(DUT): 69
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @50 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		0
+# 			winc		|		1
+# 			wdata		|		69
+# 			wfull		|		0
+# 			rrst_n		|		0
+# 			rinc		|		1
+# 			rdata		|		69
+# 			rempty		|		1
+# Write Reset is applied
+# Write Reset TEST PASSED @ 50
+# Read Reset is applied
+# Read Reset TEST FAILED @ 50
+# PASS count = 1 | FAIL count = 2
 ############################################################################################################################
 # ---------------------------Write Driver @ 50---------------------------
 # 			wrst	|	1
@@ -185,11 +214,19 @@
 # 			rinc	|	0
 # 			rempty	|	1
 # 			rdata	|	69
-# ------------------------ Fail @70 ----------------------------
-#  Expected Data: 69 Does not match DUT Read Data: 14
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @70 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		0
+# 			wdata		|		14
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		69
+# 			rempty		|		1
+# TEST FAILED @ 70
+# PASS count = 1 | FAIL count = 3
 ############################################################################################################################
 # ---------------------------Write Driver @ 70---------------------------
 # 			wrst	|	1
@@ -214,11 +251,19 @@
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	71
-# ------------------------ Pass @90 ----------------------------
-#   Expected Data: 71 Read Data(DUT): 71
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @90 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		71
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		71
+# 			rempty		|		1
+# TEST PASSED @ 90
+# PASS count = 2 | FAIL count = 3
 ############################################################################################################################
 # ---------------------------Write Driver @ 90---------------------------
 # 			wrst	|	0
@@ -244,11 +289,22 @@
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	52
-# ------------------------ Pass @110 ----------------------------
-#   Expected Data: 52 Read Data(DUT): 52
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @110 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		0
+# 			winc		|		1
+# 			wdata		|		52
+# 			wfull		|		0
+# 			rrst_n		|		0
+# 			rinc		|		1
+# 			rdata		|		52
+# 			rempty		|		1
+# Write Reset is applied
+# Write Reset TEST PASSED @ 110
+# Read Reset is applied
+# Read Reset TEST FAILED @ 110
+# PASS count = 3 | FAIL count = 4
 ############################################################################################################################
 # ---------------------------Write Driver @ 110---------------------------
 # 			wrst	|	1
@@ -270,11 +326,22 @@
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	183
-# ------------------------ Pass @130 ----------------------------
-#   Expected Data: 183 Read Data(DUT): 183
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @130 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		183
+# 			wfull		|		0
+# 			rrst_n		|		0
+# 			rinc		|		1
+# 			rdata		|		183
+# 			rempty		|		1
+# Write Reset is applied
+# Write Reset TEST PASSED @ 130
+# Read Reset is applied
+# Read Reset TEST FAILED @ 130
+# PASS count = 4 | FAIL count = 5
 # ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=2,rptr=0
@@ -298,11 +365,19 @@
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	183
-# ------------------------ Fail @150 ----------------------------
-#  Expected Data: 183 Does not match DUT Read Data: 4
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @150 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		4
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		183
+# 			rempty		|		1
+# TEST FAILED @ 150
+# PASS count = 4 | FAIL count = 6
 # ASSERTION PASS: No signals are unknown
 # wptr=4,rptr=0
 # ---------------------------Write Monitor @ 155---------------------------
@@ -318,11 +393,19 @@
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	183
-# ------------------------ Fail @170 ----------------------------
-#  Expected Data: 183 Does not match DUT Read Data: 4
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @170 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		4
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		183
+# 			rempty		|		1
+# TEST FAILED @ 170
+# PASS count = 4 | FAIL count = 7
 # ASSERTION PASS: No signals are unknown
 # wptr=6,rptr=0
 # ---------------------------Write Monitor @ 175---------------------------
@@ -338,11 +421,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	183
-# ------------------------ Fail @190 ----------------------------
-#  Expected Data: 183 Does not match DUT Read Data: 4
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @190 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		4
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		183
+# 			rempty		|		0
+# TEST FAILED @ 190
+# PASS count = 4 | FAIL count = 8
 # ASSERTION PASS: No signals are unknown
 # wptr=8,rptr=0
 # ---------------------------Write Monitor @ 195---------------------------
@@ -358,11 +449,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	183
-# ------------------------ Fail @210 ----------------------------
-#  Expected Data: 183 Does not match DUT Read Data: 4
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @210 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		4
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		183
+# 			rempty		|		0
+# TEST FAILED @ 210
+# PASS count = 4 | FAIL count = 9
 # ASSERTION PASS: No signals are unknown
 # wptr=10,rptr=1
 # ---------------------------Write Monitor @ 215---------------------------
@@ -378,11 +477,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	183
-# ------------------------ Fail @230 ----------------------------
-#  Expected Data: 183 Does not match DUT Read Data: 4
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @230 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		4
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		183
+# 			rempty		|		0
+# TEST FAILED @ 230
+# PASS count = 4 | FAIL count = 10
 # ASSERTION PASS: No signals are unknown
 # wptr=12,rptr=2
 # ---------------------------Write Monitor @ 235---------------------------
@@ -398,11 +505,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Pass @250 ----------------------------
-#   Expected Data: 4 Read Data(DUT): 4
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @250 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		4
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST PASSED @ 250
+# PASS count = 5 | FAIL count = 10
 # ASSERTION PASS: No signals are unknown
 # wptr=14,rptr=3
 # ---------------------------Write Monitor @ 255---------------------------
@@ -423,11 +538,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Pass @270 ----------------------------
-#   Expected Data: 4 Read Data(DUT): 4
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @270 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		4
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST PASSED @ 270
+# PASS count = 6 | FAIL count = 10
 # ASSERTION PASS: No signals are unknown
 # wptr=0,rptr=4
 # ---------------------------Write Monitor @ 275---------------------------
@@ -446,11 +569,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @290 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 151
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @290 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		151
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 290
+# PASS count = 6 | FAIL count = 11
 # ---------------------------Write Driver @ 290---------------------------
 # 			wrst	|	1
 # 			wdata	|	89
@@ -473,11 +604,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @310 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 89
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @310 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		89
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 310
+# PASS count = 6 | FAIL count = 12
 # ---------------------------Write Driver @ 310---------------------------
 # 			wrst	|	1
 # 			wdata	|	63
@@ -500,11 +639,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @330 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 63
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @330 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		63
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 330
+# PASS count = 6 | FAIL count = 13
 # ---------------------------Write Driver @ 330---------------------------
 # 			wrst	|	1
 # 			wdata	|	180
@@ -527,11 +674,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @350 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 180
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @350 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		180
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 350
+# PASS count = 6 | FAIL count = 14
 # ---------------------------Write Driver @ 350---------------------------
 # 			wrst	|	1
 # 			wdata	|	107
@@ -554,11 +709,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @370 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 107
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @370 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		107
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 370
+# PASS count = 6 | FAIL count = 15
 # ---------------------------Write Driver @ 370---------------------------
 # 			wrst	|	1
 # 			wdata	|	8
@@ -581,11 +744,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @390 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 8
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @390 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		8
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 390
+# PASS count = 6 | FAIL count = 16
 # ---------------------------Write Driver @ 390---------------------------
 # 			wrst	|	1
 # 			wdata	|	191
@@ -608,11 +779,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @410 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 191
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @410 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		191
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 410
+# PASS count = 6 | FAIL count = 17
 # ---------------------------Write Driver @ 410---------------------------
 # 			wrst	|	1
 # 			wdata	|	201
@@ -635,11 +814,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @430 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 201
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @430 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		201
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 430
+# PASS count = 6 | FAIL count = 18
 # ---------------------------Write Driver @ 430---------------------------
 # 			wrst	|	1
 # 			wdata	|	179
@@ -662,11 +849,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @450 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 179
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @450 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		179
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 450
+# PASS count = 6 | FAIL count = 19
 # ---------------------------Write Driver @ 450---------------------------
 # 			wrst	|	1
 # 			wdata	|	46
@@ -689,11 +884,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @470 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 46
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @470 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		46
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 470
+# PASS count = 6 | FAIL count = 20
 # ---------------------------Write Driver @ 470---------------------------
 # 			wrst	|	1
 # 			wdata	|	16
@@ -716,11 +919,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	4
-# ------------------------ Fail @490 ----------------------------
-#  Expected Data: 4 Does not match DUT Read Data: 16
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @490 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		16
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		4
+# 			rempty		|		0
+# TEST FAILED @ 490
+# PASS count = 6 | FAIL count = 21
 # ---------------------------Write Driver @ 490---------------------------
 # 			wrst	|	1
 # 			wdata	|	32
@@ -743,11 +954,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	151
-# ------------------------ Fail @510 ----------------------------
-#  Expected Data: 151 Does not match DUT Read Data: 32
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @510 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		32
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		151
+# 			rempty		|		0
+# TEST FAILED @ 510
+# PASS count = 6 | FAIL count = 22
 # ---------------------------Write Driver @ 510---------------------------
 # 			wrst	|	1
 # 			wdata	|	12
@@ -770,11 +989,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	151
-# ------------------------ Fail @530 ----------------------------
-#  Expected Data: 151 Does not match DUT Read Data: 12
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @530 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		12
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		151
+# 			rempty		|		0
+# TEST FAILED @ 530
+# PASS count = 6 | FAIL count = 23
 # ---------------------------Write Driver @ 530---------------------------
 # 			wrst	|	1
 # 			wdata	|	75
@@ -797,11 +1024,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	89
-# ------------------------ Fail @550 ----------------------------
-#  Expected Data: 89 Does not match DUT Read Data: 75
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @550 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		75
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		89
+# 			rempty		|		0
+# TEST FAILED @ 550
+# PASS count = 6 | FAIL count = 24
 # ---------------------------Write Driver @ 550---------------------------
 # 			wrst	|	1
 # 			wdata	|	111
@@ -824,11 +1059,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	89
-# ------------------------ Fail @570 ----------------------------
-#  Expected Data: 89 Does not match DUT Read Data: 111
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @570 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		111
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		89
+# 			rempty		|		0
+# TEST FAILED @ 570
+# PASS count = 6 | FAIL count = 25
 # ---------------------------Write Driver @ 570---------------------------
 # 			wrst	|	1
 # 			wdata	|	101
@@ -851,11 +1094,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	63
-# ------------------------ Fail @590 ----------------------------
-#  Expected Data: 63 Does not match DUT Read Data: 101
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @590 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		101
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		63
+# 			rempty		|		0
+# TEST FAILED @ 590
+# PASS count = 6 | FAIL count = 26
 # ---------------------------Write Driver @ 590---------------------------
 # 			wrst	|	1
 # 			wdata	|	171
@@ -878,11 +1129,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	180
-# ------------------------ Fail @610 ----------------------------
-#  Expected Data: 180 Does not match DUT Read Data: 171
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @610 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		171
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		180
+# 			rempty		|		0
+# TEST FAILED @ 610
+# PASS count = 6 | FAIL count = 27
 # ---------------------------Write Driver @ 610---------------------------
 # 			wrst	|	1
 # 			wdata	|	176
@@ -905,11 +1164,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	107
-# ------------------------ Fail @630 ----------------------------
-#  Expected Data: 107 Does not match DUT Read Data: 176
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @630 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		176
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		107
+# 			rempty		|		0
+# TEST FAILED @ 630
+# PASS count = 6 | FAIL count = 28
 # ---------------------------Write Driver @ 630---------------------------
 # 			wrst	|	1
 # 			wdata	|	123
@@ -932,11 +1199,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	8
-# ------------------------ Fail @650 ----------------------------
-#  Expected Data: 8 Does not match DUT Read Data: 123
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @650 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		123
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		8
+# 			rempty		|		0
+# TEST FAILED @ 650
+# PASS count = 6 | FAIL count = 29
 # ---------------------------Write Driver @ 650---------------------------
 # 			wrst	|	1
 # 			wdata	|	172
@@ -959,11 +1234,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	191
-# ------------------------ Fail @670 ----------------------------
-#  Expected Data: 191 Does not match DUT Read Data: 172
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @670 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		172
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		191
+# 			rempty		|		0
+# TEST FAILED @ 670
+# PASS count = 6 | FAIL count = 30
 # ---------------------------Write Driver @ 670---------------------------
 # 			wrst	|	1
 # 			wdata	|	116
@@ -986,11 +1269,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	201
-# ------------------------ Fail @690 ----------------------------
-#  Expected Data: 201 Does not match DUT Read Data: 116
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @690 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		116
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		201
+# 			rempty		|		0
+# TEST FAILED @ 690
+# PASS count = 6 | FAIL count = 31
 # ---------------------------Write Driver @ 690---------------------------
 # 			wrst	|	1
 # 			wdata	|	239
@@ -1013,11 +1304,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	179
-# ------------------------ Fail @710 ----------------------------
-#  Expected Data: 179 Does not match DUT Read Data: 239
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @710 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		239
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		179
+# 			rempty		|		0
+# TEST FAILED @ 710
+# PASS count = 6 | FAIL count = 32
 # ---------------------------Write Driver @ 710---------------------------
 # 			wrst	|	1
 # 			wdata	|	151
@@ -1040,11 +1339,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	46
-# ------------------------ Fail @730 ----------------------------
-#  Expected Data: 46 Does not match DUT Read Data: 151
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @730 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		151
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		46
+# 			rempty		|		0
+# TEST FAILED @ 730
+# PASS count = 6 | FAIL count = 33
 # ---------------------------Write Driver @ 730---------------------------
 # 			wrst	|	1
 # 			wdata	|	103
@@ -1067,11 +1374,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	16
-# ------------------------ Fail @750 ----------------------------
-#  Expected Data: 16 Does not match DUT Read Data: 103
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @750 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		103
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		16
+# 			rempty		|		0
+# TEST FAILED @ 750
+# PASS count = 6 | FAIL count = 34
 # ---------------------------Write Driver @ 750---------------------------
 # 			wrst	|	1
 # 			wdata	|	54
@@ -1094,11 +1409,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	32
-# ------------------------ Fail @770 ----------------------------
-#  Expected Data: 32 Does not match DUT Read Data: 54
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @770 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		54
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		32
+# 			rempty		|		0
+# TEST FAILED @ 770
+# PASS count = 6 | FAIL count = 35
 # ---------------------------Write Driver @ 770---------------------------
 # 			wrst	|	1
 # 			wdata	|	80
@@ -1121,11 +1444,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	12
-# ------------------------ Fail @790 ----------------------------
-#  Expected Data: 12 Does not match DUT Read Data: 80
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @790 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		80
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		12
+# 			rempty		|		0
+# TEST FAILED @ 790
+# PASS count = 6 | FAIL count = 36
 # ---------------------------Write Driver @ 790---------------------------
 # 			wrst	|	1
 # 			wdata	|	44
@@ -1148,11 +1479,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	75
-# ------------------------ Fail @810 ----------------------------
-#  Expected Data: 75 Does not match DUT Read Data: 44
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @810 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		44
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		75
+# 			rempty		|		0
+# TEST FAILED @ 810
+# PASS count = 6 | FAIL count = 37
 # ---------------------------Write Driver @ 810---------------------------
 # 			wrst	|	1
 # 			wdata	|	241
@@ -1175,11 +1514,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	111
-# ------------------------ Fail @830 ----------------------------
-#  Expected Data: 111 Does not match DUT Read Data: 241
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @830 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		241
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		111
+# 			rempty		|		0
+# TEST FAILED @ 830
+# PASS count = 6 | FAIL count = 38
 # ---------------------------Write Driver @ 830---------------------------
 # 			wrst	|	1
 # 			wdata	|	205
@@ -1202,11 +1549,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	101
-# ------------------------ Fail @850 ----------------------------
-#  Expected Data: 101 Does not match DUT Read Data: 205
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @850 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		205
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		101
+# 			rempty		|		0
+# TEST FAILED @ 850
+# PASS count = 6 | FAIL count = 39
 # ---------------------------Write Driver @ 850---------------------------
 # 			wrst	|	1
 # 			wdata	|	149
@@ -1229,11 +1584,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	171
-# ------------------------ Fail @870 ----------------------------
-#  Expected Data: 171 Does not match DUT Read Data: 149
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @870 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		149
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		171
+# 			rempty		|		0
+# TEST FAILED @ 870
+# PASS count = 6 | FAIL count = 40
 # ---------------------------Write Driver @ 870---------------------------
 # 			wrst	|	1
 # 			wdata	|	80
@@ -1256,11 +1619,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	176
-# ------------------------ Fail @890 ----------------------------
-#  Expected Data: 176 Does not match DUT Read Data: 80
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @890 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		80
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		176
+# 			rempty		|		0
+# TEST FAILED @ 890
+# PASS count = 6 | FAIL count = 41
 # ---------------------------Write Driver @ 890---------------------------
 # 			wrst	|	1
 # 			wdata	|	16
@@ -1283,11 +1654,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	123
-# ------------------------ Fail @910 ----------------------------
-#  Expected Data: 123 Does not match DUT Read Data: 16
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @910 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		16
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		123
+# 			rempty		|		0
+# TEST FAILED @ 910
+# PASS count = 6 | FAIL count = 42
 # ---------------------------Write Driver @ 910---------------------------
 # 			wrst	|	1
 # 			wdata	|	116
@@ -1310,11 +1689,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	172
-# ------------------------ Fail @930 ----------------------------
-#  Expected Data: 172 Does not match DUT Read Data: 116
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @930 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		116
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		172
+# 			rempty		|		0
+# TEST FAILED @ 930
+# PASS count = 6 | FAIL count = 43
 # ---------------------------Write Driver @ 930---------------------------
 # 			wrst	|	1
 # 			wdata	|	136
@@ -1337,11 +1724,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	116
-# ------------------------ Fail @950 ----------------------------
-#  Expected Data: 116 Does not match DUT Read Data: 136
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @950 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		136
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		116
+# 			rempty		|		0
+# TEST FAILED @ 950
+# PASS count = 6 | FAIL count = 44
 # ---------------------------Write Driver @ 950---------------------------
 # 			wrst	|	1
 # 			wdata	|	39
@@ -1364,11 +1759,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	239
-# ------------------------ Fail @970 ----------------------------
-#  Expected Data: 239 Does not match DUT Read Data: 39
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @970 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		39
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		239
+# 			rempty		|		0
+# TEST FAILED @ 970
+# PASS count = 6 | FAIL count = 45
 # ---------------------------Write Driver @ 970---------------------------
 # 			wrst	|	1
 # 			wdata	|	87
@@ -1391,11 +1794,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	151
-# ------------------------ Fail @990 ----------------------------
-#  Expected Data: 151 Does not match DUT Read Data: 87
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @990 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		87
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		151
+# 			rempty		|		0
+# TEST FAILED @ 990
+# PASS count = 6 | FAIL count = 46
 # ---------------------------Write Driver @ 990---------------------------
 # 			wrst	|	1
 # 			wdata	|	124
@@ -1418,11 +1829,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	103
-# ------------------------ Fail @1010 ----------------------------
-#  Expected Data: 103 Does not match DUT Read Data: 124
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1010 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		124
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		103
+# 			rempty		|		0
+# TEST FAILED @ 1010
+# PASS count = 6 | FAIL count = 47
 # ---------------------------Write Driver @ 1010---------------------------
 # 			wrst	|	1
 # 			wdata	|	250
@@ -1445,11 +1864,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	54
-# ------------------------ Fail @1030 ----------------------------
-#  Expected Data: 54 Does not match DUT Read Data: 250
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1030 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		250
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		54
+# 			rempty		|		0
+# TEST FAILED @ 1030
+# PASS count = 6 | FAIL count = 48
 # ---------------------------Write Driver @ 1030---------------------------
 # 			wrst	|	1
 # 			wdata	|	191
@@ -1472,11 +1899,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	80
-# ------------------------ Fail @1050 ----------------------------
-#  Expected Data: 80 Does not match DUT Read Data: 191
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1050 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		191
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		80
+# 			rempty		|		0
+# TEST FAILED @ 1050
+# PASS count = 6 | FAIL count = 49
 # ---------------------------Write Driver @ 1050---------------------------
 # 			wrst	|	1
 # 			wdata	|	119
@@ -1499,11 +1934,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	44
-# ------------------------ Fail @1070 ----------------------------
-#  Expected Data: 44 Does not match DUT Read Data: 119
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1070 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		119
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		44
+# 			rempty		|		0
+# TEST FAILED @ 1070
+# PASS count = 6 | FAIL count = 50
 # ---------------------------Write Driver @ 1070---------------------------
 # 			wrst	|	1
 # 			wdata	|	209
@@ -1526,11 +1969,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	241
-# ------------------------ Fail @1090 ----------------------------
-#  Expected Data: 241 Does not match DUT Read Data: 209
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1090 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		209
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		241
+# 			rempty		|		0
+# TEST FAILED @ 1090
+# PASS count = 6 | FAIL count = 51
 # ---------------------------Write Driver @ 1090---------------------------
 # 			wrst	|	1
 # 			wdata	|	36
@@ -1553,11 +2004,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	205
-# ------------------------ Fail @1110 ----------------------------
-#  Expected Data: 205 Does not match DUT Read Data: 36
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1110 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		36
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		205
+# 			rempty		|		0
+# TEST FAILED @ 1110
+# PASS count = 6 | FAIL count = 52
 # ---------------------------Write Driver @ 1110---------------------------
 # 			wrst	|	1
 # 			wdata	|	132
@@ -1580,11 +2039,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	149
-# ------------------------ Fail @1130 ----------------------------
-#  Expected Data: 149 Does not match DUT Read Data: 132
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1130 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		132
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		149
+# 			rempty		|		0
+# TEST FAILED @ 1130
+# PASS count = 6 | FAIL count = 53
 # ---------------------------Write Driver @ 1130---------------------------
 # 			wrst	|	1
 # 			wdata	|	175
@@ -1607,11 +2074,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	80
-# ------------------------ Fail @1150 ----------------------------
-#  Expected Data: 80 Does not match DUT Read Data: 175
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1150 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		175
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		80
+# 			rempty		|		0
+# TEST FAILED @ 1150
+# PASS count = 6 | FAIL count = 54
 # ---------------------------Write Driver @ 1150---------------------------
 # 			wrst	|	1
 # 			wdata	|	247
@@ -1634,11 +2109,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	16
-# ------------------------ Fail @1170 ----------------------------
-#  Expected Data: 16 Does not match DUT Read Data: 247
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1170 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		247
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		16
+# 			rempty		|		0
+# TEST FAILED @ 1170
+# PASS count = 6 | FAIL count = 55
 # ---------------------------Write Driver @ 1170---------------------------
 # 			wrst	|	1
 # 			wdata	|	156
@@ -1661,11 +2144,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	116
-# ------------------------ Fail @1190 ----------------------------
-#  Expected Data: 116 Does not match DUT Read Data: 156
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1190 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		156
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		116
+# 			rempty		|		0
+# TEST FAILED @ 1190
+# PASS count = 6 | FAIL count = 56
 # ---------------------------Write Driver @ 1190---------------------------
 # 			wrst	|	1
 # 			wdata	|	112
@@ -1688,11 +2179,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	136
-# ------------------------ Fail @1210 ----------------------------
-#  Expected Data: 136 Does not match DUT Read Data: 112
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1210 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		112
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		136
+# 			rempty		|		0
+# TEST FAILED @ 1210
+# PASS count = 6 | FAIL count = 57
 # ---------------------------Write Driver @ 1210---------------------------
 # 			wrst	|	1
 # 			wdata	|	235
@@ -1715,11 +2214,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	39
-# ------------------------ Fail @1230 ----------------------------
-#  Expected Data: 39 Does not match DUT Read Data: 235
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1230 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		235
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		39
+# 			rempty		|		0
+# TEST FAILED @ 1230
+# PASS count = 6 | FAIL count = 58
 # ---------------------------Write Driver @ 1230---------------------------
 # 			wrst	|	1
 # 			wdata	|	226
@@ -1742,11 +2249,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	87
-# ------------------------ Fail @1250 ----------------------------
-#  Expected Data: 87 Does not match DUT Read Data: 226
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1250 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		226
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		87
+# 			rempty		|		0
+# TEST FAILED @ 1250
+# PASS count = 6 | FAIL count = 59
 # ---------------------------Write Driver @ 1250---------------------------
 # 			wrst	|	1
 # 			wdata	|	50
@@ -1769,11 +2284,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	124
-# ------------------------ Fail @1270 ----------------------------
-#  Expected Data: 124 Does not match DUT Read Data: 50
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1270 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		50
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		124
+# 			rempty		|		0
+# TEST FAILED @ 1270
+# PASS count = 6 | FAIL count = 60
 # ---------------------------Write Driver @ 1270---------------------------
 # 			wrst	|	1
 # 			wdata	|	114
@@ -1796,11 +2319,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	250
-# ------------------------ Fail @1290 ----------------------------
-#  Expected Data: 250 Does not match DUT Read Data: 114
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1290 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		114
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		250
+# 			rempty		|		0
+# TEST FAILED @ 1290
+# PASS count = 6 | FAIL count = 61
 # ---------------------------Write Driver @ 1290---------------------------
 # 			wrst	|	1
 # 			wdata	|	26
@@ -1823,11 +2354,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	191
-# ------------------------ Fail @1310 ----------------------------
-#  Expected Data: 191 Does not match DUT Read Data: 26
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1310 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		26
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		191
+# 			rempty		|		0
+# TEST FAILED @ 1310
+# PASS count = 6 | FAIL count = 62
 # ---------------------------Write Driver @ 1310---------------------------
 # 			wrst	|	1
 # 			wdata	|	84
@@ -1850,11 +2389,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	119
-# ------------------------ Fail @1330 ----------------------------
-#  Expected Data: 119 Does not match DUT Read Data: 84
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1330 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		84
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		119
+# 			rempty		|		0
+# TEST FAILED @ 1330
+# PASS count = 6 | FAIL count = 63
 # ---------------------------Write Driver @ 1330---------------------------
 # 			wrst	|	1
 # 			wdata	|	119
@@ -1877,11 +2424,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	209
-# ------------------------ Fail @1350 ----------------------------
-#  Expected Data: 209 Does not match DUT Read Data: 119
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1350 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		119
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		209
+# 			rempty		|		0
+# TEST FAILED @ 1350
+# PASS count = 6 | FAIL count = 64
 # ---------------------------Write Driver @ 1350---------------------------
 # 			wrst	|	1
 # 			wdata	|	205
@@ -1904,11 +2459,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	36
-# ------------------------ Fail @1370 ----------------------------
-#  Expected Data: 36 Does not match DUT Read Data: 205
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1370 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		205
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		36
+# 			rempty		|		0
+# TEST FAILED @ 1370
+# PASS count = 6 | FAIL count = 65
 # ---------------------------Write Driver @ 1370---------------------------
 # 			wrst	|	1
 # 			wdata	|	119
@@ -1931,11 +2494,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	132
-# ------------------------ Fail @1390 ----------------------------
-#  Expected Data: 132 Does not match DUT Read Data: 119
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1390 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		119
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		132
+# 			rempty		|		0
+# TEST FAILED @ 1390
+# PASS count = 6 | FAIL count = 66
 # ---------------------------Write Driver @ 1390---------------------------
 # 			wrst	|	1
 # 			wdata	|	182
@@ -1958,11 +2529,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	175
-# ------------------------ Fail @1410 ----------------------------
-#  Expected Data: 175 Does not match DUT Read Data: 182
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1410 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		182
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		175
+# 			rempty		|		0
+# TEST FAILED @ 1410
+# PASS count = 6 | FAIL count = 67
 # ---------------------------Write Driver @ 1410---------------------------
 # 			wrst	|	1
 # 			wdata	|	168
@@ -1985,11 +2564,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	247
-# ------------------------ Fail @1430 ----------------------------
-#  Expected Data: 247 Does not match DUT Read Data: 168
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1430 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		168
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		247
+# 			rempty		|		0
+# TEST FAILED @ 1430
+# PASS count = 6 | FAIL count = 68
 # ---------------------------Write Driver @ 1430---------------------------
 # 			wrst	|	1
 # 			wdata	|	94
@@ -2012,11 +2599,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	156
-# ------------------------ Fail @1450 ----------------------------
-#  Expected Data: 156 Does not match DUT Read Data: 94
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1450 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		94
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		156
+# 			rempty		|		0
+# TEST FAILED @ 1450
+# PASS count = 6 | FAIL count = 69
 # ---------------------------Write Driver @ 1450---------------------------
 # 			wrst	|	1
 # 			wdata	|	115
@@ -2039,11 +2634,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	112
-# ------------------------ Fail @1470 ----------------------------
-#  Expected Data: 112 Does not match DUT Read Data: 115
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1470 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		115
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		112
+# 			rempty		|		0
+# TEST FAILED @ 1470
+# PASS count = 6 | FAIL count = 70
 # ---------------------------Write Driver @ 1470---------------------------
 # 			wrst	|	1
 # 			wdata	|	87
@@ -2066,11 +2669,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	235
-# ------------------------ Fail @1490 ----------------------------
-#  Expected Data: 235 Does not match DUT Read Data: 87
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1490 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		87
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		235
+# 			rempty		|		0
+# TEST FAILED @ 1490
+# PASS count = 6 | FAIL count = 71
 # ---------------------------Write Driver @ 1490---------------------------
 # 			wrst	|	1
 # 			wdata	|	73
@@ -2093,11 +2704,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	226
-# ------------------------ Fail @1510 ----------------------------
-#  Expected Data: 226 Does not match DUT Read Data: 73
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1510 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		73
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		226
+# 			rempty		|		0
+# TEST FAILED @ 1510
+# PASS count = 6 | FAIL count = 72
 # ---------------------------Write Driver @ 1510---------------------------
 # 			wrst	|	1
 # 			wdata	|	74
@@ -2120,11 +2739,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	50
-# ------------------------ Fail @1530 ----------------------------
-#  Expected Data: 50 Does not match DUT Read Data: 74
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1530 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		74
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		50
+# 			rempty		|		0
+# TEST FAILED @ 1530
+# PASS count = 6 | FAIL count = 73
 # ---------------------------Write Driver @ 1530---------------------------
 # 			wrst	|	1
 # 			wdata	|	254
@@ -2147,11 +2774,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	114
-# ------------------------ Fail @1550 ----------------------------
-#  Expected Data: 114 Does not match DUT Read Data: 254
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1550 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		254
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		114
+# 			rempty		|		0
+# TEST FAILED @ 1550
+# PASS count = 6 | FAIL count = 74
 # ---------------------------Write Driver @ 1550---------------------------
 # 			wrst	|	1
 # 			wdata	|	145
@@ -2174,11 +2809,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	26
-# ------------------------ Fail @1570 ----------------------------
-#  Expected Data: 26 Does not match DUT Read Data: 145
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1570 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		145
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		26
+# 			rempty		|		0
+# TEST FAILED @ 1570
+# PASS count = 6 | FAIL count = 75
 # ---------------------------Write Driver @ 1570---------------------------
 # 			wrst	|	1
 # 			wdata	|	101
@@ -2201,11 +2844,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	84
-# ------------------------ Fail @1590 ----------------------------
-#  Expected Data: 84 Does not match DUT Read Data: 101
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1590 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		101
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		84
+# 			rempty		|		0
+# TEST FAILED @ 1590
+# PASS count = 6 | FAIL count = 76
 # ---------------------------Write Driver @ 1590---------------------------
 # 			wrst	|	1
 # 			wdata	|	94
@@ -2228,11 +2879,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	119
-# ------------------------ Fail @1610 ----------------------------
-#  Expected Data: 119 Does not match DUT Read Data: 94
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1610 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		94
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		119
+# 			rempty		|		0
+# TEST FAILED @ 1610
+# PASS count = 6 | FAIL count = 77
 # ---------------------------Write Driver @ 1610---------------------------
 # 			wrst	|	1
 # 			wdata	|	211
@@ -2255,11 +2914,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	205
-# ------------------------ Fail @1630 ----------------------------
-#  Expected Data: 205 Does not match DUT Read Data: 211
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1630 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		211
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		205
+# 			rempty		|		0
+# TEST FAILED @ 1630
+# PASS count = 6 | FAIL count = 78
 # ---------------------------Write Driver @ 1630---------------------------
 # 			wrst	|	1
 # 			wdata	|	39
@@ -2282,11 +2949,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	119
-# ------------------------ Fail @1650 ----------------------------
-#  Expected Data: 119 Does not match DUT Read Data: 39
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1650 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		39
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		119
+# 			rempty		|		0
+# TEST FAILED @ 1650
+# PASS count = 6 | FAIL count = 79
 # ---------------------------Write Driver @ 1650---------------------------
 # 			wrst	|	1
 # 			wdata	|	247
@@ -2309,11 +2984,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	182
-# ------------------------ Fail @1670 ----------------------------
-#  Expected Data: 182 Does not match DUT Read Data: 247
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1670 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		247
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		182
+# 			rempty		|		0
+# TEST FAILED @ 1670
+# PASS count = 6 | FAIL count = 80
 # ---------------------------Write Driver @ 1670---------------------------
 # 			wrst	|	1
 # 			wdata	|	95
@@ -2336,11 +3019,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	168
-# ------------------------ Fail @1690 ----------------------------
-#  Expected Data: 168 Does not match DUT Read Data: 95
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1690 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		95
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		168
+# 			rempty		|		0
+# TEST FAILED @ 1690
+# PASS count = 6 | FAIL count = 81
 # ---------------------------Write Driver @ 1690---------------------------
 # 			wrst	|	1
 # 			wdata	|	27
@@ -2363,11 +3054,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	94
-# ------------------------ Fail @1710 ----------------------------
-#  Expected Data: 94 Does not match DUT Read Data: 27
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1710 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		27
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		94
+# 			rempty		|		0
+# TEST FAILED @ 1710
+# PASS count = 6 | FAIL count = 82
 # ---------------------------Write Driver @ 1710---------------------------
 # 			wrst	|	1
 # 			wdata	|	141
@@ -2390,11 +3089,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	115
-# ------------------------ Fail @1730 ----------------------------
-#  Expected Data: 115 Does not match DUT Read Data: 141
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1730 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		141
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		115
+# 			rempty		|		0
+# TEST FAILED @ 1730
+# PASS count = 6 | FAIL count = 83
 # ---------------------------Write Driver @ 1730---------------------------
 # 			wrst	|	1
 # 			wdata	|	187
@@ -2417,11 +3124,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	87
-# ------------------------ Fail @1750 ----------------------------
-#  Expected Data: 87 Does not match DUT Read Data: 187
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1750 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		187
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		87
+# 			rempty		|		0
+# TEST FAILED @ 1750
+# PASS count = 6 | FAIL count = 84
 # ---------------------------Write Driver @ 1750---------------------------
 # 			wrst	|	1
 # 			wdata	|	253
@@ -2444,11 +3159,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	73
-# ------------------------ Fail @1770 ----------------------------
-#  Expected Data: 73 Does not match DUT Read Data: 253
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1770 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		253
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		73
+# 			rempty		|		0
+# TEST FAILED @ 1770
+# PASS count = 6 | FAIL count = 85
 # ---------------------------Write Driver @ 1770---------------------------
 # 			wrst	|	1
 # 			wdata	|	81
@@ -2471,11 +3194,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	74
-# ------------------------ Fail @1790 ----------------------------
-#  Expected Data: 74 Does not match DUT Read Data: 81
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1790 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		81
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		74
+# 			rempty		|		0
+# TEST FAILED @ 1790
+# PASS count = 6 | FAIL count = 86
 # ---------------------------Write Driver @ 1790---------------------------
 # 			wrst	|	1
 # 			wdata	|	130
@@ -2498,11 +3229,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	254
-# ------------------------ Fail @1810 ----------------------------
-#  Expected Data: 254 Does not match DUT Read Data: 130
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1810 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		130
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		254
+# 			rempty		|		0
+# TEST FAILED @ 1810
+# PASS count = 6 | FAIL count = 87
 # ---------------------------Write Driver @ 1810---------------------------
 # 			wrst	|	1
 # 			wdata	|	236
@@ -2525,11 +3264,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	145
-# ------------------------ Fail @1830 ----------------------------
-#  Expected Data: 145 Does not match DUT Read Data: 236
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1830 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		236
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		145
+# 			rempty		|		0
+# TEST FAILED @ 1830
+# PASS count = 6 | FAIL count = 88
 # ---------------------------Write Driver @ 1830---------------------------
 # 			wrst	|	1
 # 			wdata	|	169
@@ -2552,11 +3299,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	101
-# ------------------------ Fail @1850 ----------------------------
-#  Expected Data: 101 Does not match DUT Read Data: 169
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1850 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		169
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		101
+# 			rempty		|		0
+# TEST FAILED @ 1850
+# PASS count = 6 | FAIL count = 89
 # ---------------------------Write Driver @ 1850---------------------------
 # 			wrst	|	1
 # 			wdata	|	190
@@ -2579,11 +3334,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	94
-# ------------------------ Fail @1870 ----------------------------
-#  Expected Data: 94 Does not match DUT Read Data: 190
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1870 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		190
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		94
+# 			rempty		|		0
+# TEST FAILED @ 1870
+# PASS count = 6 | FAIL count = 90
 # ---------------------------Write Driver @ 1870---------------------------
 # 			wrst	|	1
 # 			wdata	|	3
@@ -2606,11 +3369,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	211
-# ------------------------ Fail @1890 ----------------------------
-#  Expected Data: 211 Does not match DUT Read Data: 3
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1890 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		3
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		211
+# 			rempty		|		0
+# TEST FAILED @ 1890
+# PASS count = 6 | FAIL count = 91
 # ---------------------------Write Driver @ 1890---------------------------
 # 			wrst	|	1
 # 			wdata	|	197
@@ -2633,11 +3404,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	39
-# ------------------------ Fail @1910 ----------------------------
-#  Expected Data: 39 Does not match DUT Read Data: 197
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1910 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		197
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		39
+# 			rempty		|		0
+# TEST FAILED @ 1910
+# PASS count = 6 | FAIL count = 92
 # ---------------------------Write Driver @ 1910---------------------------
 # 			wrst	|	1
 # 			wdata	|	163
@@ -2660,11 +3439,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	247
-# ------------------------ Fail @1930 ----------------------------
-#  Expected Data: 247 Does not match DUT Read Data: 163
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1930 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		163
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		247
+# 			rempty		|		0
+# TEST FAILED @ 1930
+# PASS count = 6 | FAIL count = 93
 # ---------------------------Write Driver @ 1930---------------------------
 # 			wrst	|	1
 # 			wdata	|	64
@@ -2687,11 +3474,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	95
-# ------------------------ Fail @1950 ----------------------------
-#  Expected Data: 95 Does not match DUT Read Data: 64
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1950 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		64
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		95
+# 			rempty		|		0
+# TEST FAILED @ 1950
+# PASS count = 6 | FAIL count = 94
 # ---------------------------Write Driver @ 1950---------------------------
 # 			wrst	|	1
 # 			wdata	|	13
@@ -2714,11 +3509,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	27
-# ------------------------ Fail @1970 ----------------------------
-#  Expected Data: 27 Does not match DUT Read Data: 13
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1970 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		13
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		27
+# 			rempty		|		0
+# TEST FAILED @ 1970
+# PASS count = 6 | FAIL count = 95
 # ---------------------------Write Driver @ 1970---------------------------
 # 			wrst	|	1
 # 			wdata	|	183
@@ -2741,11 +3544,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	141
-# ------------------------ Fail @1990 ----------------------------
-#  Expected Data: 141 Does not match DUT Read Data: 183
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @1990 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		183
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		141
+# 			rempty		|		0
+# TEST FAILED @ 1990
+# PASS count = 6 | FAIL count = 96
 # ---------------------------Write Driver @ 1990---------------------------
 # 			wrst	|	1
 # 			wdata	|	36
@@ -2768,11 +3579,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	187
-# ------------------------ Fail @2010 ----------------------------
-#  Expected Data: 187 Does not match DUT Read Data: 36
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2010 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		36
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		187
+# 			rempty		|		0
+# TEST FAILED @ 2010
+# PASS count = 6 | FAIL count = 97
 # ---------------------------Write Driver @ 2010---------------------------
 # 			wrst	|	1
 # 			wdata	|	18
@@ -2795,11 +3614,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	253
-# ------------------------ Fail @2030 ----------------------------
-#  Expected Data: 253 Does not match DUT Read Data: 18
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2030 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		18
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		253
+# 			rempty		|		0
+# TEST FAILED @ 2030
+# PASS count = 6 | FAIL count = 98
 # ---------------------------Write Driver @ 2030---------------------------
 # 			wrst	|	1
 # 			wdata	|	1
@@ -2822,11 +3649,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	81
-# ------------------------ Fail @2050 ----------------------------
-#  Expected Data: 81 Does not match DUT Read Data: 1
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2050 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		1
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		81
+# 			rempty		|		0
+# TEST FAILED @ 2050
+# PASS count = 6 | FAIL count = 99
 # ---------------------------Write Driver @ 2050---------------------------
 # 			wrst	|	1
 # 			wdata	|	225
@@ -2849,11 +3684,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	130
-# ------------------------ Fail @2070 ----------------------------
-#  Expected Data: 130 Does not match DUT Read Data: 225
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2070 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		225
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		130
+# 			rempty		|		0
+# TEST FAILED @ 2070
+# PASS count = 6 | FAIL count = 100
 # ---------------------------Write Driver @ 2070---------------------------
 # 			wrst	|	1
 # 			wdata	|	229
@@ -2876,11 +3719,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	236
-# ------------------------ Fail @2090 ----------------------------
-#  Expected Data: 236 Does not match DUT Read Data: 229
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2090 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		229
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		236
+# 			rempty		|		0
+# TEST FAILED @ 2090
+# PASS count = 6 | FAIL count = 101
 # ---------------------------Write Driver @ 2090---------------------------
 # 			wrst	|	1
 # 			wdata	|	21
@@ -2903,11 +3754,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	169
-# ------------------------ Fail @2110 ----------------------------
-#  Expected Data: 169 Does not match DUT Read Data: 21
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2110 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		21
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		169
+# 			rempty		|		0
+# TEST FAILED @ 2110
+# PASS count = 6 | FAIL count = 102
 # ---------------------------Write Driver @ 2110---------------------------
 # 			wrst	|	1
 # 			wdata	|	222
@@ -2930,11 +3789,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	190
-# ------------------------ Fail @2130 ----------------------------
-#  Expected Data: 190 Does not match DUT Read Data: 222
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2130 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		222
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		190
+# 			rempty		|		0
+# TEST FAILED @ 2130
+# PASS count = 6 | FAIL count = 103
 # ---------------------------Write Driver @ 2130---------------------------
 # 			wrst	|	1
 # 			wdata	|	22
@@ -2957,11 +3824,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	3
-# ------------------------ Fail @2150 ----------------------------
-#  Expected Data: 3 Does not match DUT Read Data: 22
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2150 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		22
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		3
+# 			rempty		|		0
+# TEST FAILED @ 2150
+# PASS count = 6 | FAIL count = 104
 # ---------------------------Write Driver @ 2150---------------------------
 # 			wrst	|	1
 # 			wdata	|	21
@@ -2984,11 +3859,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	197
-# ------------------------ Fail @2170 ----------------------------
-#  Expected Data: 197 Does not match DUT Read Data: 21
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2170 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		21
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		197
+# 			rempty		|		0
+# TEST FAILED @ 2170
+# PASS count = 6 | FAIL count = 105
 # ---------------------------Write Driver @ 2170---------------------------
 # 			wrst	|	1
 # 			wdata	|	219
@@ -3011,11 +3894,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	163
-# ------------------------ Fail @2190 ----------------------------
-#  Expected Data: 163 Does not match DUT Read Data: 219
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2190 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		219
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		163
+# 			rempty		|		0
+# TEST FAILED @ 2190
+# PASS count = 6 | FAIL count = 106
 # ---------------------------Write Driver @ 2190---------------------------
 # 			wrst	|	1
 # 			wdata	|	182
@@ -3038,11 +3929,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	64
-# ------------------------ Fail @2210 ----------------------------
-#  Expected Data: 64 Does not match DUT Read Data: 182
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2210 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		182
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		64
+# 			rempty		|		0
+# TEST FAILED @ 2210
+# PASS count = 6 | FAIL count = 107
 # ---------------------------Write Driver @ 2210---------------------------
 # 			wrst	|	1
 # 			wdata	|	116
@@ -3065,11 +3964,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	13
-# ------------------------ Fail @2230 ----------------------------
-#  Expected Data: 13 Does not match DUT Read Data: 116
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2230 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		116
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		13
+# 			rempty		|		0
+# TEST FAILED @ 2230
+# PASS count = 6 | FAIL count = 108
 # ---------------------------Write Driver @ 2230---------------------------
 # 			wrst	|	1
 # 			wdata	|	211
@@ -3092,11 +3999,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	183
-# ------------------------ Fail @2250 ----------------------------
-#  Expected Data: 183 Does not match DUT Read Data: 211
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2250 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		211
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		183
+# 			rempty		|		0
+# TEST FAILED @ 2250
+# PASS count = 6 | FAIL count = 109
 # ---------------------------Write Driver @ 2250---------------------------
 # 			wrst	|	1
 # 			wdata	|	12
@@ -3119,11 +4034,19 @@
 # 			rinc	|	1
 # 			rempty	|	0
 # 			rdata	|	36
-# ------------------------ Fail @2270 ----------------------------
-#  Expected Data: 36 Does not match DUT Read Data: 12
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2270 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		12
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		36
+# 			rempty		|		0
+# TEST FAILED @ 2270
+# PASS count = 6 | FAIL count = 110
 ############################################################################################################################
 # ---------------------------Write Driver @ 2270---------------------------
 # 			wrst	|	0
@@ -3149,11 +4072,22 @@
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	14
-# ------------------------ Pass @2290 ----------------------------
-#   Expected Data: 14 Read Data(DUT): 14
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2290 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		0
+# 			winc		|		1
+# 			wdata		|		14
+# 			wfull		|		0
+# 			rrst_n		|		0
+# 			rinc		|		1
+# 			rdata		|		14
+# 			rempty		|		1
+# Write Reset is applied
+# Write Reset TEST PASSED @ 2290
+# Read Reset is applied
+# Read Reset TEST FAILED @ 2290
+# PASS count = 7 | FAIL count = 111
 ############################################################################################################################
 # ---------------------------Write Driver @ 2290---------------------------
 # 			wrst	|	1
@@ -3178,11 +4112,19 @@
 # 			rinc	|	0
 # 			rempty	|	1
 # 			rdata	|	61
-# ------------------------ Pass @2310 ----------------------------
-#   Expected Data: 61 Read Data(DUT): 61
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2310 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		61
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		61
+# 			rempty		|		1
+# TEST PASSED @ 2310
+# PASS count = 8 | FAIL count = 111
 # ASSERTION FAIL: rdata is not latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=2,rptr=0
@@ -3203,11 +4145,19 @@
 # 			rinc	|	0
 # 			rempty	|	1
 # 			rdata	|	61
-# ------------------------ Pass @2330 ----------------------------
-#   Expected Data: 61 Read Data(DUT): 61
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2330 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		61
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		61
+# 			rempty		|		1
+# TEST PASSED @ 2330
+# PASS count = 9 | FAIL count = 111
 # ASSERTION PASS: rdata is latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=4,rptr=0
@@ -3227,11 +4177,19 @@
 # 			rinc	|	0
 # 			rempty	|	0
 # 			rdata	|	61
-# ------------------------ Fail @2350 ----------------------------
-#  Expected Data: 61 Does not match DUT Read Data: 190
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2350 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		190
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		61
+# 			rempty		|		0
+# TEST FAILED @ 2350
+# PASS count = 9 | FAIL count = 112
 # ASSERTION PASS: rdata is latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=6,rptr=0
@@ -3252,11 +4210,19 @@
 # 			rinc	|	0
 # 			rempty	|	0
 # 			rdata	|	61
-# ------------------------ Fail @2370 ----------------------------
-#  Expected Data: 61 Does not match DUT Read Data: 190
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2370 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		190
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		61
+# 			rempty		|		0
+# TEST FAILED @ 2370
+# PASS count = 9 | FAIL count = 113
 # ASSERTION PASS: rdata is latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=8,rptr=0
@@ -3276,11 +4242,19 @@
 # 			rinc	|	0
 # 			rempty	|	0
 # 			rdata	|	61
-# ------------------------ Fail @2390 ----------------------------
-#  Expected Data: 61 Does not match DUT Read Data: 235
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2390 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		235
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		61
+# 			rempty		|		0
+# TEST FAILED @ 2390
+# PASS count = 9 | FAIL count = 114
 # ASSERTION PASS: rdata is latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=10,rptr=0
@@ -3301,11 +4275,19 @@
 # 			rinc	|	0
 # 			rempty	|	0
 # 			rdata	|	61
-# ------------------------ Fail @2410 ----------------------------
-#  Expected Data: 61 Does not match DUT Read Data: 235
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2410 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		235
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		61
+# 			rempty		|		0
+# TEST FAILED @ 2410
+# PASS count = 9 | FAIL count = 115
 # ASSERTION PASS: rdata is latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=12,rptr=0
@@ -3325,11 +4307,19 @@
 # 			rinc	|	0
 # 			rempty	|	0
 # 			rdata	|	61
-# ------------------------ Fail @2430 ----------------------------
-#  Expected Data: 61 Does not match DUT Read Data: 203
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2430 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		203
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		61
+# 			rempty		|		0
+# TEST FAILED @ 2430
+# PASS count = 9 | FAIL count = 116
 # ASSERTION PASS: rdata is latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=14,rptr=0
@@ -3350,11 +4340,19 @@
 # 			rinc	|	0
 # 			rempty	|	0
 # 			rdata	|	61
-# ------------------------ Fail @2450 ----------------------------
-#  Expected Data: 61 Does not match DUT Read Data: 203
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2450 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		203
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		61
+# 			rempty		|		0
+# TEST FAILED @ 2450
+# PASS count = 9 | FAIL count = 117
 # ASSERTION PASS: rdata is latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=0,rptr=0
@@ -3374,11 +4372,19 @@
 # 			rinc	|	0
 # 			rempty	|	0
 # 			rdata	|	61
-# ------------------------ Fail @2470 ----------------------------
-#  Expected Data: 61 Does not match DUT Read Data: 28
-# 
-# 
-# 
+# ---------------------------------------Scoreboard @2470 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		28
+# 			wfull		|		1
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		61
+# 			rempty		|		0
+# TEST FAILED @ 2470
+# PASS count = 9 | FAIL count = 118
 # ASSERTION PASS: rdata is latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=0,rptr=0
@@ -3411,5 +4417,5 @@
 # ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
 #    Time: 2490 ns  Iteration: 59  Instance: /top
 # Saving coverage database on exit...
-# End time: 23:56:09 on Oct 06,2025, Elapsed time: 0:00:04
+# End time: 00:14:47 on Oct 07,2025, Elapsed time: 0:00:04
 # Errors: 0, Warnings: 0

@@ -27,12 +27,6 @@ class asyn_fifo_read_monitor extends uvm_monitor;
 		repeat(1) @ (posedge vif.read_monitor_cb);
 		forever
 		begin
-			/*
-			if(vif.rdata == 'd71)
-				repeat(2) @ (posedge vif.read_monitor_cb);
-			else
-				repeat(1) @ (posedge vif.read_monitor_cb);
-			*/
 			repeat(1) @ (posedge vif.read_monitor_cb);
 			$display("---------------------------Read Monitor @ %0t---------------------------",$time);
 			read_monitor_sequence_item.rinc = vif.rinc;
@@ -44,16 +38,6 @@ class asyn_fifo_read_monitor extends uvm_monitor;
 			$display("\t\t\trinc\t|\t%b",read_monitor_sequence_item.rinc);
 			$display("\t\t\trempty\t|\t%b",read_monitor_sequence_item.rempty);
 			$display("\t\t\trdata\t|\t%0d",read_monitor_sequence_item.rdata);
-			/*
-			if((prev_read_monitor_sequence_item.rdata == 'd183) && (read_monitor_sequence_item.rdata == 'd183))
-			begin
-	//			repeat(4) @ (posedge vif.read_monitor_cb);
-			end
-			else
-			begin
-				read_item_port.write(read_monitor_sequence_item);
-			end
-			*/
 			read_item_port.write(read_monitor_sequence_item);
 			prev_read_monitor_sequence_item.copy(read_monitor_sequence_item);
 		end
