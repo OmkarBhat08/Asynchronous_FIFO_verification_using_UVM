@@ -64,19 +64,48 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 	fork
 			begin
 			normal_write_seq.start(p_sequencer.wr_seqr);
+			#20;
 			normal_write_seq.start(p_sequencer.wr_seqr);
 			normal_read_seq.start(p_sequencer.rd_seqr);
+				#120;
+				/*
 			normal_read_seq.start(p_sequencer.rd_seqr);
+			normal_read_seq.start(p_sequencer.rd_seqr);
+			normal_read_seq.start(p_sequencer.rd_seqr);
+			normal_read_seq.start(p_sequencer.rd_seqr);
+			normal_read_seq.start(p_sequencer.rd_seqr);
+
+			normal_read_seq.start(p_sequencer.rd_seqr);
+			normal_read_seq.start(p_sequencer.rd_seqr);
+			normal_read_seq.start(p_sequencer.rd_seqr);
+				*/
 			end
 	join
-	/*
-		// For full
+		$display("############################################################################################################################");
+		// For Coverage
 		begin
-			for(int i=0;i<100;i++)
+			repeat(100)
+			begin
 				normal_write_seq.start(p_sequencer.wr_seqr);
+				normal_read_seq.start(p_sequencer.rd_seqr);
+			end
 		end
 		$display("############################################################################################################################");
-	*/
+		// Reset sequence
+		fork
+			rst_read_seq.start(p_sequencer.rd_seqr);
+			rst_write_seq.start(p_sequencer.wr_seqr);
+		join
+		$display("############################################################################################################################");
+		// For full
+		begin
+			repeat(5)
+			begin
+				normal_write_seq.start(p_sequencer.wr_seqr);
+				rinc0_read_seq.start(p_sequencer.rd_seqr);
+				#20;
+			end
+		end
+		$display("############################################################################################################################");
 	endtask
 endclass
-

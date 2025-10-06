@@ -9,6 +9,7 @@ interface asyn_fifo_interfs(input bit wclk, rclk);
 	logic winc, wrst_n;
 	logic rinc, rrst_n;
 
+	always@(wclk, rclk) $display("wptr=%0d,rptr=%0d",DUT.waddr,DUT.raddr);
 	clocking write_driver_cb @(posedge wclk);
 		default input #0 output #0;
 			input wrst_n;

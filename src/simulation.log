@@ -1,5 +1,5 @@
 # vsim -vopt work.top -voptargs="+acc=npr" -assertdebug -l simulation.log -coverage -c -do "coverage save -onexit -assert -directive -cvg -codeAll coverage.ucdb; run -all; exit" 
-# Start time: 21:44:12 on Oct 05,2025
+# Start time: 23:56:05 on Oct 06,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim
 # //  Version 10.6c linux Jul 25 2017
@@ -61,87 +61,75 @@
 # uvm_test_top               asyn_fifo_base_test          -     @471 
 #   env                      asyn_fifo_env                -     @478 
 #     rd_agnt                asyn_fifo_read_agent         -     @492 
-#       drv                  asyn_fifo_read_driver        -     @842 
-#         rsp_port           uvm_analysis_port            -     @857 
-#         seq_item_port      uvm_seq_item_pull_port       -     @849 
-#       mon                  asyn_fifo_read_monitor       -     @865 
-#         read_item_port     uvm_analysis_port            -     @876 
-#       seqr                 asyn_fifo_read_sequencer     -     @733 
-#         rsp_export         uvm_analysis_export          -     @740 
-#         seq_item_export    uvm_seq_item_pull_imp        -     @834 
+#       drv                  asyn_fifo_read_driver        -     @748 
+#         rsp_port           uvm_analysis_port            -     @763 
+#         seq_item_port      uvm_seq_item_pull_port       -     @755 
+#       mon                  asyn_fifo_read_monitor       -     @771 
+#         read_item_port     uvm_analysis_port            -     @786 
+#       seqr                 asyn_fifo_read_sequencer     -     @639 
+#         rsp_export         uvm_analysis_export          -     @646 
+#         seq_item_export    uvm_seq_item_pull_imp        -     @740 
 #         arbitration_queue  array                        0     -    
 #         lock_queue         array                        0     -    
 #         num_last_reqs      integral                     32    'd1  
 #         num_last_rsps      integral                     32    'd1  
 #     scb                    asyn_fifo_scoreboard         -     @499 
-#       tlm_read_fifo        uvm_tlm_analysis_fifo #(T)   -     @553 
-#         analysis_export    uvm_analysis_imp             -     @592 
-#         get_ap             uvm_analysis_port            -     @584 
-#         get_peek_export    uvm_get_peek_imp             -     @568 
-#         put_ap             uvm_analysis_port            -     @576 
-#         put_export         uvm_put_imp                  -     @560 
-#       tlm_write_fifo       uvm_tlm_analysis_fifo #(T)   -     @506 
-#         analysis_export    uvm_analysis_imp             -     @545 
-#         get_ap             uvm_analysis_port            -     @537 
-#         get_peek_export    uvm_get_peek_imp             -     @521 
-#         put_ap             uvm_analysis_port            -     @529 
-#         put_export         uvm_put_imp                  -     @513 
-#     subcr                  asyn_fifo_subscriber         -     @600 
-#       aport_read           uvm_analysis_imp_read_cg     -     @615 
-#       aport_write          uvm_analysis_imp_write_cg    -     @607 
-#     vir_seqr               asyn_fifo_virtual_sequencer  -     @623 
-#       rsp_export           uvm_analysis_export          -     @630 
-#       seq_item_export      uvm_seq_item_pull_imp        -     @724 
+#       read_export          uvm_analysis_imp_from_read   -     @809 
+#       write_export         uvm_analysis_imp_from_write  -     @801 
+#     subcr                  asyn_fifo_subscriber         -     @506 
+#       aport_read           uvm_analysis_imp_read_cg     -     @521 
+#       aport_write          uvm_analysis_imp_write_cg    -     @513 
+#     vir_seqr               asyn_fifo_virtual_sequencer  -     @529 
+#       rsp_export           uvm_analysis_export          -     @536 
+#       seq_item_export      uvm_seq_item_pull_imp        -     @630 
 #       arbitration_queue    array                        0     -    
 #       lock_queue           array                        0     -    
 #       num_last_reqs        integral                     32    'd1  
 #       num_last_rsps        integral                     32    'd1  
 #     wr_agnt                asyn_fifo_write_agent        -     @485 
-#       drv                  asyn_fifo_write_driver       -     @1006
-#         rsp_port           uvm_analysis_port            -     @1021
-#         seq_item_port      uvm_seq_item_pull_port       -     @1013
-#       mon                  asyn_fifo_write_monitor      -     @1029
-#         write_item_port    uvm_analysis_port            -     @1044
-#       seqr                 asyn_fifo_write_sequencer    -     @897 
-#         rsp_export         uvm_analysis_export          -     @904 
-#         seq_item_export    uvm_seq_item_pull_imp        -     @998 
+#       drv                  asyn_fifo_write_driver       -     @932 
+#         rsp_port           uvm_analysis_port            -     @947 
+#         seq_item_port      uvm_seq_item_pull_port       -     @939 
+#       mon                  asyn_fifo_write_monitor      -     @955 
+#         write_item_port    uvm_analysis_port            -     @970 
+#       seqr                 asyn_fifo_write_sequencer    -     @823 
+#         rsp_export         uvm_analysis_export          -     @830 
+#         seq_item_export    uvm_seq_item_pull_imp        -     @924 
 #         arbitration_queue  array                        0     -    
 #         lock_queue         array                        0     -    
 #         num_last_reqs      integral                     32    'd1  
 #         num_last_rsps      integral                     32    'd1  
 # -------------------------------------------------------------------
+# wptr=x,rptr=x
 # ---------------------------Write Driver @ 5---------------------------
 # 			wrst	|	1
 # 			wdata	|	49
 # 			winc	|	0
+# wptr=x,rptr=x
 # ---------------------------Read Driver @ 10---------------------------
 # 			rrst	|	1
 # 			rinc	|	1
+# wptr=x,rptr=x
 # ---------------------------Write Monitor @ 15---------------------------
 # 			wrst_n	|	1
 # 			winc	|	0
 # 			wdata	|	49
 # 			wfull	|	x
 # ASSERTION FAIL: wfull is not latched when winc = 0
+# wptr=x,rptr=x
+# wptr=x,rptr=x
 # ASSERTION FAIL: wfull is not latched when winc = 0
+# wptr=x,rptr=x
 # ---------------------------Read Monitor @ 30---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	x
 # 			rdata	|	x
-# ---------------------------------------Scoreboard @30 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		0
-# 			wdata		|		49
-# 			wfull		|		x
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		x
-# 			rempty		|		x
-# TEST FAILED @ 30
-# PASS count = 0 | FAIL count = 1
+# ------------------------ Fail @30 ----------------------------
+#  Expected Data: x Does not match DUT Read Data: 49
+# 
+# 
+# 
 ############################################################################################################################
 # ---------------------------Write Driver @ 30---------------------------
 # 			wrst	|	0
@@ -150,34 +138,27 @@
 # ---------------------------Read Driver @ 30---------------------------
 # 			rrst	|	0
 # 			rinc	|	1
+# wptr=0,rptr=0
 # ---------------------------Write Monitor @ 35---------------------------
 # 			wrst_n	|	0
 # 			winc	|	1
 # 			wdata	|	69
 # 			wfull	|	0
 # ASSERTION PASS: wfull is 0 when wrst = 0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
 # ASSERTION PASS: wfull is 0 when wrst = 0
+# wptr=0,rptr=0
 # ---------------------------Read Monitor @ 50---------------------------
 # 			rrst_n	|	0
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	69
-# ---------------------------------------Scoreboard @50 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		0
-# 			winc		|		1
-# 			wdata		|		69
-# 			wfull		|		0
-# 			rrst_n		|		0
-# 			rinc		|		1
-# 			rdata		|		69
-# 			rempty		|		1
-# Write Reset is applied
-# Write Reset TEST PASSED @ 50
-# Read Reset is applied
-# Read Reset TEST FAILED @ 50
-# PASS count = 1 | FAIL count = 2
+# ------------------------ Pass @50 ----------------------------
+#   Expected Data: 69 Read Data(DUT): 69
+# 
+# 
+# 
 ############################################################################################################################
 # ---------------------------Write Driver @ 50---------------------------
 # 			wrst	|	1
@@ -188,31 +169,27 @@
 # 			rinc	|	0
 # ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
 # ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
 # ---------------------------Write Monitor @ 55---------------------------
 # 			wrst_n	|	1
 # 			winc	|	0
 # 			wdata	|	14
 # 			wfull	|	0
 # ASSERTION PASS: wfull is latched when winc = 0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
 # ASSERTION PASS: wfull is latched when winc = 0
+# wptr=0,rptr=0
 # ---------------------------Read Monitor @ 70---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	0
 # 			rempty	|	1
 # 			rdata	|	69
-# ---------------------------------------Scoreboard @70 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		0
-# 			wdata		|		14
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		0
-# 			rdata		|		69
-# 			rempty		|		1
-# TEST FAILED @ 70
-# PASS count = 1 | FAIL count = 3
+# ------------------------ Fail @70 ----------------------------
+#  Expected Data: 69 Does not match DUT Read Data: 14
+# 
+# 
+# 
 ############################################################################################################################
 # ---------------------------Write Driver @ 70---------------------------
 # 			wrst	|	1
@@ -223,29 +200,25 @@
 # 			rinc	|	1
 # ASSERTION PASS: rdata is latched when rinc = 0
 # ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
 # ---------------------------Write Monitor @ 75---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
 # 			wdata	|	71
 # 			wfull	|	0
+# wptr=1,rptr=0
+# wptr=1,rptr=0
+# wptr=2,rptr=0
 # ---------------------------Read Monitor @ 90---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	71
-# ---------------------------------------Scoreboard @90 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		71
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		71
-# 			rempty		|		1
-# TEST PASSED @ 90
-# PASS count = 2 | FAIL count = 3
+# ------------------------ Pass @90 ----------------------------
+#   Expected Data: 71 Read Data(DUT): 71
+# 
+# 
+# 
 ############################################################################################################################
 # ---------------------------Write Driver @ 90---------------------------
 # 			wrst	|	0
@@ -255,34 +228,27 @@
 # 			rrst	|	0
 # 			rinc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
 # ---------------------------Write Monitor @ 95---------------------------
 # 			wrst_n	|	0
 # 			winc	|	1
 # 			wdata	|	52
 # 			wfull	|	0
 # ASSERTION PASS: wfull is 0 when wrst = 0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
 # ASSERTION PASS: wfull is 0 when wrst = 0
+# wptr=0,rptr=0
 # ---------------------------Read Monitor @ 110---------------------------
 # 			rrst_n	|	0
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	52
-# ---------------------------------------Scoreboard @110 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		0
-# 			winc		|		1
-# 			wdata		|		52
-# 			wfull		|		0
-# 			rrst_n		|		0
-# 			rinc		|		1
-# 			rdata		|		52
-# 			rempty		|		1
-# Write Reset is applied
-# Write Reset TEST PASSED @ 110
-# Read Reset is applied
-# Read Reset TEST FAILED @ 110
-# PASS count = 3 | FAIL count = 4
+# ------------------------ Pass @110 ----------------------------
+#   Expected Data: 52 Read Data(DUT): 52
+# 
+# 
+# 
 ############################################################################################################################
 # ---------------------------Write Driver @ 110---------------------------
 # 			wrst	|	1
@@ -290,1650 +256,3145 @@
 # 			winc	|	1
 # ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
 # ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
 # ---------------------------Write Monitor @ 115---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
 # 			wdata	|	183
 # 			wfull	|	0
-# ---------------------------Write Driver @ 115---------------------------
-# 			wrst	|	1
-# 			wdata	|	4
-# 			winc	|	1
-# ---------------------------Read Driver @ 125---------------------------
-# 			rrst	|	1
-# 			rinc	|	1
+# wptr=1,rptr=0
+# wptr=1,rptr=0
+# wptr=2,rptr=0
 # ---------------------------Read Monitor @ 130---------------------------
-# 			rrst_n	|	1
+# 			rrst_n	|	0
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	183
-# ---------------------------------------Scoreboard @130 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		183
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		183
-# 			rempty		|		1
-# TEST PASSED @ 130
-# PASS count = 4 | FAIL count = 4
-# ---------------------------Read Driver @ 130---------------------------
-# 			rrst	|	1
-# 			rinc	|	1
+# ------------------------ Pass @130 ----------------------------
+#   Expected Data: 183 Read Data(DUT): 183
+# 
+# 
+# 
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
 # ASSERTION PASS: No signals are unknown
+# wptr=2,rptr=0
+# ---------------------------Write Driver @ 135---------------------------
+# 			wrst	|	1
+# 			wdata	|	4
+# 			winc	|	1
 # ---------------------------Write Monitor @ 135---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
 # 			wdata	|	4
 # 			wfull	|	0
+# ---------------------------Read Driver @ 135---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=3,rptr=0
+# wptr=3,rptr=0
+# wptr=4,rptr=0
 # ---------------------------Read Monitor @ 150---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	183
-# ---------------------------------------Scoreboard @150 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		4
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		183
-# 			rempty		|		1
-# TEST FAILED @ 150
-# PASS count = 4 | FAIL count = 5
-# ---------------------------Write Driver @ 150---------------------------
-# 			wrst	|	1
-# 			wdata	|	151
-# 			winc	|	1
+# ------------------------ Fail @150 ----------------------------
+#  Expected Data: 183 Does not match DUT Read Data: 4
+# 
+# 
+# 
 # ASSERTION PASS: No signals are unknown
+# wptr=4,rptr=0
 # ---------------------------Write Monitor @ 155---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	151
+# 			wdata	|	4
 # 			wfull	|	0
-# ---------------------------Write Driver @ 155---------------------------
-# 			wrst	|	1
-# 			wdata	|	89
-# 			winc	|	1
-# ---------------------------Write Driver @ 165---------------------------
-# 			wrst	|	1
-# 			wdata	|	63
-# 			winc	|	1
+# wptr=5,rptr=0
+# wptr=5,rptr=0
+# wptr=6,rptr=0
 # ---------------------------Read Monitor @ 170---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
-# 			rempty	|	0
+# 			rempty	|	1
 # 			rdata	|	183
-# ---------------------------------------Scoreboard @170 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		151
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		183
-# 			rempty		|		0
-# TEST FAILED @ 170
-# PASS count = 4 | FAIL count = 6
+# ------------------------ Fail @170 ----------------------------
+#  Expected Data: 183 Does not match DUT Read Data: 4
+# 
+# 
+# 
 # ASSERTION PASS: No signals are unknown
+# wptr=6,rptr=0
 # ---------------------------Write Monitor @ 175---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	63
+# 			wdata	|	4
 # 			wfull	|	0
-# ---------------------------Write Driver @ 175---------------------------
-# 			wrst	|	1
-# 			wdata	|	180
-# 			winc	|	1
-# ---------------------------Write Driver @ 185---------------------------
-# 			wrst	|	1
-# 			wdata	|	107
-# 			winc	|	1
+# wptr=7,rptr=0
+# wptr=7,rptr=0
+# wptr=8,rptr=0
 # ---------------------------Read Monitor @ 190---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	4
-# ---------------------------------------Scoreboard @190 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		63
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		4
-# 			rempty		|		0
-# TEST FAILED @ 190
-# PASS count = 4 | FAIL count = 7
+# 			rdata	|	183
+# ------------------------ Fail @190 ----------------------------
+#  Expected Data: 183 Does not match DUT Read Data: 4
+# 
+# 
+# 
 # ASSERTION PASS: No signals are unknown
+# wptr=8,rptr=0
 # ---------------------------Write Monitor @ 195---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	107
+# 			wdata	|	4
 # 			wfull	|	0
-# ---------------------------Write Driver @ 195---------------------------
-# 			wrst	|	1
-# 			wdata	|	8
-# 			winc	|	1
-# ---------------------------Write Driver @ 205---------------------------
-# 			wrst	|	1
-# 			wdata	|	191
-# 			winc	|	1
+# wptr=9,rptr=0
+# wptr=9,rptr=0
+# wptr=10,rptr=0
 # ---------------------------Read Monitor @ 210---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	4
-# ---------------------------------------Scoreboard @210 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		107
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		4
-# 			rempty		|		0
-# TEST FAILED @ 210
-# PASS count = 4 | FAIL count = 8
+# 			rdata	|	183
+# ------------------------ Fail @210 ----------------------------
+#  Expected Data: 183 Does not match DUT Read Data: 4
+# 
+# 
+# 
 # ASSERTION PASS: No signals are unknown
+# wptr=10,rptr=1
 # ---------------------------Write Monitor @ 215---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	191
+# 			wdata	|	4
 # 			wfull	|	0
-# ---------------------------Write Driver @ 215---------------------------
-# 			wrst	|	1
-# 			wdata	|	201
-# 			winc	|	1
-# ---------------------------Write Driver @ 225---------------------------
-# 			wrst	|	1
-# 			wdata	|	179
-# 			winc	|	1
+# wptr=11,rptr=1
+# wptr=11,rptr=1
+# wptr=12,rptr=1
 # ---------------------------Read Monitor @ 230---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	4
-# ---------------------------------------Scoreboard @230 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		191
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		4
-# 			rempty		|		0
-# TEST FAILED @ 230
-# PASS count = 4 | FAIL count = 9
+# 			rdata	|	183
+# ------------------------ Fail @230 ----------------------------
+#  Expected Data: 183 Does not match DUT Read Data: 4
+# 
+# 
+# 
 # ASSERTION PASS: No signals are unknown
+# wptr=12,rptr=2
 # ---------------------------Write Monitor @ 235---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	179
+# 			wdata	|	4
 # 			wfull	|	0
-# ---------------------------Write Driver @ 235---------------------------
-# 			wrst	|	1
-# 			wdata	|	46
-# 			winc	|	1
-# ---------------------------Write Driver @ 245---------------------------
-# 			wrst	|	1
-# 			wdata	|	16
-# 			winc	|	1
+# wptr=13,rptr=2
+# wptr=13,rptr=2
+# wptr=14,rptr=2
 # ---------------------------Read Monitor @ 250---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	151
-# ---------------------------------------Scoreboard @250 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		179
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		151
-# 			rempty		|		0
-# TEST FAILED @ 250
-# PASS count = 4 | FAIL count = 10
+# 			rdata	|	4
+# ------------------------ Pass @250 ----------------------------
+#   Expected Data: 4 Read Data(DUT): 4
+# 
+# 
+# 
 # ASSERTION PASS: No signals are unknown
+# wptr=14,rptr=3
 # ---------------------------Write Monitor @ 255---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	16
+# 			wdata	|	4
 # 			wfull	|	0
-# ---------------------------Write Driver @ 255---------------------------
+# wptr=15,rptr=3
+# wptr=15,rptr=3
+############################################################################################################################
+# wptr=0,rptr=3
+# ---------------------------Write Driver @ 270---------------------------
 # 			wrst	|	1
-# 			wdata	|	32
-# 			winc	|	1
-# ---------------------------Write Driver @ 265---------------------------
-# 			wrst	|	1
-# 			wdata	|	12
+# 			wdata	|	151
 # 			winc	|	1
 # ---------------------------Read Monitor @ 270---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	89
-# ---------------------------------------Scoreboard @270 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		16
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		89
-# 			rempty		|		0
-# TEST FAILED @ 270
-# PASS count = 4 | FAIL count = 11
+# 			rdata	|	4
+# ------------------------ Pass @270 ----------------------------
+#   Expected Data: 4 Read Data(DUT): 4
+# 
+# 
+# 
 # ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=4
 # ---------------------------Write Monitor @ 275---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	12
+# 			wdata	|	151
 # 			wfull	|	0
-# ---------------------------Write Driver @ 275---------------------------
-# 			wrst	|	1
-# 			wdata	|	75
-# 			winc	|	1
-# ---------------------------Write Driver @ 285---------------------------
-# 			wrst	|	1
-# 			wdata	|	111
-# 			winc	|	1
+# ---------------------------Read Driver @ 275---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=1,rptr=4
+# wptr=1,rptr=4
+# wptr=2,rptr=4
 # ---------------------------Read Monitor @ 290---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	63
-# ---------------------------------------Scoreboard @290 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		12
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		63
-# 			rempty		|		0
-# TEST FAILED @ 290
-# PASS count = 4 | FAIL count = 12
+# 			rdata	|	4
+# ------------------------ Fail @290 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 151
+# 
+# 
+# 
+# ---------------------------Write Driver @ 290---------------------------
+# 			wrst	|	1
+# 			wdata	|	89
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=2,rptr=5
 # ---------------------------Write Monitor @ 295---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	111
+# 			wdata	|	89
 # 			wfull	|	0
-# ---------------------------Write Driver @ 295---------------------------
-# 			wrst	|	1
-# 			wdata	|	101
-# 			winc	|	1
-# ---------------------------Write Driver @ 305---------------------------
-# 			wrst	|	1
-# 			wdata	|	171
-# 			winc	|	1
+# ---------------------------Read Driver @ 295---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=3,rptr=5
+# wptr=3,rptr=5
+# wptr=4,rptr=5
 # ---------------------------Read Monitor @ 310---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	180
-# ---------------------------------------Scoreboard @310 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		111
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		180
-# 			rempty		|		0
-# TEST FAILED @ 310
-# PASS count = 4 | FAIL count = 13
+# 			rdata	|	4
+# ------------------------ Fail @310 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 89
+# 
+# 
+# 
+# ---------------------------Write Driver @ 310---------------------------
+# 			wrst	|	1
+# 			wdata	|	63
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=4,rptr=6
 # ---------------------------Write Monitor @ 315---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	171
+# 			wdata	|	63
 # 			wfull	|	0
-# ---------------------------Write Driver @ 315---------------------------
-# 			wrst	|	1
-# 			wdata	|	176
-# 			winc	|	1
-# ---------------------------Write Driver @ 325---------------------------
-# 			wrst	|	1
-# 			wdata	|	123
-# 			winc	|	1
+# ---------------------------Read Driver @ 315---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=4,rptr=6
+# wptr=4,rptr=6
+# wptr=5,rptr=6
 # ---------------------------Read Monitor @ 330---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	107
-# ---------------------------------------Scoreboard @330 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		171
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		107
-# 			rempty		|		0
-# TEST FAILED @ 330
-# PASS count = 4 | FAIL count = 14
+# 			rdata	|	4
+# ------------------------ Fail @330 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 63
+# 
+# 
+# 
+# ---------------------------Write Driver @ 330---------------------------
+# 			wrst	|	1
+# 			wdata	|	180
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=5,rptr=7
 # ---------------------------Write Monitor @ 335---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	123
+# 			wdata	|	180
 # 			wfull	|	0
-# ---------------------------Write Driver @ 335---------------------------
-# 			wrst	|	1
-# 			wdata	|	172
-# 			winc	|	1
-# ---------------------------Write Driver @ 345---------------------------
-# 			wrst	|	1
-# 			wdata	|	116
-# 			winc	|	1
+# ---------------------------Read Driver @ 335---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=5,rptr=7
+# wptr=5,rptr=7
+# wptr=6,rptr=7
 # ---------------------------Read Monitor @ 350---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	8
-# ---------------------------------------Scoreboard @350 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		123
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		8
-# 			rempty		|		0
-# TEST FAILED @ 350
-# PASS count = 4 | FAIL count = 15
+# 			rdata	|	4
+# ------------------------ Fail @350 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 180
+# 
+# 
+# 
+# ---------------------------Write Driver @ 350---------------------------
+# 			wrst	|	1
+# 			wdata	|	107
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=6,rptr=8
 # ---------------------------Write Monitor @ 355---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	116
+# 			wdata	|	107
 # 			wfull	|	0
-# ---------------------------Write Driver @ 355---------------------------
-# 			wrst	|	1
-# 			wdata	|	239
-# 			winc	|	1
-# ---------------------------Write Driver @ 365---------------------------
-# 			wrst	|	1
-# 			wdata	|	151
-# 			winc	|	1
+# ---------------------------Read Driver @ 355---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=6,rptr=8
+# wptr=6,rptr=8
+# wptr=7,rptr=8
 # ---------------------------Read Monitor @ 370---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	191
-# ---------------------------------------Scoreboard @370 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		116
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		191
-# 			rempty		|		0
-# TEST FAILED @ 370
-# PASS count = 4 | FAIL count = 16
+# 			rdata	|	4
+# ------------------------ Fail @370 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 107
+# 
+# 
+# 
+# ---------------------------Write Driver @ 370---------------------------
+# 			wrst	|	1
+# 			wdata	|	8
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=7,rptr=9
 # ---------------------------Write Monitor @ 375---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	151
+# 			wdata	|	8
 # 			wfull	|	0
-# ---------------------------Write Driver @ 375---------------------------
-# 			wrst	|	1
-# 			wdata	|	103
-# 			winc	|	1
-# ---------------------------Write Driver @ 385---------------------------
-# 			wrst	|	1
-# 			wdata	|	54
-# 			winc	|	1
+# ---------------------------Read Driver @ 375---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=7,rptr=9
+# wptr=7,rptr=9
+# wptr=8,rptr=9
 # ---------------------------Read Monitor @ 390---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	201
-# ---------------------------------------Scoreboard @390 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		151
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		201
-# 			rempty		|		0
-# TEST FAILED @ 390
-# PASS count = 4 | FAIL count = 17
+# 			rdata	|	4
+# ------------------------ Fail @390 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 8
+# 
+# 
+# 
+# ---------------------------Write Driver @ 390---------------------------
+# 			wrst	|	1
+# 			wdata	|	191
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=8,rptr=10
 # ---------------------------Write Monitor @ 395---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	54
+# 			wdata	|	191
 # 			wfull	|	0
-# ---------------------------Write Driver @ 395---------------------------
-# 			wrst	|	1
-# 			wdata	|	80
-# 			winc	|	1
-# ---------------------------Write Driver @ 405---------------------------
-# 			wrst	|	1
-# 			wdata	|	44
-# 			winc	|	1
+# ---------------------------Read Driver @ 395---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=8,rptr=10
+# wptr=8,rptr=10
+# wptr=9,rptr=10
 # ---------------------------Read Monitor @ 410---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	179
-# ---------------------------------------Scoreboard @410 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		54
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		179
-# 			rempty		|		0
-# TEST FAILED @ 410
-# PASS count = 4 | FAIL count = 18
+# 			rdata	|	4
+# ------------------------ Fail @410 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 191
+# 
+# 
+# 
+# ---------------------------Write Driver @ 410---------------------------
+# 			wrst	|	1
+# 			wdata	|	201
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=9,rptr=11
 # ---------------------------Write Monitor @ 415---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	44
+# 			wdata	|	201
 # 			wfull	|	0
-# ---------------------------Write Driver @ 415---------------------------
-# 			wrst	|	1
-# 			wdata	|	241
-# 			winc	|	1
-# ---------------------------Write Driver @ 425---------------------------
-# 			wrst	|	1
-# 			wdata	|	205
-# 			winc	|	1
+# ---------------------------Read Driver @ 415---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=9,rptr=11
+# wptr=9,rptr=11
+# wptr=10,rptr=11
 # ---------------------------Read Monitor @ 430---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	46
-# ---------------------------------------Scoreboard @430 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		44
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		46
-# 			rempty		|		0
-# TEST FAILED @ 430
-# PASS count = 4 | FAIL count = 19
+# 			rdata	|	4
+# ------------------------ Fail @430 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 201
+# 
+# 
+# 
+# ---------------------------Write Driver @ 430---------------------------
+# 			wrst	|	1
+# 			wdata	|	179
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=10,rptr=12
 # ---------------------------Write Monitor @ 435---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	205
+# 			wdata	|	179
 # 			wfull	|	0
-# ---------------------------Write Driver @ 435---------------------------
-# 			wrst	|	1
-# 			wdata	|	149
-# 			winc	|	1
-# ---------------------------Write Driver @ 445---------------------------
-# 			wrst	|	1
-# 			wdata	|	80
-# 			winc	|	1
+# ---------------------------Read Driver @ 435---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=10,rptr=12
+# wptr=10,rptr=12
+# wptr=11,rptr=12
 # ---------------------------Read Monitor @ 450---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	16
-# ---------------------------------------Scoreboard @450 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		205
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		16
-# 			rempty		|		0
-# TEST FAILED @ 450
-# PASS count = 4 | FAIL count = 20
+# 			rdata	|	4
+# ------------------------ Fail @450 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 179
+# 
+# 
+# 
+# ---------------------------Write Driver @ 450---------------------------
+# 			wrst	|	1
+# 			wdata	|	46
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=11,rptr=13
 # ---------------------------Write Monitor @ 455---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	80
+# 			wdata	|	46
 # 			wfull	|	0
-# ---------------------------Write Driver @ 455---------------------------
-# 			wrst	|	1
-# 			wdata	|	16
-# 			winc	|	1
-# ---------------------------Write Driver @ 465---------------------------
-# 			wrst	|	1
-# 			wdata	|	116
-# 			winc	|	1
+# ---------------------------Read Driver @ 455---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=11,rptr=13
+# wptr=11,rptr=13
+# wptr=12,rptr=13
 # ---------------------------Read Monitor @ 470---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	32
-# ---------------------------------------Scoreboard @470 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		80
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		32
-# 			rempty		|		0
-# TEST FAILED @ 470
-# PASS count = 4 | FAIL count = 21
+# 			rdata	|	4
+# ------------------------ Fail @470 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 46
+# 
+# 
+# 
+# ---------------------------Write Driver @ 470---------------------------
+# 			wrst	|	1
+# 			wdata	|	16
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=12,rptr=14
 # ---------------------------Write Monitor @ 475---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	116
+# 			wdata	|	16
 # 			wfull	|	0
-# ---------------------------Write Driver @ 475---------------------------
-# 			wrst	|	1
-# 			wdata	|	136
-# 			winc	|	1
-# ---------------------------Write Driver @ 485---------------------------
-# 			wrst	|	1
-# 			wdata	|	39
-# 			winc	|	1
+# ---------------------------Read Driver @ 475---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=12,rptr=14
+# wptr=12,rptr=14
+# wptr=13,rptr=14
 # ---------------------------Read Monitor @ 490---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	12
-# ---------------------------------------Scoreboard @490 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		116
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		12
-# 			rempty		|		0
-# TEST FAILED @ 490
-# PASS count = 4 | FAIL count = 22
+# 			rdata	|	4
+# ------------------------ Fail @490 ----------------------------
+#  Expected Data: 4 Does not match DUT Read Data: 16
+# 
+# 
+# 
+# ---------------------------Write Driver @ 490---------------------------
+# 			wrst	|	1
+# 			wdata	|	32
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=13,rptr=15
 # ---------------------------Write Monitor @ 495---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	39
+# 			wdata	|	32
 # 			wfull	|	0
-# ---------------------------Write Driver @ 495---------------------------
-# 			wrst	|	1
-# 			wdata	|	87
-# 			winc	|	1
-# ---------------------------Write Driver @ 505---------------------------
-# 			wrst	|	1
-# 			wdata	|	124
-# 			winc	|	1
+# ---------------------------Read Driver @ 495---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=13,rptr=15
+# wptr=13,rptr=15
+# wptr=14,rptr=15
 # ---------------------------Read Monitor @ 510---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	75
-# ---------------------------------------Scoreboard @510 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		39
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		75
-# 			rempty		|		0
-# TEST FAILED @ 510
-# PASS count = 4 | FAIL count = 23
+# 			rdata	|	151
+# ------------------------ Fail @510 ----------------------------
+#  Expected Data: 151 Does not match DUT Read Data: 32
+# 
+# 
+# 
+# ---------------------------Write Driver @ 510---------------------------
+# 			wrst	|	1
+# 			wdata	|	12
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=14,rptr=0
 # ---------------------------Write Monitor @ 515---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	124
+# 			wdata	|	12
 # 			wfull	|	0
-# ---------------------------Write Driver @ 515---------------------------
-# 			wrst	|	1
-# 			wdata	|	250
-# 			winc	|	1
-# ---------------------------Write Driver @ 525---------------------------
-# 			wrst	|	1
-# 			wdata	|	191
-# 			winc	|	1
+# ---------------------------Read Driver @ 515---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=14,rptr=0
+# wptr=14,rptr=0
+# wptr=15,rptr=0
 # ---------------------------Read Monitor @ 530---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	111
-# ---------------------------------------Scoreboard @530 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		124
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		111
-# 			rempty		|		0
-# TEST FAILED @ 530
-# PASS count = 4 | FAIL count = 24
+# 			rdata	|	151
+# ------------------------ Fail @530 ----------------------------
+#  Expected Data: 151 Does not match DUT Read Data: 12
+# 
+# 
+# 
+# ---------------------------Write Driver @ 530---------------------------
+# 			wrst	|	1
+# 			wdata	|	75
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=15,rptr=1
 # ---------------------------Write Monitor @ 535---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	191
+# 			wdata	|	75
 # 			wfull	|	0
-# ---------------------------Write Driver @ 535---------------------------
-# 			wrst	|	1
-# 			wdata	|	119
-# 			winc	|	1
-# ---------------------------Write Driver @ 545---------------------------
-# 			wrst	|	1
-# 			wdata	|	209
-# 			winc	|	1
+# ---------------------------Read Driver @ 535---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=15,rptr=1
+# wptr=15,rptr=1
+# wptr=0,rptr=1
 # ---------------------------Read Monitor @ 550---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	101
-# ---------------------------------------Scoreboard @550 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		191
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		101
-# 			rempty		|		0
-# TEST FAILED @ 550
-# PASS count = 4 | FAIL count = 25
+# 			rdata	|	89
+# ------------------------ Fail @550 ----------------------------
+#  Expected Data: 89 Does not match DUT Read Data: 75
+# 
+# 
+# 
+# ---------------------------Write Driver @ 550---------------------------
+# 			wrst	|	1
+# 			wdata	|	111
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=2
 # ---------------------------Write Monitor @ 555---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	209
+# 			wdata	|	111
 # 			wfull	|	0
-# ---------------------------Write Driver @ 555---------------------------
-# 			wrst	|	1
-# 			wdata	|	36
-# 			winc	|	1
-# ---------------------------Write Driver @ 565---------------------------
-# 			wrst	|	1
-# 			wdata	|	132
-# 			winc	|	1
+# ---------------------------Read Driver @ 555---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=0,rptr=2
+# wptr=0,rptr=2
+# wptr=1,rptr=2
 # ---------------------------Read Monitor @ 570---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	171
-# ---------------------------------------Scoreboard @570 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		209
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		171
-# 			rempty		|		0
-# TEST FAILED @ 570
-# PASS count = 4 | FAIL count = 26
+# 			rdata	|	89
+# ------------------------ Fail @570 ----------------------------
+#  Expected Data: 89 Does not match DUT Read Data: 111
+# 
+# 
+# 
+# ---------------------------Write Driver @ 570---------------------------
+# 			wrst	|	1
+# 			wdata	|	101
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=1,rptr=3
 # ---------------------------Write Monitor @ 575---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	132
+# 			wdata	|	101
 # 			wfull	|	0
-# ---------------------------Write Driver @ 575---------------------------
-# 			wrst	|	1
-# 			wdata	|	175
-# 			winc	|	1
-# ---------------------------Write Driver @ 585---------------------------
-# 			wrst	|	1
-# 			wdata	|	247
-# 			winc	|	1
+# ---------------------------Read Driver @ 575---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=1,rptr=3
+# wptr=1,rptr=3
+# wptr=2,rptr=3
 # ---------------------------Read Monitor @ 590---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	176
-# ---------------------------------------Scoreboard @590 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		132
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		176
-# 			rempty		|		0
-# TEST FAILED @ 590
-# PASS count = 4 | FAIL count = 27
+# 			rdata	|	63
+# ------------------------ Fail @590 ----------------------------
+#  Expected Data: 63 Does not match DUT Read Data: 101
+# 
+# 
+# 
+# ---------------------------Write Driver @ 590---------------------------
+# 			wrst	|	1
+# 			wdata	|	171
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=2,rptr=4
 # ---------------------------Write Monitor @ 595---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	247
+# 			wdata	|	171
 # 			wfull	|	0
-# ---------------------------Write Driver @ 595---------------------------
-# 			wrst	|	1
-# 			wdata	|	156
-# 			winc	|	1
-# ---------------------------Write Driver @ 605---------------------------
-# 			wrst	|	1
-# 			wdata	|	112
-# 			winc	|	1
+# ---------------------------Read Driver @ 595---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=2,rptr=4
+# wptr=2,rptr=4
+# wptr=3,rptr=4
 # ---------------------------Read Monitor @ 610---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	172
-# ---------------------------------------Scoreboard @610 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		247
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		172
-# 			rempty		|		0
-# TEST FAILED @ 610
-# PASS count = 4 | FAIL count = 28
+# 			rdata	|	180
+# ------------------------ Fail @610 ----------------------------
+#  Expected Data: 180 Does not match DUT Read Data: 171
+# 
+# 
+# 
+# ---------------------------Write Driver @ 610---------------------------
+# 			wrst	|	1
+# 			wdata	|	176
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=3,rptr=5
 # ---------------------------Write Monitor @ 615---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	112
+# 			wdata	|	176
 # 			wfull	|	0
-# ---------------------------Write Driver @ 615---------------------------
-# 			wrst	|	1
-# 			wdata	|	235
-# 			winc	|	1
-# ---------------------------Write Driver @ 625---------------------------
-# 			wrst	|	1
-# 			wdata	|	226
-# 			winc	|	1
+# ---------------------------Read Driver @ 615---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=3,rptr=5
+# wptr=3,rptr=5
+# wptr=4,rptr=5
 # ---------------------------Read Monitor @ 630---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	239
-# ---------------------------------------Scoreboard @630 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		112
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		239
-# 			rempty		|		0
-# TEST FAILED @ 630
-# PASS count = 4 | FAIL count = 29
+# 			rdata	|	107
+# ------------------------ Fail @630 ----------------------------
+#  Expected Data: 107 Does not match DUT Read Data: 176
+# 
+# 
+# 
+# ---------------------------Write Driver @ 630---------------------------
+# 			wrst	|	1
+# 			wdata	|	123
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=4,rptr=6
 # ---------------------------Write Monitor @ 635---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	226
+# 			wdata	|	123
 # 			wfull	|	0
-# ---------------------------Write Driver @ 635---------------------------
-# 			wrst	|	1
-# 			wdata	|	50
-# 			winc	|	1
-# ---------------------------Write Driver @ 645---------------------------
-# 			wrst	|	1
-# 			wdata	|	114
-# 			winc	|	1
+# ---------------------------Read Driver @ 635---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=4,rptr=6
+# wptr=4,rptr=6
+# wptr=5,rptr=6
 # ---------------------------Read Monitor @ 650---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	103
-# ---------------------------------------Scoreboard @650 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		226
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		103
-# 			rempty		|		0
-# TEST FAILED @ 650
-# PASS count = 4 | FAIL count = 30
+# 			rdata	|	8
+# ------------------------ Fail @650 ----------------------------
+#  Expected Data: 8 Does not match DUT Read Data: 123
+# 
+# 
+# 
+# ---------------------------Write Driver @ 650---------------------------
+# 			wrst	|	1
+# 			wdata	|	172
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=5,rptr=7
 # ---------------------------Write Monitor @ 655---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	114
+# 			wdata	|	172
 # 			wfull	|	0
-# ---------------------------Write Driver @ 655---------------------------
-# 			wrst	|	1
-# 			wdata	|	26
-# 			winc	|	1
-# ---------------------------Write Driver @ 665---------------------------
-# 			wrst	|	1
-# 			wdata	|	84
-# 			winc	|	1
+# ---------------------------Read Driver @ 655---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=5,rptr=7
+# wptr=5,rptr=7
+# wptr=6,rptr=7
 # ---------------------------Read Monitor @ 670---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	80
-# ---------------------------------------Scoreboard @670 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		114
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		80
-# 			rempty		|		0
-# TEST FAILED @ 670
-# PASS count = 4 | FAIL count = 31
+# 			rdata	|	191
+# ------------------------ Fail @670 ----------------------------
+#  Expected Data: 191 Does not match DUT Read Data: 172
+# 
+# 
+# 
+# ---------------------------Write Driver @ 670---------------------------
+# 			wrst	|	1
+# 			wdata	|	116
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=6,rptr=8
 # ---------------------------Write Monitor @ 675---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	84
+# 			wdata	|	116
 # 			wfull	|	0
-# ---------------------------Write Driver @ 675---------------------------
-# 			wrst	|	1
-# 			wdata	|	119
-# 			winc	|	1
-# ---------------------------Write Driver @ 685---------------------------
-# 			wrst	|	1
-# 			wdata	|	205
-# 			winc	|	1
+# ---------------------------Read Driver @ 675---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=6,rptr=8
+# wptr=6,rptr=8
+# wptr=7,rptr=8
 # ---------------------------Read Monitor @ 690---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	241
-# ---------------------------------------Scoreboard @690 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		84
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		241
-# 			rempty		|		0
-# TEST FAILED @ 690
-# PASS count = 4 | FAIL count = 32
+# 			rdata	|	201
+# ------------------------ Fail @690 ----------------------------
+#  Expected Data: 201 Does not match DUT Read Data: 116
+# 
+# 
+# 
+# ---------------------------Write Driver @ 690---------------------------
+# 			wrst	|	1
+# 			wdata	|	239
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=7,rptr=9
 # ---------------------------Write Monitor @ 695---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	205
+# 			wdata	|	239
 # 			wfull	|	0
-# ---------------------------Write Driver @ 695---------------------------
-# 			wrst	|	1
-# 			wdata	|	119
-# 			winc	|	1
-# ---------------------------Write Driver @ 705---------------------------
-# 			wrst	|	1
-# 			wdata	|	182
-# 			winc	|	1
+# ---------------------------Read Driver @ 695---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=7,rptr=9
+# wptr=7,rptr=9
+# wptr=8,rptr=9
 # ---------------------------Read Monitor @ 710---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	149
-# ---------------------------------------Scoreboard @710 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		205
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		149
-# 			rempty		|		0
-# TEST FAILED @ 710
-# PASS count = 4 | FAIL count = 33
+# 			rdata	|	179
+# ------------------------ Fail @710 ----------------------------
+#  Expected Data: 179 Does not match DUT Read Data: 239
+# 
+# 
+# 
+# ---------------------------Write Driver @ 710---------------------------
+# 			wrst	|	1
+# 			wdata	|	151
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=8,rptr=10
 # ---------------------------Write Monitor @ 715---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	182
+# 			wdata	|	151
 # 			wfull	|	0
-# ---------------------------Write Driver @ 715---------------------------
-# 			wrst	|	1
-# 			wdata	|	168
-# 			winc	|	1
-# ---------------------------Write Driver @ 725---------------------------
-# 			wrst	|	1
-# 			wdata	|	94
-# 			winc	|	1
+# ---------------------------Read Driver @ 715---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=8,rptr=10
+# wptr=8,rptr=10
+# wptr=9,rptr=10
 # ---------------------------Read Monitor @ 730---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	16
-# ---------------------------------------Scoreboard @730 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		182
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		16
-# 			rempty		|		0
-# TEST FAILED @ 730
-# PASS count = 4 | FAIL count = 34
+# 			rdata	|	46
+# ------------------------ Fail @730 ----------------------------
+#  Expected Data: 46 Does not match DUT Read Data: 151
+# 
+# 
+# 
+# ---------------------------Write Driver @ 730---------------------------
+# 			wrst	|	1
+# 			wdata	|	103
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=9,rptr=11
 # ---------------------------Write Monitor @ 735---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	94
+# 			wdata	|	103
 # 			wfull	|	0
-# ---------------------------Write Driver @ 735---------------------------
-# 			wrst	|	1
-# 			wdata	|	115
-# 			winc	|	1
-# ---------------------------Write Driver @ 745---------------------------
-# 			wrst	|	1
-# 			wdata	|	87
-# 			winc	|	1
+# ---------------------------Read Driver @ 735---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=9,rptr=11
+# wptr=9,rptr=11
+# wptr=10,rptr=11
 # ---------------------------Read Monitor @ 750---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	136
-# ---------------------------------------Scoreboard @750 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		94
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		136
-# 			rempty		|		0
-# TEST FAILED @ 750
-# PASS count = 4 | FAIL count = 35
+# 			rdata	|	16
+# ------------------------ Fail @750 ----------------------------
+#  Expected Data: 16 Does not match DUT Read Data: 103
+# 
+# 
+# 
+# ---------------------------Write Driver @ 750---------------------------
+# 			wrst	|	1
+# 			wdata	|	54
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=10,rptr=12
 # ---------------------------Write Monitor @ 755---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	87
+# 			wdata	|	54
 # 			wfull	|	0
-# ---------------------------Write Driver @ 755---------------------------
-# 			wrst	|	1
-# 			wdata	|	73
-# 			winc	|	1
-# ---------------------------Write Driver @ 765---------------------------
-# 			wrst	|	1
-# 			wdata	|	74
-# 			winc	|	1
+# ---------------------------Read Driver @ 755---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=10,rptr=12
+# wptr=10,rptr=12
+# wptr=11,rptr=12
 # ---------------------------Read Monitor @ 770---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	87
-# ---------------------------------------Scoreboard @770 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		87
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		87
-# 			rempty		|		0
-# TEST PASSED @ 770
-# PASS count = 5 | FAIL count = 35
+# 			rdata	|	32
+# ------------------------ Fail @770 ----------------------------
+#  Expected Data: 32 Does not match DUT Read Data: 54
+# 
+# 
+# 
+# ---------------------------Write Driver @ 770---------------------------
+# 			wrst	|	1
+# 			wdata	|	80
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=11,rptr=13
 # ---------------------------Write Monitor @ 775---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	74
+# 			wdata	|	80
 # 			wfull	|	0
-# ---------------------------Write Driver @ 775---------------------------
-# 			wrst	|	1
-# 			wdata	|	254
-# 			winc	|	1
-# ---------------------------Write Driver @ 785---------------------------
-# 			wrst	|	1
-# 			wdata	|	145
-# 			winc	|	1
+# ---------------------------Read Driver @ 775---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=11,rptr=13
+# wptr=11,rptr=13
+# wptr=12,rptr=13
 # ---------------------------Read Monitor @ 790---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	250
-# ---------------------------------------Scoreboard @790 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		74
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		250
-# 			rempty		|		0
-# TEST FAILED @ 790
-# PASS count = 5 | FAIL count = 36
+# 			rdata	|	12
+# ------------------------ Fail @790 ----------------------------
+#  Expected Data: 12 Does not match DUT Read Data: 80
+# 
+# 
+# 
+# ---------------------------Write Driver @ 790---------------------------
+# 			wrst	|	1
+# 			wdata	|	44
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=12,rptr=14
 # ---------------------------Write Monitor @ 795---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	145
+# 			wdata	|	44
 # 			wfull	|	0
-# ---------------------------Write Driver @ 795---------------------------
-# 			wrst	|	1
-# 			wdata	|	101
-# 			winc	|	1
-# ---------------------------Write Driver @ 805---------------------------
-# 			wrst	|	1
-# 			wdata	|	94
-# 			winc	|	1
+# ---------------------------Read Driver @ 795---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=12,rptr=14
+# wptr=12,rptr=14
+# wptr=13,rptr=14
 # ---------------------------Read Monitor @ 810---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	119
-# ---------------------------------------Scoreboard @810 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		145
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		119
-# 			rempty		|		0
-# TEST FAILED @ 810
-# PASS count = 5 | FAIL count = 37
+# 			rdata	|	75
+# ------------------------ Fail @810 ----------------------------
+#  Expected Data: 75 Does not match DUT Read Data: 44
+# 
+# 
+# 
+# ---------------------------Write Driver @ 810---------------------------
+# 			wrst	|	1
+# 			wdata	|	241
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=13,rptr=15
 # ---------------------------Write Monitor @ 815---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	94
+# 			wdata	|	241
 # 			wfull	|	0
-# ---------------------------Write Driver @ 815---------------------------
-# 			wrst	|	1
-# 			wdata	|	211
-# 			winc	|	1
-# ---------------------------Write Driver @ 825---------------------------
-# 			wrst	|	1
-# 			wdata	|	39
-# 			winc	|	1
+# ---------------------------Read Driver @ 815---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=13,rptr=15
+# wptr=13,rptr=15
+# wptr=14,rptr=15
 # ---------------------------Read Monitor @ 830---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	36
-# ---------------------------------------Scoreboard @830 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		94
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		36
-# 			rempty		|		0
-# TEST FAILED @ 830
-# PASS count = 5 | FAIL count = 38
+# 			rdata	|	111
+# ------------------------ Fail @830 ----------------------------
+#  Expected Data: 111 Does not match DUT Read Data: 241
+# 
+# 
+# 
+# ---------------------------Write Driver @ 830---------------------------
+# 			wrst	|	1
+# 			wdata	|	205
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=14,rptr=0
 # ---------------------------Write Monitor @ 835---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	39
+# 			wdata	|	205
 # 			wfull	|	0
-# ---------------------------Write Driver @ 835---------------------------
-# 			wrst	|	1
-# 			wdata	|	247
-# 			winc	|	1
-# ---------------------------Write Driver @ 845---------------------------
-# 			wrst	|	1
-# 			wdata	|	95
-# 			winc	|	1
+# ---------------------------Read Driver @ 835---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=14,rptr=0
+# wptr=14,rptr=0
+# wptr=15,rptr=0
 # ---------------------------Read Monitor @ 850---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	175
-# ---------------------------------------Scoreboard @850 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		39
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		175
-# 			rempty		|		0
-# TEST FAILED @ 850
-# PASS count = 5 | FAIL count = 39
+# 			rdata	|	101
+# ------------------------ Fail @850 ----------------------------
+#  Expected Data: 101 Does not match DUT Read Data: 205
+# 
+# 
+# 
+# ---------------------------Write Driver @ 850---------------------------
+# 			wrst	|	1
+# 			wdata	|	149
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=15,rptr=1
 # ---------------------------Write Monitor @ 855---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	95
+# 			wdata	|	149
 # 			wfull	|	0
-# ---------------------------Write Driver @ 855---------------------------
-# 			wrst	|	1
-# 			wdata	|	27
-# 			winc	|	1
-# ---------------------------Write Driver @ 865---------------------------
-# 			wrst	|	1
-# 			wdata	|	141
-# 			winc	|	1
+# ---------------------------Read Driver @ 855---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=15,rptr=1
+# wptr=15,rptr=1
+# wptr=0,rptr=1
 # ---------------------------Read Monitor @ 870---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	156
-# ---------------------------------------Scoreboard @870 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		95
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		156
-# 			rempty		|		0
-# TEST FAILED @ 870
-# PASS count = 5 | FAIL count = 40
+# 			rdata	|	171
+# ------------------------ Fail @870 ----------------------------
+#  Expected Data: 171 Does not match DUT Read Data: 149
+# 
+# 
+# 
+# ---------------------------Write Driver @ 870---------------------------
+# 			wrst	|	1
+# 			wdata	|	80
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=2
 # ---------------------------Write Monitor @ 875---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	141
+# 			wdata	|	80
 # 			wfull	|	0
-# ---------------------------Write Driver @ 875---------------------------
-# 			wrst	|	1
-# 			wdata	|	187
-# 			winc	|	1
-# ---------------------------Write Driver @ 885---------------------------
-# 			wrst	|	1
-# 			wdata	|	253
-# 			winc	|	1
+# ---------------------------Read Driver @ 875---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=0,rptr=2
+# wptr=0,rptr=2
+# wptr=1,rptr=2
 # ---------------------------Read Monitor @ 890---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	235
-# ---------------------------------------Scoreboard @890 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		141
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		235
-# 			rempty		|		0
-# TEST FAILED @ 890
-# PASS count = 5 | FAIL count = 41
+# 			rdata	|	176
+# ------------------------ Fail @890 ----------------------------
+#  Expected Data: 176 Does not match DUT Read Data: 80
+# 
+# 
+# 
+# ---------------------------Write Driver @ 890---------------------------
+# 			wrst	|	1
+# 			wdata	|	16
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=1,rptr=3
 # ---------------------------Write Monitor @ 895---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	253
+# 			wdata	|	16
 # 			wfull	|	0
-# ---------------------------Write Driver @ 895---------------------------
-# 			wrst	|	1
-# 			wdata	|	81
-# 			winc	|	1
-# ---------------------------Write Driver @ 905---------------------------
-# 			wrst	|	1
-# 			wdata	|	130
-# 			winc	|	1
+# ---------------------------Read Driver @ 895---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=1,rptr=3
+# wptr=1,rptr=3
+# wptr=2,rptr=3
 # ---------------------------Read Monitor @ 910---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	50
-# ---------------------------------------Scoreboard @910 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		253
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		50
-# 			rempty		|		0
-# TEST FAILED @ 910
-# PASS count = 5 | FAIL count = 42
+# 			rdata	|	123
+# ------------------------ Fail @910 ----------------------------
+#  Expected Data: 123 Does not match DUT Read Data: 16
+# 
+# 
+# 
+# ---------------------------Write Driver @ 910---------------------------
+# 			wrst	|	1
+# 			wdata	|	116
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=2,rptr=4
 # ---------------------------Write Monitor @ 915---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	130
+# 			wdata	|	116
 # 			wfull	|	0
-# ---------------------------Write Driver @ 915---------------------------
-# 			wrst	|	1
-# 			wdata	|	236
-# 			winc	|	1
-# ---------------------------Write Driver @ 925---------------------------
-# 			wrst	|	1
-# 			wdata	|	169
-# 			winc	|	1
+# ---------------------------Read Driver @ 915---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=2,rptr=4
+# wptr=2,rptr=4
+# wptr=3,rptr=4
 # ---------------------------Read Monitor @ 930---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	26
-# ---------------------------------------Scoreboard @930 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		130
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		26
-# 			rempty		|		0
-# TEST FAILED @ 930
-# PASS count = 5 | FAIL count = 43
+# 			rdata	|	172
+# ------------------------ Fail @930 ----------------------------
+#  Expected Data: 172 Does not match DUT Read Data: 116
+# 
+# 
+# 
+# ---------------------------Write Driver @ 930---------------------------
+# 			wrst	|	1
+# 			wdata	|	136
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=3,rptr=5
 # ---------------------------Write Monitor @ 935---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	169
+# 			wdata	|	136
 # 			wfull	|	0
-# ---------------------------Write Driver @ 935---------------------------
-# 			wrst	|	1
-# 			wdata	|	190
-# 			winc	|	1
-# ---------------------------Write Driver @ 945---------------------------
-# 			wrst	|	1
-# 			wdata	|	3
-# 			winc	|	1
+# ---------------------------Read Driver @ 935---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=3,rptr=5
+# wptr=3,rptr=5
+# wptr=4,rptr=5
 # ---------------------------Read Monitor @ 950---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	119
-# ---------------------------------------Scoreboard @950 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		169
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		119
-# 			rempty		|		0
-# TEST FAILED @ 950
-# PASS count = 5 | FAIL count = 44
+# 			rdata	|	116
+# ------------------------ Fail @950 ----------------------------
+#  Expected Data: 116 Does not match DUT Read Data: 136
+# 
+# 
+# 
+# ---------------------------Write Driver @ 950---------------------------
+# 			wrst	|	1
+# 			wdata	|	39
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=4,rptr=6
 # ---------------------------Write Monitor @ 955---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	3
+# 			wdata	|	39
 # 			wfull	|	0
-# ---------------------------Write Driver @ 955---------------------------
-# 			wrst	|	1
-# 			wdata	|	197
-# 			winc	|	1
-# ---------------------------Write Driver @ 965---------------------------
-# 			wrst	|	1
-# 			wdata	|	163
-# 			winc	|	1
+# ---------------------------Read Driver @ 955---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=4,rptr=6
+# wptr=4,rptr=6
+# wptr=5,rptr=6
 # ---------------------------Read Monitor @ 970---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	119
-# ---------------------------------------Scoreboard @970 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		3
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		119
-# 			rempty		|		0
-# TEST FAILED @ 970
-# PASS count = 5 | FAIL count = 45
+# 			rdata	|	239
+# ------------------------ Fail @970 ----------------------------
+#  Expected Data: 239 Does not match DUT Read Data: 39
+# 
+# 
+# 
+# ---------------------------Write Driver @ 970---------------------------
+# 			wrst	|	1
+# 			wdata	|	87
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=5,rptr=7
 # ---------------------------Write Monitor @ 975---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	163
+# 			wdata	|	87
 # 			wfull	|	0
-# ---------------------------Write Driver @ 975---------------------------
-# 			wrst	|	1
-# 			wdata	|	64
-# 			winc	|	1
-# ---------------------------Write Driver @ 985---------------------------
-# 			wrst	|	1
-# 			wdata	|	13
-# 			winc	|	1
+# ---------------------------Read Driver @ 975---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=5,rptr=7
+# wptr=5,rptr=7
+# wptr=6,rptr=7
 # ---------------------------Read Monitor @ 990---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	168
-# ---------------------------------------Scoreboard @990 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		163
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		168
-# 			rempty		|		0
-# TEST FAILED @ 990
-# PASS count = 5 | FAIL count = 46
+# 			rdata	|	151
+# ------------------------ Fail @990 ----------------------------
+#  Expected Data: 151 Does not match DUT Read Data: 87
+# 
+# 
+# 
+# ---------------------------Write Driver @ 990---------------------------
+# 			wrst	|	1
+# 			wdata	|	124
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=6,rptr=8
 # ---------------------------Write Monitor @ 995---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	13
+# 			wdata	|	124
 # 			wfull	|	0
-# ---------------------------Write Driver @ 995---------------------------
-# 			wrst	|	1
-# 			wdata	|	183
-# 			winc	|	1
-# ---------------------------Write Driver @ 1005---------------------------
-# 			wrst	|	1
-# 			wdata	|	36
-# 			winc	|	1
+# ---------------------------Read Driver @ 995---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=6,rptr=8
+# wptr=6,rptr=8
+# wptr=7,rptr=8
 # ---------------------------Read Monitor @ 1010---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	115
-# ---------------------------------------Scoreboard @1010 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		13
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		115
-# 			rempty		|		0
-# TEST FAILED @ 1010
-# PASS count = 5 | FAIL count = 47
+# 			rdata	|	103
+# ------------------------ Fail @1010 ----------------------------
+#  Expected Data: 103 Does not match DUT Read Data: 124
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1010---------------------------
+# 			wrst	|	1
+# 			wdata	|	250
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=7,rptr=9
 # ---------------------------Write Monitor @ 1015---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	36
+# 			wdata	|	250
 # 			wfull	|	0
-# ---------------------------Write Driver @ 1015---------------------------
-# 			wrst	|	1
-# 			wdata	|	18
-# 			winc	|	1
-# ---------------------------Write Driver @ 1025---------------------------
-# 			wrst	|	1
-# 			wdata	|	1
-# 			winc	|	1
+# ---------------------------Read Driver @ 1015---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=7,rptr=9
+# wptr=7,rptr=9
+# wptr=8,rptr=9
 # ---------------------------Read Monitor @ 1030---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	73
-# ---------------------------------------Scoreboard @1030 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		36
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		73
-# 			rempty		|		0
-# TEST FAILED @ 1030
-# PASS count = 5 | FAIL count = 48
+# 			rdata	|	54
+# ------------------------ Fail @1030 ----------------------------
+#  Expected Data: 54 Does not match DUT Read Data: 250
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1030---------------------------
+# 			wrst	|	1
+# 			wdata	|	191
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=8,rptr=10
 # ---------------------------Write Monitor @ 1035---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	1
+# 			wdata	|	191
 # 			wfull	|	0
-# ---------------------------Write Driver @ 1035---------------------------
-# 			wrst	|	1
-# 			wdata	|	225
-# 			winc	|	1
-# ---------------------------Write Driver @ 1045---------------------------
-# 			wrst	|	1
-# 			wdata	|	229
-# 			winc	|	1
+# ---------------------------Read Driver @ 1035---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=8,rptr=10
+# wptr=8,rptr=10
+# wptr=9,rptr=10
 # ---------------------------Read Monitor @ 1050---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	254
-# ---------------------------------------Scoreboard @1050 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		1
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		254
-# 			rempty		|		0
-# TEST FAILED @ 1050
-# PASS count = 5 | FAIL count = 49
+# 			rdata	|	80
+# ------------------------ Fail @1050 ----------------------------
+#  Expected Data: 80 Does not match DUT Read Data: 191
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1050---------------------------
+# 			wrst	|	1
+# 			wdata	|	119
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=9,rptr=11
 # ---------------------------Write Monitor @ 1055---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	229
+# 			wdata	|	119
 # 			wfull	|	0
-# ---------------------------Write Driver @ 1055---------------------------
-# 			wrst	|	1
-# 			wdata	|	21
-# 			winc	|	1
-# ---------------------------Write Driver @ 1065---------------------------
-# 			wrst	|	1
-# 			wdata	|	222
-# 			winc	|	1
+# ---------------------------Read Driver @ 1055---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=9,rptr=11
+# wptr=9,rptr=11
+# wptr=10,rptr=11
 # ---------------------------Read Monitor @ 1070---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	101
-# ---------------------------------------Scoreboard @1070 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		229
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		101
-# 			rempty		|		0
-# TEST FAILED @ 1070
-# PASS count = 5 | FAIL count = 50
+# 			rdata	|	44
+# ------------------------ Fail @1070 ----------------------------
+#  Expected Data: 44 Does not match DUT Read Data: 119
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1070---------------------------
+# 			wrst	|	1
+# 			wdata	|	209
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=10,rptr=12
 # ---------------------------Write Monitor @ 1075---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	222
+# 			wdata	|	209
 # 			wfull	|	0
-# ---------------------------Write Driver @ 1075---------------------------
-# 			wrst	|	1
-# 			wdata	|	22
-# 			winc	|	1
-# ---------------------------Write Driver @ 1085---------------------------
-# 			wrst	|	1
-# 			wdata	|	21
-# 			winc	|	1
+# ---------------------------Read Driver @ 1075---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=10,rptr=12
+# wptr=10,rptr=12
+# wptr=11,rptr=12
 # ---------------------------Read Monitor @ 1090---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	211
-# ---------------------------------------Scoreboard @1090 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		222
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		211
-# 			rempty		|		0
-# TEST FAILED @ 1090
-# PASS count = 5 | FAIL count = 51
+# 			rdata	|	241
+# ------------------------ Fail @1090 ----------------------------
+#  Expected Data: 241 Does not match DUT Read Data: 209
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1090---------------------------
+# 			wrst	|	1
+# 			wdata	|	36
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=11,rptr=13
 # ---------------------------Write Monitor @ 1095---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	21
+# 			wdata	|	36
 # 			wfull	|	0
-# ---------------------------Write Driver @ 1095---------------------------
-# 			wrst	|	1
-# 			wdata	|	219
-# 			winc	|	1
-# ---------------------------Write Driver @ 1105---------------------------
-# 			wrst	|	1
-# 			wdata	|	182
-# 			winc	|	1
+# ---------------------------Read Driver @ 1095---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=11,rptr=13
+# wptr=11,rptr=13
+# wptr=12,rptr=13
 # ---------------------------Read Monitor @ 1110---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	247
-# ---------------------------------------Scoreboard @1110 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		21
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		247
-# 			rempty		|		0
-# TEST FAILED @ 1110
-# PASS count = 5 | FAIL count = 52
+# 			rdata	|	205
+# ------------------------ Fail @1110 ----------------------------
+#  Expected Data: 205 Does not match DUT Read Data: 36
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1110---------------------------
+# 			wrst	|	1
+# 			wdata	|	132
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=12,rptr=14
 # ---------------------------Write Monitor @ 1115---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
-# 			wdata	|	182
+# 			wdata	|	132
 # 			wfull	|	0
-# ---------------------------Write Driver @ 1115---------------------------
-# 			wrst	|	1
-# 			wdata	|	116
-# 			winc	|	1
-# ---------------------------Write Driver @ 1125---------------------------
-# 			wrst	|	1
-# 			wdata	|	211
-# 			winc	|	1
+# ---------------------------Read Driver @ 1115---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=12,rptr=14
+# wptr=12,rptr=14
+# wptr=13,rptr=14
 # ---------------------------Read Monitor @ 1130---------------------------
 # 			rrst_n	|	1
 # 			rinc	|	1
 # 			rempty	|	0
-# 			rdata	|	27
-# ---------------------------------------Scoreboard @1130 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		182
-# 			wfull		|		0
-# 			rrst_n		|		1
-# 			rinc		|		1
-# 			rdata		|		27
-# 			rempty		|		0
-# TEST FAILED @ 1130
-# PASS count = 5 | FAIL count = 53
+# 			rdata	|	149
+# ------------------------ Fail @1130 ----------------------------
+#  Expected Data: 149 Does not match DUT Read Data: 132
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1130---------------------------
+# 			wrst	|	1
+# 			wdata	|	175
+# 			winc	|	1
 # ASSERTION PASS: No signals are unknown
+# wptr=13,rptr=15
 # ---------------------------Write Monitor @ 1135---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	175
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1135---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=13,rptr=15
+# wptr=13,rptr=15
+# wptr=14,rptr=15
+# ---------------------------Read Monitor @ 1150---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	80
+# ------------------------ Fail @1150 ----------------------------
+#  Expected Data: 80 Does not match DUT Read Data: 175
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1150---------------------------
+# 			wrst	|	1
+# 			wdata	|	247
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=14,rptr=0
+# ---------------------------Write Monitor @ 1155---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	247
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1155---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=14,rptr=0
+# wptr=14,rptr=0
+# wptr=15,rptr=0
+# ---------------------------Read Monitor @ 1170---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	16
+# ------------------------ Fail @1170 ----------------------------
+#  Expected Data: 16 Does not match DUT Read Data: 247
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1170---------------------------
+# 			wrst	|	1
+# 			wdata	|	156
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=15,rptr=1
+# ---------------------------Write Monitor @ 1175---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	156
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1175---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=15,rptr=1
+# wptr=15,rptr=1
+# wptr=0,rptr=1
+# ---------------------------Read Monitor @ 1190---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	116
+# ------------------------ Fail @1190 ----------------------------
+#  Expected Data: 116 Does not match DUT Read Data: 156
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1190---------------------------
+# 			wrst	|	1
+# 			wdata	|	112
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=2
+# ---------------------------Write Monitor @ 1195---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	112
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1195---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=0,rptr=2
+# wptr=0,rptr=2
+# wptr=1,rptr=2
+# ---------------------------Read Monitor @ 1210---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	136
+# ------------------------ Fail @1210 ----------------------------
+#  Expected Data: 136 Does not match DUT Read Data: 112
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1210---------------------------
+# 			wrst	|	1
+# 			wdata	|	235
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=1,rptr=3
+# ---------------------------Write Monitor @ 1215---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	235
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1215---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=1,rptr=3
+# wptr=1,rptr=3
+# wptr=2,rptr=3
+# ---------------------------Read Monitor @ 1230---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	39
+# ------------------------ Fail @1230 ----------------------------
+#  Expected Data: 39 Does not match DUT Read Data: 235
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1230---------------------------
+# 			wrst	|	1
+# 			wdata	|	226
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=2,rptr=4
+# ---------------------------Write Monitor @ 1235---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	226
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1235---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=2,rptr=4
+# wptr=2,rptr=4
+# wptr=3,rptr=4
+# ---------------------------Read Monitor @ 1250---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	87
+# ------------------------ Fail @1250 ----------------------------
+#  Expected Data: 87 Does not match DUT Read Data: 226
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1250---------------------------
+# 			wrst	|	1
+# 			wdata	|	50
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=3,rptr=5
+# ---------------------------Write Monitor @ 1255---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	50
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1255---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=3,rptr=5
+# wptr=3,rptr=5
+# wptr=4,rptr=5
+# ---------------------------Read Monitor @ 1270---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	124
+# ------------------------ Fail @1270 ----------------------------
+#  Expected Data: 124 Does not match DUT Read Data: 50
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1270---------------------------
+# 			wrst	|	1
+# 			wdata	|	114
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=4,rptr=6
+# ---------------------------Write Monitor @ 1275---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	114
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1275---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=4,rptr=6
+# wptr=4,rptr=6
+# wptr=5,rptr=6
+# ---------------------------Read Monitor @ 1290---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	250
+# ------------------------ Fail @1290 ----------------------------
+#  Expected Data: 250 Does not match DUT Read Data: 114
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1290---------------------------
+# 			wrst	|	1
+# 			wdata	|	26
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=5,rptr=7
+# ---------------------------Write Monitor @ 1295---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	26
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1295---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=5,rptr=7
+# wptr=5,rptr=7
+# wptr=6,rptr=7
+# ---------------------------Read Monitor @ 1310---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	191
+# ------------------------ Fail @1310 ----------------------------
+#  Expected Data: 191 Does not match DUT Read Data: 26
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1310---------------------------
+# 			wrst	|	1
+# 			wdata	|	84
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=6,rptr=8
+# ---------------------------Write Monitor @ 1315---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	84
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1315---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=6,rptr=8
+# wptr=6,rptr=8
+# wptr=7,rptr=8
+# ---------------------------Read Monitor @ 1330---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	119
+# ------------------------ Fail @1330 ----------------------------
+#  Expected Data: 119 Does not match DUT Read Data: 84
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1330---------------------------
+# 			wrst	|	1
+# 			wdata	|	119
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=7,rptr=9
+# ---------------------------Write Monitor @ 1335---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	119
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1335---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=7,rptr=9
+# wptr=7,rptr=9
+# wptr=8,rptr=9
+# ---------------------------Read Monitor @ 1350---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	209
+# ------------------------ Fail @1350 ----------------------------
+#  Expected Data: 209 Does not match DUT Read Data: 119
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1350---------------------------
+# 			wrst	|	1
+# 			wdata	|	205
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=8,rptr=10
+# ---------------------------Write Monitor @ 1355---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	205
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1355---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=8,rptr=10
+# wptr=8,rptr=10
+# wptr=9,rptr=10
+# ---------------------------Read Monitor @ 1370---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	36
+# ------------------------ Fail @1370 ----------------------------
+#  Expected Data: 36 Does not match DUT Read Data: 205
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1370---------------------------
+# 			wrst	|	1
+# 			wdata	|	119
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=9,rptr=11
+# ---------------------------Write Monitor @ 1375---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	119
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1375---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=9,rptr=11
+# wptr=9,rptr=11
+# wptr=10,rptr=11
+# ---------------------------Read Monitor @ 1390---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	132
+# ------------------------ Fail @1390 ----------------------------
+#  Expected Data: 132 Does not match DUT Read Data: 119
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1390---------------------------
+# 			wrst	|	1
+# 			wdata	|	182
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=10,rptr=12
+# ---------------------------Write Monitor @ 1395---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	182
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1395---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=10,rptr=12
+# wptr=10,rptr=12
+# wptr=11,rptr=12
+# ---------------------------Read Monitor @ 1410---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	175
+# ------------------------ Fail @1410 ----------------------------
+#  Expected Data: 175 Does not match DUT Read Data: 182
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1410---------------------------
+# 			wrst	|	1
+# 			wdata	|	168
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=11,rptr=13
+# ---------------------------Write Monitor @ 1415---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	168
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1415---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=11,rptr=13
+# wptr=11,rptr=13
+# wptr=12,rptr=13
+# ---------------------------Read Monitor @ 1430---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	247
+# ------------------------ Fail @1430 ----------------------------
+#  Expected Data: 247 Does not match DUT Read Data: 168
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1430---------------------------
+# 			wrst	|	1
+# 			wdata	|	94
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=12,rptr=14
+# ---------------------------Write Monitor @ 1435---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	94
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1435---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=12,rptr=14
+# wptr=12,rptr=14
+# wptr=13,rptr=14
+# ---------------------------Read Monitor @ 1450---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	156
+# ------------------------ Fail @1450 ----------------------------
+#  Expected Data: 156 Does not match DUT Read Data: 94
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1450---------------------------
+# 			wrst	|	1
+# 			wdata	|	115
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=13,rptr=15
+# ---------------------------Write Monitor @ 1455---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	115
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1455---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=13,rptr=15
+# wptr=13,rptr=15
+# wptr=14,rptr=15
+# ---------------------------Read Monitor @ 1470---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	112
+# ------------------------ Fail @1470 ----------------------------
+#  Expected Data: 112 Does not match DUT Read Data: 115
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1470---------------------------
+# 			wrst	|	1
+# 			wdata	|	87
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=14,rptr=0
+# ---------------------------Write Monitor @ 1475---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	87
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1475---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=14,rptr=0
+# wptr=14,rptr=0
+# wptr=15,rptr=0
+# ---------------------------Read Monitor @ 1490---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	235
+# ------------------------ Fail @1490 ----------------------------
+#  Expected Data: 235 Does not match DUT Read Data: 87
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1490---------------------------
+# 			wrst	|	1
+# 			wdata	|	73
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=15,rptr=1
+# ---------------------------Write Monitor @ 1495---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	73
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1495---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=15,rptr=1
+# wptr=15,rptr=1
+# wptr=0,rptr=1
+# ---------------------------Read Monitor @ 1510---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	226
+# ------------------------ Fail @1510 ----------------------------
+#  Expected Data: 226 Does not match DUT Read Data: 73
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1510---------------------------
+# 			wrst	|	1
+# 			wdata	|	74
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=2
+# ---------------------------Write Monitor @ 1515---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	74
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1515---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=0,rptr=2
+# wptr=0,rptr=2
+# wptr=1,rptr=2
+# ---------------------------Read Monitor @ 1530---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	50
+# ------------------------ Fail @1530 ----------------------------
+#  Expected Data: 50 Does not match DUT Read Data: 74
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1530---------------------------
+# 			wrst	|	1
+# 			wdata	|	254
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=1,rptr=3
+# ---------------------------Write Monitor @ 1535---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	254
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1535---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=1,rptr=3
+# wptr=1,rptr=3
+# wptr=2,rptr=3
+# ---------------------------Read Monitor @ 1550---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	114
+# ------------------------ Fail @1550 ----------------------------
+#  Expected Data: 114 Does not match DUT Read Data: 254
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1550---------------------------
+# 			wrst	|	1
+# 			wdata	|	145
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=2,rptr=4
+# ---------------------------Write Monitor @ 1555---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	145
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1555---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=2,rptr=4
+# wptr=2,rptr=4
+# wptr=3,rptr=4
+# ---------------------------Read Monitor @ 1570---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	26
+# ------------------------ Fail @1570 ----------------------------
+#  Expected Data: 26 Does not match DUT Read Data: 145
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1570---------------------------
+# 			wrst	|	1
+# 			wdata	|	101
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=3,rptr=5
+# ---------------------------Write Monitor @ 1575---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	101
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1575---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=3,rptr=5
+# wptr=3,rptr=5
+# wptr=4,rptr=5
+# ---------------------------Read Monitor @ 1590---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	84
+# ------------------------ Fail @1590 ----------------------------
+#  Expected Data: 84 Does not match DUT Read Data: 101
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1590---------------------------
+# 			wrst	|	1
+# 			wdata	|	94
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=4,rptr=6
+# ---------------------------Write Monitor @ 1595---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	94
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1595---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=4,rptr=6
+# wptr=4,rptr=6
+# wptr=5,rptr=6
+# ---------------------------Read Monitor @ 1610---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	119
+# ------------------------ Fail @1610 ----------------------------
+#  Expected Data: 119 Does not match DUT Read Data: 94
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1610---------------------------
+# 			wrst	|	1
+# 			wdata	|	211
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=5,rptr=7
+# ---------------------------Write Monitor @ 1615---------------------------
 # 			wrst_n	|	1
 # 			winc	|	1
 # 			wdata	|	211
 # 			wfull	|	0
-# ---------------------------Write Driver @ 1135---------------------------
+# ---------------------------Read Driver @ 1615---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=5,rptr=7
+# wptr=5,rptr=7
+# wptr=6,rptr=7
+# ---------------------------Read Monitor @ 1630---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	205
+# ------------------------ Fail @1630 ----------------------------
+#  Expected Data: 205 Does not match DUT Read Data: 211
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1630---------------------------
+# 			wrst	|	1
+# 			wdata	|	39
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=6,rptr=8
+# ---------------------------Write Monitor @ 1635---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	39
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1635---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=6,rptr=8
+# wptr=6,rptr=8
+# wptr=7,rptr=8
+# ---------------------------Read Monitor @ 1650---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	119
+# ------------------------ Fail @1650 ----------------------------
+#  Expected Data: 119 Does not match DUT Read Data: 39
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1650---------------------------
+# 			wrst	|	1
+# 			wdata	|	247
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=7,rptr=9
+# ---------------------------Write Monitor @ 1655---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	247
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1655---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=7,rptr=9
+# wptr=7,rptr=9
+# wptr=8,rptr=9
+# ---------------------------Read Monitor @ 1670---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	182
+# ------------------------ Fail @1670 ----------------------------
+#  Expected Data: 182 Does not match DUT Read Data: 247
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1670---------------------------
+# 			wrst	|	1
+# 			wdata	|	95
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=8,rptr=10
+# ---------------------------Write Monitor @ 1675---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	95
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1675---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=8,rptr=10
+# wptr=8,rptr=10
+# wptr=9,rptr=10
+# ---------------------------Read Monitor @ 1690---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	168
+# ------------------------ Fail @1690 ----------------------------
+#  Expected Data: 168 Does not match DUT Read Data: 95
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1690---------------------------
+# 			wrst	|	1
+# 			wdata	|	27
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=9,rptr=11
+# ---------------------------Write Monitor @ 1695---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	27
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1695---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=9,rptr=11
+# wptr=9,rptr=11
+# wptr=10,rptr=11
+# ---------------------------Read Monitor @ 1710---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	94
+# ------------------------ Fail @1710 ----------------------------
+#  Expected Data: 94 Does not match DUT Read Data: 27
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1710---------------------------
+# 			wrst	|	1
+# 			wdata	|	141
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=10,rptr=12
+# ---------------------------Write Monitor @ 1715---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	141
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1715---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=10,rptr=12
+# wptr=10,rptr=12
+# wptr=11,rptr=12
+# ---------------------------Read Monitor @ 1730---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	115
+# ------------------------ Fail @1730 ----------------------------
+#  Expected Data: 115 Does not match DUT Read Data: 141
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1730---------------------------
+# 			wrst	|	1
+# 			wdata	|	187
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=11,rptr=13
+# ---------------------------Write Monitor @ 1735---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	187
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1735---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=11,rptr=13
+# wptr=11,rptr=13
+# wptr=12,rptr=13
+# ---------------------------Read Monitor @ 1750---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	87
+# ------------------------ Fail @1750 ----------------------------
+#  Expected Data: 87 Does not match DUT Read Data: 187
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1750---------------------------
+# 			wrst	|	1
+# 			wdata	|	253
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=12,rptr=14
+# ---------------------------Write Monitor @ 1755---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	253
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1755---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=12,rptr=14
+# wptr=12,rptr=14
+# wptr=13,rptr=14
+# ---------------------------Read Monitor @ 1770---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	73
+# ------------------------ Fail @1770 ----------------------------
+#  Expected Data: 73 Does not match DUT Read Data: 253
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1770---------------------------
+# 			wrst	|	1
+# 			wdata	|	81
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=13,rptr=15
+# ---------------------------Write Monitor @ 1775---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	81
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1775---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=13,rptr=15
+# wptr=13,rptr=15
+# wptr=14,rptr=15
+# ---------------------------Read Monitor @ 1790---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	74
+# ------------------------ Fail @1790 ----------------------------
+#  Expected Data: 74 Does not match DUT Read Data: 81
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1790---------------------------
+# 			wrst	|	1
+# 			wdata	|	130
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=14,rptr=0
+# ---------------------------Write Monitor @ 1795---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	130
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1795---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=14,rptr=0
+# wptr=14,rptr=0
+# wptr=15,rptr=0
+# ---------------------------Read Monitor @ 1810---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	254
+# ------------------------ Fail @1810 ----------------------------
+#  Expected Data: 254 Does not match DUT Read Data: 130
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1810---------------------------
+# 			wrst	|	1
+# 			wdata	|	236
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=15,rptr=1
+# ---------------------------Write Monitor @ 1815---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	236
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1815---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=15,rptr=1
+# wptr=15,rptr=1
+# wptr=0,rptr=1
+# ---------------------------Read Monitor @ 1830---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	145
+# ------------------------ Fail @1830 ----------------------------
+#  Expected Data: 145 Does not match DUT Read Data: 236
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1830---------------------------
+# 			wrst	|	1
+# 			wdata	|	169
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=2
+# ---------------------------Write Monitor @ 1835---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	169
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1835---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=0,rptr=2
+# wptr=0,rptr=2
+# wptr=1,rptr=2
+# ---------------------------Read Monitor @ 1850---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	101
+# ------------------------ Fail @1850 ----------------------------
+#  Expected Data: 101 Does not match DUT Read Data: 169
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1850---------------------------
+# 			wrst	|	1
+# 			wdata	|	190
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=1,rptr=3
+# ---------------------------Write Monitor @ 1855---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	190
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1855---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=1,rptr=3
+# wptr=1,rptr=3
+# wptr=2,rptr=3
+# ---------------------------Read Monitor @ 1870---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	94
+# ------------------------ Fail @1870 ----------------------------
+#  Expected Data: 94 Does not match DUT Read Data: 190
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1870---------------------------
+# 			wrst	|	1
+# 			wdata	|	3
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=2,rptr=4
+# ---------------------------Write Monitor @ 1875---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	3
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1875---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=2,rptr=4
+# wptr=2,rptr=4
+# wptr=3,rptr=4
+# ---------------------------Read Monitor @ 1890---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	211
+# ------------------------ Fail @1890 ----------------------------
+#  Expected Data: 211 Does not match DUT Read Data: 3
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1890---------------------------
+# 			wrst	|	1
+# 			wdata	|	197
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=3,rptr=5
+# ---------------------------Write Monitor @ 1895---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	197
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1895---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=3,rptr=5
+# wptr=3,rptr=5
+# wptr=4,rptr=5
+# ---------------------------Read Monitor @ 1910---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	39
+# ------------------------ Fail @1910 ----------------------------
+#  Expected Data: 39 Does not match DUT Read Data: 197
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1910---------------------------
+# 			wrst	|	1
+# 			wdata	|	163
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=4,rptr=6
+# ---------------------------Write Monitor @ 1915---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	163
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1915---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=4,rptr=6
+# wptr=4,rptr=6
+# wptr=5,rptr=6
+# ---------------------------Read Monitor @ 1930---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	247
+# ------------------------ Fail @1930 ----------------------------
+#  Expected Data: 247 Does not match DUT Read Data: 163
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1930---------------------------
+# 			wrst	|	1
+# 			wdata	|	64
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=5,rptr=7
+# ---------------------------Write Monitor @ 1935---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	64
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1935---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=5,rptr=7
+# wptr=5,rptr=7
+# wptr=6,rptr=7
+# ---------------------------Read Monitor @ 1950---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	95
+# ------------------------ Fail @1950 ----------------------------
+#  Expected Data: 95 Does not match DUT Read Data: 64
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1950---------------------------
+# 			wrst	|	1
+# 			wdata	|	13
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=6,rptr=8
+# ---------------------------Write Monitor @ 1955---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	13
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1955---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=6,rptr=8
+# wptr=6,rptr=8
+# wptr=7,rptr=8
+# ---------------------------Read Monitor @ 1970---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	27
+# ------------------------ Fail @1970 ----------------------------
+#  Expected Data: 27 Does not match DUT Read Data: 13
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1970---------------------------
+# 			wrst	|	1
+# 			wdata	|	183
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=7,rptr=9
+# ---------------------------Write Monitor @ 1975---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	183
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1975---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=7,rptr=9
+# wptr=7,rptr=9
+# wptr=8,rptr=9
+# ---------------------------Read Monitor @ 1990---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	141
+# ------------------------ Fail @1990 ----------------------------
+#  Expected Data: 141 Does not match DUT Read Data: 183
+# 
+# 
+# 
+# ---------------------------Write Driver @ 1990---------------------------
+# 			wrst	|	1
+# 			wdata	|	36
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=8,rptr=10
+# ---------------------------Write Monitor @ 1995---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	36
+# 			wfull	|	0
+# ---------------------------Read Driver @ 1995---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=8,rptr=10
+# wptr=8,rptr=10
+# wptr=9,rptr=10
+# ---------------------------Read Monitor @ 2010---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	187
+# ------------------------ Fail @2010 ----------------------------
+#  Expected Data: 187 Does not match DUT Read Data: 36
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2010---------------------------
+# 			wrst	|	1
+# 			wdata	|	18
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=9,rptr=11
+# ---------------------------Write Monitor @ 2015---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	18
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2015---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=9,rptr=11
+# wptr=9,rptr=11
+# wptr=10,rptr=11
+# ---------------------------Read Monitor @ 2030---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	253
+# ------------------------ Fail @2030 ----------------------------
+#  Expected Data: 253 Does not match DUT Read Data: 18
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2030---------------------------
+# 			wrst	|	1
+# 			wdata	|	1
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=10,rptr=12
+# ---------------------------Write Monitor @ 2035---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	1
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2035---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=10,rptr=12
+# wptr=10,rptr=12
+# wptr=11,rptr=12
+# ---------------------------Read Monitor @ 2050---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	81
+# ------------------------ Fail @2050 ----------------------------
+#  Expected Data: 81 Does not match DUT Read Data: 1
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2050---------------------------
+# 			wrst	|	1
+# 			wdata	|	225
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=11,rptr=13
+# ---------------------------Write Monitor @ 2055---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	225
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2055---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=11,rptr=13
+# wptr=11,rptr=13
+# wptr=12,rptr=13
+# ---------------------------Read Monitor @ 2070---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	130
+# ------------------------ Fail @2070 ----------------------------
+#  Expected Data: 130 Does not match DUT Read Data: 225
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2070---------------------------
+# 			wrst	|	1
+# 			wdata	|	229
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=12,rptr=14
+# ---------------------------Write Monitor @ 2075---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	229
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2075---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=12,rptr=14
+# wptr=12,rptr=14
+# wptr=13,rptr=14
+# ---------------------------Read Monitor @ 2090---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	236
+# ------------------------ Fail @2090 ----------------------------
+#  Expected Data: 236 Does not match DUT Read Data: 229
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2090---------------------------
+# 			wrst	|	1
+# 			wdata	|	21
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=13,rptr=15
+# ---------------------------Write Monitor @ 2095---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	21
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2095---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=13,rptr=15
+# wptr=13,rptr=15
+# wptr=14,rptr=15
+# ---------------------------Read Monitor @ 2110---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	169
+# ------------------------ Fail @2110 ----------------------------
+#  Expected Data: 169 Does not match DUT Read Data: 21
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2110---------------------------
+# 			wrst	|	1
+# 			wdata	|	222
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=14,rptr=0
+# ---------------------------Write Monitor @ 2115---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	222
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2115---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=14,rptr=0
+# wptr=14,rptr=0
+# wptr=15,rptr=0
+# ---------------------------Read Monitor @ 2130---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	190
+# ------------------------ Fail @2130 ----------------------------
+#  Expected Data: 190 Does not match DUT Read Data: 222
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2130---------------------------
+# 			wrst	|	1
+# 			wdata	|	22
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=15,rptr=1
+# ---------------------------Write Monitor @ 2135---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	22
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2135---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=15,rptr=1
+# wptr=15,rptr=1
+# wptr=0,rptr=1
+# ---------------------------Read Monitor @ 2150---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	3
+# ------------------------ Fail @2150 ----------------------------
+#  Expected Data: 3 Does not match DUT Read Data: 22
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2150---------------------------
+# 			wrst	|	1
+# 			wdata	|	21
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=2
+# ---------------------------Write Monitor @ 2155---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	21
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2155---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=0,rptr=2
+# wptr=0,rptr=2
+# wptr=1,rptr=2
+# ---------------------------Read Monitor @ 2170---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	197
+# ------------------------ Fail @2170 ----------------------------
+#  Expected Data: 197 Does not match DUT Read Data: 21
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2170---------------------------
+# 			wrst	|	1
+# 			wdata	|	219
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=1,rptr=3
+# ---------------------------Write Monitor @ 2175---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	219
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2175---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=1,rptr=3
+# wptr=1,rptr=3
+# wptr=2,rptr=3
+# ---------------------------Read Monitor @ 2190---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	163
+# ------------------------ Fail @2190 ----------------------------
+#  Expected Data: 163 Does not match DUT Read Data: 219
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2190---------------------------
+# 			wrst	|	1
+# 			wdata	|	182
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=2,rptr=4
+# ---------------------------Write Monitor @ 2195---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	182
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2195---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=2,rptr=4
+# wptr=2,rptr=4
+# wptr=3,rptr=4
+# ---------------------------Read Monitor @ 2210---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	64
+# ------------------------ Fail @2210 ----------------------------
+#  Expected Data: 64 Does not match DUT Read Data: 182
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2210---------------------------
+# 			wrst	|	1
+# 			wdata	|	116
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=3,rptr=5
+# ---------------------------Write Monitor @ 2215---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	116
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2215---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=3,rptr=5
+# wptr=3,rptr=5
+# wptr=4,rptr=5
+# ---------------------------Read Monitor @ 2230---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	13
+# ------------------------ Fail @2230 ----------------------------
+#  Expected Data: 13 Does not match DUT Read Data: 116
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2230---------------------------
+# 			wrst	|	1
+# 			wdata	|	211
+# 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=4,rptr=6
+# ---------------------------Write Monitor @ 2235---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	211
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2235---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=4,rptr=6
+# wptr=4,rptr=6
+# wptr=5,rptr=6
+# ---------------------------Read Monitor @ 2250---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	183
+# ------------------------ Fail @2250 ----------------------------
+#  Expected Data: 183 Does not match DUT Read Data: 211
+# 
+# 
+# 
+# ---------------------------Write Driver @ 2250---------------------------
 # 			wrst	|	1
 # 			wdata	|	12
 # 			winc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=5,rptr=7
+# ---------------------------Write Monitor @ 2255---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	12
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2255---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# wptr=5,rptr=7
+# wptr=5,rptr=7
+# wptr=6,rptr=7
+# ---------------------------Read Monitor @ 2270---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	36
+# ------------------------ Fail @2270 ----------------------------
+#  Expected Data: 36 Does not match DUT Read Data: 12
+# 
+# 
+# 
 ############################################################################################################################
+# ---------------------------Write Driver @ 2270---------------------------
+# 			wrst	|	0
+# 			wdata	|	14
+# 			winc	|	1
+# ---------------------------Read Driver @ 2270---------------------------
+# 			rrst	|	0
+# 			rinc	|	1
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Monitor @ 2275---------------------------
+# 			wrst_n	|	0
+# 			winc	|	1
+# 			wdata	|	14
+# 			wfull	|	0
+# ASSERTION PASS: wfull is 0 when wrst = 0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# ASSERTION PASS: wfull is 0 when wrst = 0
+# wptr=0,rptr=0
+# ---------------------------Read Monitor @ 2290---------------------------
+# 			rrst_n	|	0
+# 			rinc	|	1
+# 			rempty	|	1
+# 			rdata	|	14
+# ------------------------ Pass @2290 ----------------------------
+#   Expected Data: 14 Read Data(DUT): 14
+# 
+# 
+# 
 ############################################################################################################################
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 1145: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-# UVM_INFO asyn_fifo_subscriber.sv(65) @ 1145: uvm_test_top.env.subcr [asyn_fifo_subscriber] Write Coverage --> 87.50
-# UVM_INFO asyn_fifo_subscriber.sv(66) @ 1145: uvm_test_top.env.subcr [asyn_fifo_subscriber] Read Coverage --> 100.00
+# ---------------------------Write Driver @ 2290---------------------------
+# 			wrst	|	1
+# 			wdata	|	61
+# 			winc	|	1
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Monitor @ 2295---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	61
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2295---------------------------
+# 			rrst	|	1
+# 			rinc	|	0
+# wptr=1,rptr=0
+# wptr=1,rptr=0
+# wptr=2,rptr=0
+# ---------------------------Read Monitor @ 2310---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	1
+# 			rdata	|	61
+# ------------------------ Pass @2310 ----------------------------
+#   Expected Data: 61 Read Data(DUT): 61
+# 
+# 
+# 
+# ASSERTION FAIL: rdata is not latched when rinc = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=2,rptr=0
+# ---------------------------Write Monitor @ 2315---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	61
+# 			wfull	|	0
+# wptr=3,rptr=0
+# wptr=3,rptr=0
+# wptr=4,rptr=0
+# ---------------------------Write Driver @ 2330---------------------------
+# 			wrst	|	1
+# 			wdata	|	190
+# 			winc	|	1
+# ---------------------------Read Monitor @ 2330---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	1
+# 			rdata	|	61
+# ------------------------ Pass @2330 ----------------------------
+#   Expected Data: 61 Read Data(DUT): 61
+# 
+# 
+# 
+# ASSERTION PASS: rdata is latched when rinc = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=4,rptr=0
+# ---------------------------Write Monitor @ 2335---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	190
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2335---------------------------
+# 			rrst	|	1
+# 			rinc	|	0
+# wptr=5,rptr=0
+# wptr=5,rptr=0
+# wptr=6,rptr=0
+# ---------------------------Read Monitor @ 2350---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	0
+# 			rdata	|	61
+# ------------------------ Fail @2350 ----------------------------
+#  Expected Data: 61 Does not match DUT Read Data: 190
+# 
+# 
+# 
+# ASSERTION PASS: rdata is latched when rinc = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=6,rptr=0
+# ---------------------------Write Monitor @ 2355---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	190
+# 			wfull	|	0
+# wptr=7,rptr=0
+# wptr=7,rptr=0
+# wptr=8,rptr=0
+# ---------------------------Write Driver @ 2370---------------------------
+# 			wrst	|	1
+# 			wdata	|	235
+# 			winc	|	1
+# ---------------------------Read Monitor @ 2370---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	0
+# 			rdata	|	61
+# ------------------------ Fail @2370 ----------------------------
+#  Expected Data: 61 Does not match DUT Read Data: 190
+# 
+# 
+# 
+# ASSERTION PASS: rdata is latched when rinc = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=8,rptr=0
+# ---------------------------Write Monitor @ 2375---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	235
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2375---------------------------
+# 			rrst	|	1
+# 			rinc	|	0
+# wptr=9,rptr=0
+# wptr=9,rptr=0
+# wptr=10,rptr=0
+# ---------------------------Read Monitor @ 2390---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	0
+# 			rdata	|	61
+# ------------------------ Fail @2390 ----------------------------
+#  Expected Data: 61 Does not match DUT Read Data: 235
+# 
+# 
+# 
+# ASSERTION PASS: rdata is latched when rinc = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=10,rptr=0
+# ---------------------------Write Monitor @ 2395---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	235
+# 			wfull	|	0
+# wptr=11,rptr=0
+# wptr=11,rptr=0
+# wptr=12,rptr=0
+# ---------------------------Write Driver @ 2410---------------------------
+# 			wrst	|	1
+# 			wdata	|	203
+# 			winc	|	1
+# ---------------------------Read Monitor @ 2410---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	0
+# 			rdata	|	61
+# ------------------------ Fail @2410 ----------------------------
+#  Expected Data: 61 Does not match DUT Read Data: 235
+# 
+# 
+# 
+# ASSERTION PASS: rdata is latched when rinc = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=12,rptr=0
+# ---------------------------Write Monitor @ 2415---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	203
+# 			wfull	|	0
+# ---------------------------Read Driver @ 2415---------------------------
+# 			rrst	|	1
+# 			rinc	|	0
+# wptr=13,rptr=0
+# wptr=13,rptr=0
+# wptr=14,rptr=0
+# ---------------------------Read Monitor @ 2430---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	0
+# 			rdata	|	61
+# ------------------------ Fail @2430 ----------------------------
+#  Expected Data: 61 Does not match DUT Read Data: 203
+# 
+# 
+# 
+# ASSERTION PASS: rdata is latched when rinc = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=14,rptr=0
+# ---------------------------Write Monitor @ 2435---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	203
+# 			wfull	|	0
+# wptr=15,rptr=0
+# wptr=15,rptr=0
+# wptr=0,rptr=0
+# ---------------------------Write Driver @ 2450---------------------------
+# 			wrst	|	1
+# 			wdata	|	28
+# 			winc	|	1
+# ---------------------------Read Monitor @ 2450---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	0
+# 			rdata	|	61
+# ------------------------ Fail @2450 ----------------------------
+#  Expected Data: 61 Does not match DUT Read Data: 203
+# 
+# 
+# 
+# ASSERTION PASS: rdata is latched when rinc = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Monitor @ 2455---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	28
+# 			wfull	|	1
+# ---------------------------Read Driver @ 2455---------------------------
+# 			rrst	|	1
+# 			rinc	|	0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# ---------------------------Read Monitor @ 2470---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	0
+# 			rdata	|	61
+# ------------------------ Fail @2470 ----------------------------
+#  Expected Data: 61 Does not match DUT Read Data: 28
+# 
+# 
+# 
+# ASSERTION PASS: rdata is latched when rinc = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Monitor @ 2475---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	28
+# 			wfull	|	1
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+############################################################################################################################
+# wptr=0,rptr=0
+############################################################################################################################
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 2490: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO asyn_fifo_subscriber.sv(65) @ 2490: uvm_test_top.env.subcr [asyn_fifo_subscriber] Write Coverage --> 100.00
+# UVM_INFO asyn_fifo_subscriber.sv(66) @ 2490: uvm_test_top.env.subcr [asyn_fifo_subscriber] Read Coverage --> 100.00
 # 
 # --- UVM Report Summary ---
 # 
@@ -1948,7 +3409,7 @@
 # [TEST_DONE]     1
 # [asyn_fifo_subscriber]     2
 # ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 1145 ns  Iteration: 68  Instance: /top
+#    Time: 2490 ns  Iteration: 59  Instance: /top
 # Saving coverage database on exit...
-# End time: 21:44:17 on Oct 05,2025, Elapsed time: 0:00:05
+# End time: 23:56:09 on Oct 06,2025, Elapsed time: 0:00:04
 # Errors: 0, Warnings: 0

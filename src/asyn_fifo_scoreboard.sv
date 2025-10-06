@@ -1,84 +1,77 @@
-class asyn_fifo_scoreboard extends uvm_scoreboard();
-	uvm_tlm_analysis_fifo  #(asyn_fifo_write_sequence_item) tlm_write_fifo;
-	uvm_tlm_analysis_fifo  #(asyn_fifo_read_sequence_item) tlm_read_fifo;
-	int pass_count, fail_count;
+`include "defines.sv"
+`uvm_analysis_imp_decl(_from_write)
+`uvm_analysis_imp_decl(_from_read)
 
-	`uvm_component_utils(asyn_fifo_scoreboard)
+int empty_count;
+int match, mismatch;
 
-	function new(string name = "asyn_fifo_scoreboard", uvm_component parent = null);
-		super.new(name, parent);
-		tlm_write_fifo = new("tlm_write_fifo", this);
-		tlm_read_fifo = new("tlm_read_fifo", this);
-		pass_count = 0;
-		fail_count = 0;
-	endfunction
+class asyn_fifo_scoreboard extends uvm_scoreboard;
 
-	virtual task run_phase(uvm_phase phase);
-		asyn_fifo_write_sequence_item write_packet;
-		asyn_fifo_write_sequence_item write_packet_tmp;
-		asyn_fifo_read_sequence_item read_packet;
-		super.run_phase(phase);
-		forever
-		begin
-			tlm_read_fifo.get(read_packet);
-			tlm_write_fifo.get(write_packet);
-			$display("---------------------------------------Scoreboard @%0t ---------------------------------------", $time);
-			$display("\t\t\tField\t\t|\t\tValue");
-			$display("--------------------------------------|--------------------------------------");
-			$display("\t\t\twrst_n\t\t|\t\t%b",write_packet.wrst_n);
-			$display("\t\t\twinc\t\t|\t\t%b",write_packet.winc);
-			$display("\t\t\twdata\t\t|\t\t%0d",write_packet.wdata);
-			$display("\t\t\twfull\t\t|\t\t%b",write_packet.wfull);
-			$display("\t\t\trrst_n\t\t|\t\t%b",read_packet.rrst_n);
-			$display("\t\t\trinc\t\t|\t\t%b",read_packet.rinc);
-			$display("\t\t\trdata\t\t|\t\t%0d",read_packet.rdata);
-			$display("\t\t\trempty\t\t|\t\t%b",read_packet.rempty);
+  `uvm_component_utils(asyn_fifo_scoreboard)
+  uvm_analysis_imp_from_write#(asyn_fifo_write_sequence_item,asyn_fifo_scoreboard) write_export;
+  uvm_analysis_imp_from_read#(asyn_fifo_read_sequence_item,asyn_fifo_scoreboard) read_export;
 
-			if((write_packet.wrst_n = 0) || (read_packet.rrst_n == 0))
-			begin
-				if(write_packet.wrst_n == 0)
-				begin
-					$display("Write Reset is applied");
-					if(write_packet.wfull == 0)
-					begin
-						$display("Write Reset TEST PASSED @ %0t", $time);
-						pass_count ++;
-					end
-					else
-					begin
-						$display("Write Reset TEST FAILED @ %0t", $time);
-						fail_count ++;
-					end
-				end
-				if(read_packet.rrst_n == 0)
-				begin
-					$display("Read Reset is applied");
-					if(read_packet.rempty == 1 && read_packet.rdata == 0)
-					begin
-						$display("Read Reset TEST PASSED @ %0t", $time);
-						pass_count ++;
-					end
-					else
-					begin
-						$display("Read Reset TEST FAILED @ %0t", $time);
-						fail_count ++;
-					end
-				end
-			end
-			else
-			begin
-				if(write_packet.wdata == read_packet.rdata)
-				begin
-					$display("TEST PASSED @ %0t", $time);
-					pass_count ++;
-				end
-				else
-				begin
-					$display("TEST FAILED @ %0t", $time);
-					fail_count ++;
-				end
-			end
-			$display("PASS count = %0d | FAIL count = %0d",pass_count, fail_count);
-		end
-	endtask
-endclass
+  asyn_fifo_write_sequence_item write_q[$];
+  asyn_fifo_read_sequence_item read_q[$];
+  asyn_fifo_write_sequence_item w_seq;
+  asyn_fifo_read_sequence_item r_seq;
+
+  reg [`DSIZE-1:0] next [1:0];
+  reg [`DSIZE-1:0] tmp;
+
+  function new(string name,uvm_component parent);
+    super.new(name,parent);
+  endfunction
+
+  function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    write_export = new("write_export",this);
+    read_export = new("read_export",this);
+  endfunction
+
+  function void connect_phase(uvm_phase phase);
+    super.connect_phase(phase);
+  endfunction
+
+  function void write_from_write(asyn_fifo_write_sequence_item w_seq);
+    write_q.push_back(w_seq);
+  endfunction
+
+  function void write_from_read(asyn_fifo_read_sequence_item r_seq);
+    logic [`DSIZE-1:0] dut_wdata;
+    empty_count = write_q.size;
+    if(write_q.size() > 0) begin
+      get_next(r_seq);
+      dut_wdata = write_q.pop_front().wdata;
+      if(dut_wdata == next[0]) begin
+        $display("------------------------ Pass @%0t ----------------------------\n  Expected Data: %0d Read Data(DUT): %0d",$time, next[0], dut_wdata);
+        match++;
+      end
+      else begin
+        $display("------------------------ Fail @%0t ----------------------------\n Expected Data: %0d Does not match DUT Read Data: %0d",$time, next[0], dut_wdata);
+        mismatch++;
+      end
+    end
+    $display("\n\n");
+  endfunction
+
+  function void get_next(asyn_fifo_read_sequence_item r_seq);
+    tmp = next[0];
+    next[0] = r_seq.rdata;
+    next[1] = tmp;
+  endfunction
+
+  task compare_flags();
+    if(write_q.size > 2**(`A_SIZE-1)) begin
+      `uvm_info("SCOREBOARD", "FIFO IS FULL", UVM_MEDIUM);
+    end
+    if(empty_count == 1) begin
+      `uvm_info("SCOREBOARD", "FIFO IS EMPTY", UVM_MEDIUM);
+    end
+  endtask
+
+  task run_phase(uvm_phase phase);
+    super.run_phase(phase);
+  endtask
+
+endclass:asyn_fifo_scoreboard
