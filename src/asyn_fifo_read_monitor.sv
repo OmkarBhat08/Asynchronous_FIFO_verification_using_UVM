@@ -4,8 +4,6 @@ class asyn_fifo_read_monitor extends uvm_monitor;
 	asyn_fifo_read_sequence_item read_monitor_sequence_item;
 	asyn_fifo_read_sequence_item prev_read_monitor_sequence_item;
 	uvm_analysis_port #(asyn_fifo_read_sequence_item) read_item_port;
-	int count = 3;
-	bit flag = 0;
 
 	`uvm_component_utils(asyn_fifo_read_monitor)
 
@@ -39,9 +37,9 @@ class asyn_fifo_read_monitor extends uvm_monitor;
 			$display("\t\t\trempty\t|\t%b",read_monitor_sequence_item.rempty);
 			$display("\t\t\trdata\t|\t%0d",read_monitor_sequence_item.rdata);
 			read_item_port.write(read_monitor_sequence_item);
-			prev_read_monitor_sequence_item.copy(read_monitor_sequence_item);
-			if(read_monitor_sequence_item.rdata == 'd183)
+			if((prev_read_monitor_sequence_item.rrst_n == 0) && (read_monitor_sequence_item.rempty ==1) && (read_monitor_sequence_item.rinc ==1))
 				repeat(2) @ (posedge vif.read_monitor_cb);
+			prev_read_monitor_sequence_item.copy(read_monitor_sequence_item);
 		end
 	endtask
 endclass	
