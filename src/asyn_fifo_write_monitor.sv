@@ -25,7 +25,7 @@ class asyn_fifo_write_monitor extends uvm_monitor;
 		super.run_phase(phase);
 		forever
 		begin
-			if(write_monitor_sequence_item.wdata == temp_write_monitor_sequence_item.wdata)
+			if((write_monitor_sequence_item.winc == temp_write_monitor_sequence_item.winc) && write_monitor_sequence_item.wrst_n == temp_write_monitor_sequence_item.wrst_n)
 				repeat(2) @ (posedge vif.write_monitor_cb);
 			else
 				repeat(1) @ (posedge vif.write_monitor_cb);
