@@ -1,5 +1,5 @@
 # vsim -vopt work.top -voptargs="+acc=npr" -assertdebug -l simulation.log -coverage -c -do "coverage save -onexit -assert -directive -cvg -codeAll coverage.ucdb; run -all; exit" 
-# Start time: 13:51:43 on Oct 07,2025
+# Start time: 09:53:40 on Oct 08,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim
 # //  Version 10.6c linux Jul 25 2017
@@ -3874,6 +3874,24 @@
 # wptr=2,rptr=4
 # wptr=2,rptr=4
 # wptr=3,rptr=4
+# ---------------------------Read Monitor @ 2190---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	0
+# 			rdata	|	36
+# ---------------------------------------Scoreboard @2190 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		12
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		1
+# 			rdata		|		36
+# 			rempty		|		0
+# TEST FAILED @ 2190
+# PASS count = 6 | FAIL count = 102
 ############################################################################################################################
 # ---------------------------Write Driver @ 2190---------------------------
 # 			wrst	|	0
@@ -3894,6 +3912,27 @@
 # wptr=0,rptr=0
 # ASSERTION PASS: wfull is 0 when wrst = 0
 # wptr=0,rptr=0
+# ---------------------------Read Monitor @ 2210---------------------------
+# 			rrst_n	|	0
+# 			rinc	|	1
+# 			rempty	|	1
+# 			rdata	|	14
+# ---------------------------------------Scoreboard @2210 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		0
+# 			winc		|		1
+# 			wdata		|		14
+# 			wfull		|		0
+# 			rrst_n		|		0
+# 			rinc		|		1
+# 			rdata		|		14
+# 			rempty		|		1
+# Write Reset is applied
+# Write Reset TEST PASSED @ 2210
+# Read Reset is applied
+# Read Reset TEST FAILED @ 2210 because rdata is not cleared
+# PASS count = 7 | FAIL count = 103
 ############################################################################################################################
 # ---------------------------Write Driver @ 2210---------------------------
 # 			wrst	|	1
@@ -3930,7 +3969,7 @@
 # Write Reset TEST PASSED @ 2230
 # Read Reset is applied
 # Read Reset TEST FAILED @ 2230 because rdata is not cleared
-# PASS count = 7 | FAIL count = 102
+# PASS count = 8 | FAIL count = 104
 # ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=2,rptr=0
@@ -3946,27 +3985,6 @@
 # wptr=3,rptr=0
 # wptr=3,rptr=0
 # wptr=4,rptr=0
-# ---------------------------Read Monitor @ 2250---------------------------
-# 			rrst_n	|	0
-# 			rinc	|	1
-# 			rempty	|	1
-# 			rdata	|	61
-# ---------------------------------------Scoreboard @2250 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		190
-# 			wfull		|		0
-# 			rrst_n		|		0
-# 			rinc		|		1
-# 			rdata		|		61
-# 			rempty		|		1
-# Write Reset is applied
-# Write Reset TEST PASSED @ 2250
-# Read Reset is applied
-# Read Reset TEST FAILED @ 2250 because rdata is not cleared
-# PASS count = 8 | FAIL count = 103
 # ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=4,rptr=0
@@ -3982,27 +4000,6 @@
 # wptr=5,rptr=0
 # wptr=5,rptr=0
 # wptr=6,rptr=0
-# ---------------------------Read Monitor @ 2270---------------------------
-# 			rrst_n	|	0
-# 			rinc	|	1
-# 			rempty	|	1
-# 			rdata	|	61
-# ---------------------------------------Scoreboard @2270 ---------------------------------------
-# 			Field		|		Value
-# --------------------------------------|--------------------------------------
-# 			wrst_n		|		1
-# 			winc		|		1
-# 			wdata		|		235
-# 			wfull		|		0
-# 			rrst_n		|		0
-# 			rinc		|		1
-# 			rdata		|		61
-# 			rempty		|		1
-# Write Reset is applied
-# Write Reset TEST PASSED @ 2270
-# Read Reset is applied
-# Read Reset TEST FAILED @ 2270 because rdata is not cleared
-# PASS count = 9 | FAIL count = 104
 # ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=6,rptr=0
@@ -4038,7 +4035,7 @@
 # Write Reset TEST PASSED @ 2290
 # Read Reset is applied
 # Read Reset TEST FAILED @ 2290 because rdata is not cleared
-# PASS count = 10 | FAIL count = 105
+# PASS count = 9 | FAIL count = 105
 # ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
 # ASSERTION PASS: No signals are unknown
 # wptr=8,rptr=0
@@ -4054,35 +4051,227 @@
 # wptr=9,rptr=0
 # wptr=9,rptr=0
 # wptr=10,rptr=0
-# ---------------------------Read Monitor @ 2310---------------------------
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=10,rptr=0
+# ---------------------------Write Driver @ 2315---------------------------
+# 			wrst	|	1
+# 			wdata	|	169
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2315---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	169
+# 			wfull	|	0
+# wptr=11,rptr=0
+# wptr=11,rptr=0
+# wptr=12,rptr=0
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=12,rptr=0
+# ---------------------------Write Driver @ 2335---------------------------
+# 			wrst	|	1
+# 			wdata	|	67
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2335---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	67
+# 			wfull	|	0
+# wptr=13,rptr=0
+# wptr=13,rptr=0
+# wptr=14,rptr=0
+# ---------------------------Read Monitor @ 2350---------------------------
 # 			rrst_n	|	0
 # 			rinc	|	1
 # 			rempty	|	1
 # 			rdata	|	61
-# ---------------------------------------Scoreboard @2310 ---------------------------------------
+# ---------------------------------------Scoreboard @2350 ---------------------------------------
 # 			Field		|		Value
 # --------------------------------------|--------------------------------------
 # 			wrst_n		|		1
 # 			winc		|		1
-# 			wdata		|		28
+# 			wdata		|		67
 # 			wfull		|		0
 # 			rrst_n		|		0
 # 			rinc		|		1
 # 			rdata		|		61
 # 			rempty		|		1
 # Write Reset is applied
-# Write Reset TEST PASSED @ 2310
+# Write Reset TEST PASSED @ 2350
 # Read Reset is applied
-# Read Reset TEST FAILED @ 2310 because rdata is not cleared
-# PASS count = 11 | FAIL count = 106
+# Read Reset TEST FAILED @ 2350 because rdata is not cleared
+# PASS count = 10 | FAIL count = 106
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=14,rptr=0
+# ---------------------------Write Driver @ 2355---------------------------
+# 			wrst	|	1
+# 			wdata	|	76
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2355---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	76
+# 			wfull	|	0
+# wptr=15,rptr=0
+# wptr=15,rptr=0
+# wptr=0,rptr=0
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Driver @ 2375---------------------------
+# 			wrst	|	1
+# 			wdata	|	193
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2375---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	193
+# 			wfull	|	1
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Driver @ 2395---------------------------
+# 			wrst	|	1
+# 			wdata	|	196
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2395---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	196
+# 			wfull	|	1
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# ---------------------------Read Monitor @ 2410---------------------------
+# 			rrst_n	|	0
+# 			rinc	|	1
+# 			rempty	|	1
+# 			rdata	|	61
+# ---------------------------------------Scoreboard @2410 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		196
+# 			wfull		|		1
+# 			rrst_n		|		0
+# 			rinc		|		1
+# 			rdata		|		61
+# 			rempty		|		1
+# Write Reset is applied
+# Write Reset TEST FAILED @ 2410
+# Read Reset is applied
+# Read Reset TEST FAILED @ 2410 because rdata is not cleared
+# PASS count = 10 | FAIL count = 108
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Driver @ 2415---------------------------
+# 			wrst	|	1
+# 			wdata	|	229
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2415---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	229
+# 			wfull	|	1
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Driver @ 2435---------------------------
+# 			wrst	|	1
+# 			wdata	|	179
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2435---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	179
+# 			wfull	|	1
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Driver @ 2455---------------------------
+# 			wrst	|	1
+# 			wdata	|	81
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2455---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	81
+# 			wfull	|	1
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# ---------------------------Read Monitor @ 2470---------------------------
+# 			rrst_n	|	0
+# 			rinc	|	1
+# 			rempty	|	1
+# 			rdata	|	61
+# ---------------------------------------Scoreboard @2470 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		1
+# 			wdata		|		81
+# 			wfull		|		1
+# 			rrst_n		|		0
+# 			rinc		|		1
+# 			rdata		|		61
+# 			rempty		|		1
+# Write Reset is applied
+# Write Reset TEST FAILED @ 2470
+# Read Reset is applied
+# Read Reset TEST FAILED @ 2470 because rdata is not cleared
+# PASS count = 10 | FAIL count = 110
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Driver @ 2475---------------------------
+# 			wrst	|	1
+# 			wdata	|	158
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2475---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	158
+# 			wfull	|	1
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# wptr=0,rptr=0
+# ---------------------------Write Driver @ 2495---------------------------
+# 			wrst	|	1
+# 			wdata	|	238
+# 			winc	|	1
+# ---------------------------Write Monitor @ 2495---------------------------
+# 			wrst_n	|	1
+# 			winc	|	1
+# 			wdata	|	238
+# 			wfull	|	1
+# wptr=0,rptr=0
+# wptr=0,rptr=0
+# wptr=0,rptr=0
 # ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
 # ASSERTION PASS: No signals are unknown
 ############################################################################################################################
-# wptr=10,rptr=0
+# wptr=0,rptr=0
 ############################################################################################################################
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 2315: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-# UVM_INFO asyn_fifo_subscriber.sv(65) @ 2315: uvm_test_top.env.subcr [asyn_fifo_subscriber] Write Coverage --> 87.50
-# UVM_INFO asyn_fifo_subscriber.sv(66) @ 2315: uvm_test_top.env.subcr [asyn_fifo_subscriber] Read Coverage --> 100.00
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 2515: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO asyn_fifo_subscriber.sv(65) @ 2515: uvm_test_top.env.subcr [asyn_fifo_subscriber] Write Coverage --> 100.00
+# UVM_INFO asyn_fifo_subscriber.sv(66) @ 2515: uvm_test_top.env.subcr [asyn_fifo_subscriber] Read Coverage --> 100.00
 # 
 # --- UVM Report Summary ---
 # 
@@ -4097,7 +4286,7 @@
 # [TEST_DONE]     1
 # [asyn_fifo_subscriber]     2
 # ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 2315 ns  Iteration: 59  Instance: /top
+#    Time: 2515 ns  Iteration: 59  Instance: /top
 # Saving coverage database on exit...
-# End time: 13:51:48 on Oct 07,2025, Elapsed time: 0:00:05
+# End time: 09:53:43 on Oct 08,2025, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0
