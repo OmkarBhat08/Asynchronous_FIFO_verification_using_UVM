@@ -60,17 +60,22 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 		join
 		$display("############################################################################################################################");
 		// 2 times write and 2 times read
-	fork
+	//fork
+		
 			begin
 				normal_write_seq.start(p_sequencer.wr_seqr);
 				normal_write_seq.start(p_sequencer.wr_seqr);
+				normal_write_seq.start(p_sequencer.wr_seqr);
+				normal_read_seq.start(p_sequencer.rd_seqr);
+				normal_read_seq.start(p_sequencer.rd_seqr);
 				normal_read_seq.start(p_sequencer.rd_seqr);
 				normal_read_seq.start(p_sequencer.rd_seqr);
 				normal_read_seq.start(p_sequencer.rd_seqr);
 				normal_read_seq.start(p_sequencer.rd_seqr);
 			end
-	join
+	//join
 		$display("############################################################################################################################");
+	/*
 		// For Coverage
 		begin
 			repeat(100)
@@ -95,5 +100,6 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 			end
 		end
 		$display("############################################################################################################################");
+	*/
 	endtask
 endclass

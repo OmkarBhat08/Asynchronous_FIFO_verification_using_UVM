@@ -23,10 +23,10 @@ class asyn_fifo_env extends uvm_env;
 
 	function void connect_phase(uvm_phase phase);
 		super.connect_phase(phase);
-		wr_agnt.mon.write_item_port.connect(scb.tlm_write_fifo.analysis_export);
+		wr_agnt.mon.write_item_port.connect(scb.write_export);
 		wr_agnt.mon.write_item_port.connect(subcr.aport_write);
-		rd_agnt.mon.read_item_port.connect(scb.tlm_read_fifo.analysis_export);
 		rd_agnt.mon.read_item_port.connect(subcr.aport_read);
+		rd_agnt.mon.read_item_port.connect(scb.read_export);
 		
 		// Virtual Sequencer connect
 		vir_seqr.wr_seqr = wr_agnt.seqr;

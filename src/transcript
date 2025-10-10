@@ -1,0 +1,266 @@
+# vsim -c top "+UVM_VERBOSITY=UVM_MEDIUM" -do "run -all;exit" 
+# Start time: 00:45:55 on Oct 11,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: asyn_fifo_scoreboard.sv(144): (vopt-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
+# ** Warning: asyn_fifo_scoreboard.sv(146): (vopt-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
+# ** Warning: asyn_fifo_scoreboard.sv(180): (vopt-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
+# ** Warning: asyn_fifo_scoreboard.sv(182): (vopt-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
+# //  Questa Sim
+# //  Version 10.6c linux Jul 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.asyn_fifo_interfs(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.asyn_fifo_pkg(fast)
+# Loading work.top_sv_unit(fast)
+# Loading work.top(fast)
+# Loading work.asyn_fifo_interfs(fast)
+# Loading work.asyn_fifo_assertions(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading /tools/mentor/questasim_10.6c/questasim/uvm-1.1d/linux/uvm_dpi.so
+# run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test asyn_fifo_base_test...
+# -------------------------------------------------------------------
+# Name                       Type                         Size  Value
+# -------------------------------------------------------------------
+# uvm_test_top               asyn_fifo_base_test          -     @471 
+#   env                      asyn_fifo_env                -     @478 
+#     rd_agnt                asyn_fifo_read_agent         -     @492 
+#       drv                  asyn_fifo_read_driver        -     @764 
+#         rsp_port           uvm_analysis_port            -     @779 
+#         seq_item_port      uvm_seq_item_pull_port       -     @771 
+#       mon                  asyn_fifo_read_monitor       -     @787 
+#         read_item_port     uvm_analysis_port            -     @802 
+#       seqr                 asyn_fifo_read_sequencer     -     @655 
+#         rsp_export         uvm_analysis_export          -     @662 
+#         seq_item_export    uvm_seq_item_pull_imp        -     @756 
+#         arbitration_queue  array                        0     -    
+#         lock_queue         array                        0     -    
+#         num_last_reqs      integral                     32    'd1  
+#         num_last_rsps      integral                     32    'd1  
+#     scb                    asyn_fifo_scoreboard         -     @499 
+#       inputs_export        uvm_analysis_imp_from_write  -     @506 
+#       outputs_export       uvm_analysis_imp_from_read   -     @514 
+#     subcr                  asyn_fifo_subscriber         -     @522 
+#       aport_read           uvm_analysis_imp_read_cg     -     @537 
+#       aport_write          uvm_analysis_imp_write_cg    -     @529 
+#     vir_seqr               asyn_fifo_virtual_sequencer  -     @545 
+#       rsp_export           uvm_analysis_export          -     @552 
+#       seq_item_export      uvm_seq_item_pull_imp        -     @646 
+#       arbitration_queue    array                        0     -    
+#       lock_queue           array                        0     -    
+#       num_last_reqs        integral                     32    'd1  
+#       num_last_rsps        integral                     32    'd1  
+#     wr_agnt                asyn_fifo_write_agent        -     @485 
+#       drv                  asyn_fifo_write_driver       -     @932 
+#         rsp_port           uvm_analysis_port            -     @947 
+#         seq_item_port      uvm_seq_item_pull_port       -     @939 
+#       mon                  asyn_fifo_write_monitor      -     @955 
+#         write_item_port    uvm_analysis_port            -     @970 
+#       seqr                 asyn_fifo_write_sequencer    -     @823 
+#         rsp_export         uvm_analysis_export          -     @830 
+#         seq_item_export    uvm_seq_item_pull_imp        -     @924 
+#         arbitration_queue  array                        0     -    
+#         lock_queue         array                        0     -    
+#         num_last_reqs      integral                     32    'd1  
+#         num_last_rsps      integral                     32    'd1  
+# -------------------------------------------------------------------
+# ---------------------------Write Driver @ 5---------------------------
+# 			wrst	|	1
+# 			wdata	|	49
+# 			winc	|	0
+# ---------------------------Read Driver @ 10---------------------------
+# 			rrst	|	1
+# 			rinc	|	1
+# ---------------------------Write Monitor @ 15---------------------------
+# 			wrst_n	|	1
+# 			winc	|	0
+# 			wdata	|	49
+# 			wfull	|	x
+# UVM_INFO asyn_fifo_scoreboard.sv(38) @ 15: uvm_test_top.env.scb [asyn_fifo_scoreboard] Scoreboard received write packet
+# 
+# 
+# WDATA received: 49
+# Incoming write queue
+# 49  
+# ASSERTION FAIL: wfull is not latched when winc = 0
+# ---------------------------Write Monitor @ 25---------------------------
+# 			wrst_n	|	1
+# 			winc	|	0
+# 			wdata	|	49
+# 			wfull	|	x
+# UVM_INFO asyn_fifo_scoreboard.sv(38) @ 25: uvm_test_top.env.scb [asyn_fifo_scoreboard] Scoreboard received write packet
+# 
+# 
+# WDATA received: 49
+# Incoming write queue
+# 49 49  
+# ASSERTION FAIL: wfull is not latched when winc = 0
+# ---------------------------Read Monitor @ 30---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	1
+# 			rempty	|	x
+# 			rdata	|	x
+# UVM_INFO asyn_fifo_scoreboard.sv(55) @ 30: uvm_test_top.env.scb [asyn_fifo_scoreboard] Scoreboard received Read packet
+# 
+# 
+# RDATA received: x
+# Incoming read queue
+# x  
+# Unique write queue
+# 49 49  
+# Scoreboard Discarding First transaction @30
+############################################################################################################################
+# ---------------------------Write Driver @ 30---------------------------
+# 			wrst	|	0
+# 			wdata	|	69
+# 			winc	|	1
+# ---------------------------Read Driver @ 30---------------------------
+# 			rrst	|	0
+# 			rinc	|	1
+# ---------------------------Write Monitor @ 35---------------------------
+# 			wrst_n	|	0
+# 			winc	|	1
+# 			wdata	|	69
+# 			wfull	|	0
+# UVM_INFO asyn_fifo_scoreboard.sv(38) @ 35: uvm_test_top.env.scb [asyn_fifo_scoreboard] Scoreboard received write packet
+# ASSERTION PASS: wfull is 0 when wrst = 0
+# ---------------------------Write Monitor @ 45---------------------------
+# 			wrst_n	|	0
+# 			winc	|	1
+# 			wdata	|	69
+# 			wfull	|	0
+# UVM_INFO asyn_fifo_scoreboard.sv(38) @ 45: uvm_test_top.env.scb [asyn_fifo_scoreboard] Scoreboard received write packet
+# 
+# 
+# WDATA received: 69
+# Incoming write queue
+# 69  
+# ASSERTION PASS: wfull is 0 when wrst = 0
+# ---------------------------Read Monitor @ 50---------------------------
+# 			rrst_n	|	0
+# 			rinc	|	1
+# 			rempty	|	1
+# 			rdata	|	69
+# UVM_INFO asyn_fifo_scoreboard.sv(55) @ 50: uvm_test_top.env.scb [asyn_fifo_scoreboard] Scoreboard received Read packet
+# 
+# 
+# RDATA received: 69
+# Incoming read queue
+# 69  
+# Unique write queue
+# 69  
+# ---------------------------------------Scoreboard @50 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		0
+# 			winc		|		1
+# 			wdata		|		69
+# 			wfull		|		0
+# 			rrst_n		|		0
+# 			rinc		|		1
+# 			rdata		|		69
+# 			rempty		|		1
+# Write Reset is applied
+# Write Reset TEST PASSED @ 50
+# Read Reset is applied
+# Read Reset TEST FAILED @ 50 because rdata is not cleared
+# PASS count = 1 | FAIL count = 1
+############################################################################################################################
+# ---------------------------Write Driver @ 50---------------------------
+# 			wrst	|	1
+# 			wdata	|	14
+# 			winc	|	0
+# ---------------------------Read Driver @ 50---------------------------
+# 			rrst	|	1
+# 			rinc	|	0
+# ASSERTION FAIL: rempty != 1 or rdata != 0 when rrst = 0
+# ASSERTION PASS: No signals are unknown
+# ---------------------------Write Monitor @ 55---------------------------
+# 			wrst_n	|	1
+# 			winc	|	0
+# 			wdata	|	14
+# 			wfull	|	0
+# UVM_INFO asyn_fifo_scoreboard.sv(38) @ 55: uvm_test_top.env.scb [asyn_fifo_scoreboard] Scoreboard received write packet
+# 
+# 
+# WDATA received: 14
+# Incoming write queue
+# 14  
+# ASSERTION PASS: wfull is latched when winc = 0
+# ---------------------------Write Monitor @ 65---------------------------
+# 			wrst_n	|	1
+# 			winc	|	0
+# 			wdata	|	14
+# 			wfull	|	0
+# UVM_INFO asyn_fifo_scoreboard.sv(38) @ 65: uvm_test_top.env.scb [asyn_fifo_scoreboard] Scoreboard received write packet
+# ASSERTION PASS: wfull is latched when winc = 0
+# ---------------------------Read Monitor @ 70---------------------------
+# 			rrst_n	|	1
+# 			rinc	|	0
+# 			rempty	|	1
+# 			rdata	|	69
+# UVM_INFO asyn_fifo_scoreboard.sv(55) @ 70: uvm_test_top.env.scb [asyn_fifo_scoreboard] Scoreboard received Read packet
+# 
+# 
+# RDATA received: 69
+# Incoming read queue
+# 69  
+# Unique write queue
+# 14  
+# ---------------------------------------Scoreboard @70 ---------------------------------------
+# 			Field		|		Value
+# --------------------------------------|--------------------------------------
+# 			wrst_n		|		1
+# 			winc		|		0
+# 			wdata		|		14
+# 			wfull		|		0
+# 			rrst_n		|		1
+# 			rinc		|		0
+# 			rdata		|		69
+# 			rempty		|		1
+# ** Fatal: (SIGSEGV) Bad handle or reference.
+#    Time: 70 ns  Iteration: 3  Process: /uvm_pkg::uvm_task_phase::execute/#FORK#137(#ublk#215181159#137)_f6cd5dd File: /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_common_phases.svh
+# Fatal error in Task asyn_fifo_pkg/asyn_fifo_scoreboard::run_phase at asyn_fifo_scoreboard.sv line 150
+# 
+# HDL call sequence:
+# Stopped at asyn_fifo_scoreboard.sv 150 Task asyn_fifo_pkg/asyn_fifo_scoreboard::run_phase
+# called from  /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_common_phases.svh 245 Task uvm_pkg/uvm_run_phase::exec_task
+# called from  /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_task_phase.svh 150 Function uvm_pkg/uvm_task_phase::execute
+# 
+# exit
+# End time: 00:45:58 on Oct 11,2025, Elapsed time: 0:00:03
+# Errors: 2, Warnings: 4

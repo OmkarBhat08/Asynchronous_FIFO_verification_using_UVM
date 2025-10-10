@@ -25,9 +25,10 @@ class asyn_fifo_write_monitor extends uvm_monitor;
 		super.run_phase(phase);
 		forever
 		begin
-			if((write_monitor_sequence_item.winc == temp_write_monitor_sequence_item.winc) && write_monitor_sequence_item.wrst_n == temp_write_monitor_sequence_item.wrst_n)
-				repeat(2) @ (posedge vif.write_monitor_cb);
-			else
+			write_monitor_sequence_item = asyn_fifo_write_sequence_item::type_id::create("write_mon_seq");;
+			//if((write_monitor_sequence_item.winc == temp_write_monitor_sequence_item.winc) && write_monitor_sequence_item.wrst_n == temp_write_monitor_sequence_item.wrst_n)
+				//repeat(2) @ (posedge vif.write_monitor_cb);
+			//else
 				repeat(1) @ (posedge vif.write_monitor_cb);
 			$display("---------------------------Write Monitor @ %0t---------------------------",$time);
 			write_monitor_sequence_item.wrst_n = vif.wrst_n;

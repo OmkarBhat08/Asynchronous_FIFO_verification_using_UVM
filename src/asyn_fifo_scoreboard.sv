@@ -1,35 +1,98 @@
+`include "defines.sv"
+
+`uvm_analysis_imp_decl(_from_write)
+`uvm_analysis_imp_decl(_from_read)
+
 class asyn_fifo_scoreboard extends uvm_scoreboard();
 
-	uvm_tlm_analysis_fifo  #(asyn_fifo_write_sequence_item) tlm_write_fifo;
-	uvm_tlm_analysis_fifo  #(asyn_fifo_read_sequence_item) tlm_read_fifo;
+	uvm_analysis_imp_from_write #(asyn_fifo_write_sequence_item, asyn_fifo_scoreboard) write_export;
+	uvm_analysis_imp_from_read #(asyn_fifo_read_sequence_item, asyn_fifo_scoreboard) read_export;
+
+	asyn_fifo_write_sequence_item write_queue[$:16];
+	asyn_fifo_write_sequence_item write_queue_temp[$:16];
+	asyn_fifo_read_sequence_item read_queue[$:16];
+
+	logic [`DSIZE-1:0] wfull_queue[$:16], rempty_queue[$:16];
 
 	asyn_fifo_write_sequence_item prev_write_packet;
 	asyn_fifo_read_sequence_item prev_read_packet;
 
-	int pass_count, fail_count, transaction_count;
+	int pass_count, fail_count, transaction_count, write_count;
 
 	`uvm_component_utils(asyn_fifo_scoreboard)
 
 	function new(string name = "asyn_fifo_scoreboard", uvm_component parent = null);
 		super.new(name, parent);
-		tlm_write_fifo = new("tlm_write_fifo", this);
-		tlm_read_fifo = new("tlm_read_fifo", this);
+		write_export = new("inputs_export", this);
+		read_export = new("outputs_export", this);
+
 		pass_count = 0;
 		fail_count = 0;
+		write_count = 0;
+
 		transaction_count = 0;
-		prev_write_packet = new();
-		prev_read_packet = new();
+	endfunction
+
+	virtual function void write_from_write(asyn_fifo_write_sequence_item t);
+	asyn_fifo_write_sequence_item a = t; 
+		`uvm_info(get_type_name,"Scoreboard received write packet", UVM_NONE);
+			if(write_count < 2)
+			begin
+				write_queue.push_back(a);
+				$display("\n\nWDATA received: %0d", a.wdata);
+				$display("Incoming write queue");
+				foreach(write_queue[i])
+					$write("%0d ",write_queue[i].wdata);
+				$display();
+				write_count = write_count + 1;
+			end
+			else
+				write_count = 0;
+	endfunction
+
+	virtual function void write_from_read(asyn_fifo_read_sequence_item u);
+		asyn_fifo_read_sequence_item b = u; 
+		`uvm_info(get_type_name,"Scoreboard received Read packet", UVM_NONE);
+		read_queue.push_back(u);
+			$display("\n\nRDATA received: %0d", b.rdata);
+			$display("Incoming read queue");
+			foreach(read_queue[i])
+				$write("%0d ",read_queue[i].rdata);
+			$display();
 	endfunction
 
 	virtual task run_phase(uvm_phase phase);
 		asyn_fifo_write_sequence_item write_packet;
 		asyn_fifo_read_sequence_item read_packet;
+	
 		super.run_phase(phase);
 		forever
 		begin
-			tlm_read_fifo.get(read_packet);
 			transaction_count++;
-			tlm_write_fifo.get(write_packet);
+			wait((write_queue.size() > 0) && (read_queue.size() > 0));
+			begin
+				write_queue_temp = write_queue.unique();
+				$display("Unique write queue");
+				foreach(write_queue_temp[i])
+					$write("%0d ",write_queue_temp[i].wdata);
+				$display();
+				write_packet = write_queue_temp.pop_front();
+				read_packet = read_queue.pop_front();
+			end
+			/*
+			if(write_queue.size() > 0) 
+			begin
+				write_packet = write_queue.pop_front();
+				wfull_queue.push_back(write_packet.wfull);
+			end
+
+			if(read_queue.size() > 0) 
+			begin
+				read_packet = read_queue.pop_front();
+				rempty_queue.push_back(read_packet.rempty);
+			end
+			*/
+
 			if(transaction_count != 1)
 			begin
 				$display("---------------------------------------Scoreboard @%0t ---------------------------------------", $time);
@@ -77,7 +140,11 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 							fail_count ++;
 						end
 					end
-				end
+					while(read_queue.size() > 0)
+						read_queue.pop_front();
+					while(write_queue.size() > 0)
+						write_queue.pop_front();
+				end //reset end
 				else if (write_packet.winc == 0 && read_packet.rinc == 0)
 				begin
 					if((write_packet.wfull == prev_write_packet.wfull) && (read_packet.rdata == prev_read_packet.rdata) && (read_packet.rempty == prev_read_packet.rempty)) 
@@ -107,9 +174,13 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 				$display("PASS count = %0d | FAIL count = %0d",pass_count, fail_count);
 			end
 			else
+			begin
 				$display("Scoreboard Discarding First transaction @%0t", $time);
-			prev_write_packet.copy(write_packet);
-			prev_read_packet.copy(read_packet);
+				while(read_queue.size() > 0)
+					read_queue.pop_front();
+				while(write_queue.size() > 0)
+					write_queue.pop_front();
+			end
 		end	// forever end
 	endtask
 endclass
