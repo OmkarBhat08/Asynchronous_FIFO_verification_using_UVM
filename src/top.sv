@@ -51,5 +51,10 @@ module top();
 	initial
 	begin
 		run_test("asyn_fifo_base_test");
+		//run_test("asyn_fifo_reset_test");
+		//run_test("asyn_fifo_inc0_test");
+		//run_test("asyn_fifo_normal_test");
+		//run_test("asyn_fifo_b2bw_test");
+		//run_test("asyn_fifo_full_test");
 	end
 endmodule

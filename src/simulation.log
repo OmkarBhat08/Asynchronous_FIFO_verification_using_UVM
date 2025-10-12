@@ -1,5 +1,5 @@
 # vsim -vopt work.top -voptargs="+acc=npr" -assertdebug -l simulation.log -coverage -c -do "coverage save -onexit -assert -directive -cvg -codeAll coverage.ucdb; run -all; exit" 
-# Start time: 21:15:47 on Oct 12,2025
+# Start time: 22:22:27 on Oct 12,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: asyn_fifo_scoreboard.sv(158): (vopt-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
 # ** Warning: asyn_fifo_scoreboard.sv(160): (vopt-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
@@ -5220,5 +5220,5 @@
 # ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
 #    Time: 2590 ns  Iteration: 68  Instance: /top
 # Saving coverage database on exit...
-# End time: 21:15:51 on Oct 12,2025, Elapsed time: 0:00:04
+# End time: 22:22:31 on Oct 12,2025, Elapsed time: 0:00:04
 # Errors: 0, Warnings: 10
