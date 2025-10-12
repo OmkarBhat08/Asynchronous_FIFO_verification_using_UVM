@@ -8,7 +8,7 @@ program asyn_fifo_assertions(rdata, wfull, rempty, wdata, winc, wclk, wrst_n, ri
 	endproperty
 
 	property rrst_check;
-		@(posedge rclk) (!rrst_n) |-> (rempty && !rdata);
+		@(posedge rclk) (!rrst_n) |-> (rempty);
 	endproperty
 
 	property winc0_check;

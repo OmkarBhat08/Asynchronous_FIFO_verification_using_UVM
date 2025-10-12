@@ -42,11 +42,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 			begin
 				write_queue.push_back(a);
 				wr_ptr ++;
-				$display("\n\nWDATA received: %0d", a.wdata);
-				$display("Incoming write queue");
-				foreach(write_queue[i])
-					$write("%0d ",write_queue[i].wdata);
-				$display();
 				write_count = write_count + 1;
 			end
 			else
@@ -61,11 +56,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 				`uvm_info(get_type_name,"Scoreboard received Read packet", UVM_NONE);
 				read_queue.push_back(u);
 				//rd_ptr ++;
-				$display("\n\nRDATA received: %0d", b.rdata);
-				$display("Incoming read queue");
-				foreach(read_queue[i])
-					$write("%0d ",read_queue[i].rdata);
-				$display();
 		end
 	endfunction
 
@@ -77,8 +67,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 		forever
 		begin
 			transaction_count++;
-			$display("\n\n\ntransaction count: %0d", transaction_count);
-			$display("scoreboard count: %0d", scoreboard_count);
 			wait((write_queue.size() > 0) && (read_queue.size() > 0));
 			begin
 				if(scoreboard_count == 1)
@@ -88,10 +76,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 				end
 				else if(write_queue[write_queue.size-1].wfull == 1)
 				begin
-					$display("Before Unique");
-					foreach(write_queue[i])
-						$write("%0d ",write_queue[i].wdata);
-					$display();
 
 					foreach(write_queue[i])
 						if(write_queue[i].wdata == write_queue[i+1].wdata)
@@ -99,11 +83,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 							write_packet = write_queue.pop_front();
 							wr_ptr --;
 						end
-					// Displaying unique queue
-					$display("Unique write queue");
-					foreach(write_queue[i])
-						$write("%0d ",write_queue[i].wdata);
-					$display();
 
 					write_packet = write_queue.pop_back();
 					read_packet = read_queue.pop_back();
@@ -111,10 +90,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 				end
 				else
 				begin
-					$display("Before Unique");
-					foreach(write_queue[i])
-						$write("%0d ",write_queue[i].wdata);
-					$display();
 
 					foreach(write_queue[i])
 						if(write_queue[i].wdata == write_queue[i+1].wdata)
@@ -122,11 +97,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 							write_packet = write_queue.pop_front();
 							wr_ptr --;
 						end
-					// Displaying unique queue
-					$display("Unique write queue");
-					foreach(write_queue[i])
-						$write("%0d ",write_queue[i].wdata);
-					$display();
 
 					write_packet = write_queue.pop_front();
 					read_packet = read_queue.pop_front();
@@ -138,12 +108,9 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 			begin
 				scoreboard_count ++;
 				if(scoreboard_count == 2 && read_packet.rinc == 1 && read_packet.rrst_n ==1)
-				begin
 					$display("Waiting for 1 more cycle, for first transaction");
-				end
 				else
 				begin
-					$display("Scoreboard_count : %0d",scoreboard_count);
 					$display("---------------------------------------Scoreboard @%0t ---------------------------------------", $time);
 					$display("\t\t\tField\t\t|\t\tValue");
 					$display("--------------------------------------|--------------------------------------");
@@ -197,8 +164,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 				else
 				begin
 					rd_ptr ++;
-					$display("rdptr = %0d",rd_ptr);
-					$display("wrptr = %0d",wr_ptr);
 					if(wr_ptr == rd_ptr)
 					begin
 						empty_flag = 1;
@@ -213,8 +178,8 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 					else
 						full_flag = 0;
 
-					$display("empty FLag = %0d",empty_flag);
-					$display("Full FLag = %0d",full_flag);
+					$display("Empty Flag = %0d",empty_flag);
+					$display("Full Flag = %0d",full_flag);
 
 					if(write_packet.wfull ==1)
 					begin

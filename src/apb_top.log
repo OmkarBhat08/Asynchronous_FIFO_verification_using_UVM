@@ -1,10 +1,22 @@
 QuestaSim vlog 10.6c Compiler 2017.07 Jul 25 2017
-Start time: 09:53:38 on Oct 08,2025
+Start time: 21:15:45 on Oct 12,2025
 vlog -sv "+acc" "+cover" "+fcover" -l apb_top.log top.sv 
 -- Compiling interface asyn_fifo_interfs
 ** Note: (vlog-2286) asyn_fifo_pkg.sv(1): Using implicit +incdir+/tools/mentor/questasim_10.6c/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
 -- Compiling package asyn_fifo_pkg
 -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+** Warning: ** while parsing file included at top.sv(5)
+** at asyn_fifo_scoreboard.sv(158): (vlog-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
+** Warning: ** while parsing file included at top.sv(5)
+** at asyn_fifo_scoreboard.sv(160): (vlog-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
+** Warning: ** while parsing file included at top.sv(5)
+** at asyn_fifo_scoreboard.sv(219): (vlog-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
+** Warning: ** while parsing file included at top.sv(5)
+** at asyn_fifo_scoreboard.sv(221): (vlog-2240) Treating stand-alone use of function 'pop_front' as an implicit VOID cast.
+** Warning: ** while parsing file included at top.sv(5)
+** at asyn_fifo_write_sequence.sv(12): (vlog-2239) Treating stand-alone use of presumed external function as an implicit VOID cast.
+** Warning: ** while parsing file included at top.sv(5)
+** at asyn_fifo_read_sequence.sv(11): (vlog-2239) Treating stand-alone use of presumed external function as an implicit VOID cast.
 -- Compiling module two_ff_sync
 -- Compiling module FIFO_memory
 -- Compiling module rptr_empty
@@ -18,5 +30,5 @@ vlog -sv "+acc" "+cover" "+fcover" -l apb_top.log top.sv
 
 Top level modules:
 	top
-End time: 09:53:39 on Oct 08,2025, Elapsed time: 0:00:01
-Errors: 0, Warnings: 0
+End time: 21:15:46 on Oct 12,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 6
