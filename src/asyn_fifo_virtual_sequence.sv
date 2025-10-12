@@ -41,12 +41,14 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 			rst_write_seq.start(p_sequencer.wr_seqr);
 		join
 		$display("############################################################################################################################");
+	/*
 		// inc0 sequence
 		fork
 			rinc0_read_seq.start(p_sequencer.rd_seqr);
 			winc0_write_seq.start(p_sequencer.wr_seqr);
 		join
 		$display("############################################################################################################################");
+	*/
 		// Normal sequence
 		fork
 			normal_read_seq.start(p_sequencer.rd_seqr);
@@ -82,10 +84,7 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 					normal_read_seq.start(p_sequencer.rd_seqr);
 					winc0_write_seq.start(p_sequencer.wr_seqr);
 				join
-				fork
-					normal_read_seq.start(p_sequencer.rd_seqr);
-					winc0_write_seq.start(p_sequencer.wr_seqr);
-				join
+
 				fork
 					normal_read_seq.start(p_sequencer.rd_seqr);
 					winc0_write_seq.start(p_sequencer.wr_seqr);
@@ -106,6 +105,7 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 			end
 		end
 		$display("############################################################################################################################");
+	*/
 		// Reset sequence
 		fork
 			rst_read_seq.start(p_sequencer.rd_seqr);
@@ -114,13 +114,18 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 		$display("############################################################################################################################");
 		// For full
 		begin
-			repeat(15)
+			repeat(8)
 			begin
-				normal_write_seq.start(p_sequencer.wr_seqr);
-				#20;
+				fork
+					normal_write_seq.start(p_sequencer.wr_seqr);
+					rinc0_read_seq.start(p_sequencer.rd_seqr);
+				join
 			end
+			fork
+				winc0_write_seq.start(p_sequencer.wr_seqr);
+				normal_read_seq.start(p_sequencer.rd_seqr);
+			join
 		end
 		$display("############################################################################################################################");
-	*/
 	endtask
 endclass

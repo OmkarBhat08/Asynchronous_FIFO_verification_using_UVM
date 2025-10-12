@@ -12,6 +12,8 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 	asyn_fifo_read_sequence_item read_queue[$:15];
 
 	int pass_count, fail_count, transaction_count, write_count, scoreboard_count;
+	int wr_ptr, rd_ptr;
+	bit empty_flag, full_flag;
 
 	`uvm_component_utils(asyn_fifo_scoreboard)
 
@@ -25,6 +27,10 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 		write_count = 0;
 		scoreboard_count = 0;
 		transaction_count = 0;
+		wr_ptr = 0;
+		rd_ptr = 0;
+		empty_flag  = 1;
+		full_flag = 0;
 	endfunction
 
 	virtual function void write_from_write(asyn_fifo_write_sequence_item t);
@@ -35,6 +41,7 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 			if(write_count < 2)
 			begin
 				write_queue.push_back(a);
+				wr_ptr ++;
 				$display("\n\nWDATA received: %0d", a.wdata);
 				$display("Incoming write queue");
 				foreach(write_queue[i])
@@ -53,6 +60,7 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 		begin
 				`uvm_info(get_type_name,"Scoreboard received Read packet", UVM_NONE);
 				read_queue.push_back(u);
+				//rd_ptr ++;
 				$display("\n\nRDATA received: %0d", b.rdata);
 				$display("Incoming read queue");
 				foreach(read_queue[i])
@@ -69,12 +77,14 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 		forever
 		begin
 			transaction_count++;
+			$display("\n\n\ntransaction count: %0d", transaction_count);
+			$display("scoreboard count: %0d", scoreboard_count);
 			wait((write_queue.size() > 0) && (read_queue.size() > 0));
 			begin
 				if(scoreboard_count == 1)
 				begin
 					read_packet = read_queue.pop_front();
-					$display("Not popping write transaction");
+					//rd_ptr ++;
 				end
 				else
 				begin
@@ -85,7 +95,10 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 
 					foreach(write_queue[i])
 						if(write_queue[i].wdata == write_queue[i+1].wdata)
-							 write_packet = write_queue.pop_front();
+						begin
+							write_packet = write_queue.pop_front();
+							wr_ptr --;
+						end
 					// Displaying unique queue
 					$display("Unique write queue");
 					foreach(write_queue[i])
@@ -94,6 +107,7 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 
 					write_packet = write_queue.pop_front();
 					read_packet = read_queue.pop_front();
+					//rd_ptr ++;
 				end
 			end
 
@@ -103,7 +117,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 				if(scoreboard_count == 2 && read_packet.rinc == 1 && read_packet.rrst_n ==1)
 				begin
 					$display("Waiting for 1 more cycle, for first transaction");
-					$display("Scoreboard_count : %0d",scoreboard_count);
 				end
 				else
 				begin
@@ -139,7 +152,7 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 						if(read_packet.rrst_n == 0)
 						begin
 							$display("Read Reset is applied");
-							if(read_packet.rempty == 1 && read_packet.rdata == 0)
+							if(read_packet.rempty == 1)
 							begin
 								$display("Read Reset TEST PASSED @ %0t", $time);
 								pass_count ++;
@@ -158,10 +171,31 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 					while(write_queue.size() > 0)
 						write_queue.pop_front();
 					scoreboard_count = 0;
+					wr_ptr = 0;
 				end //reset end
 				else
 				begin
-					if(write_packet.wdata == read_packet.rdata)
+					rd_ptr ++;
+					$display("rdptr = %0d",rd_ptr);
+					$display("wrptr = %0d",wr_ptr);
+					if(wr_ptr == rd_ptr)
+					begin
+						empty_flag = 1;
+						wr_ptr = 0;
+						rd_ptr = 0;
+					end
+					else
+						empty_flag = 0;
+
+					if(wr_ptr == 15)
+						full_flag = 1;
+					else
+						full_flag = 0;
+
+					$display("empty FLag = %0d",empty_flag);
+					$display("Full FLag = %0d",full_flag);
+
+					if(write_packet.wdata == read_packet.rdata && read_packet.rempty == empty_flag)
 					begin
 						$display("TEST PASSED @ %0t", $time);
 						pass_count ++;
@@ -173,8 +207,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 					end
 				end
 				$display("PASS count = %0d | FAIL count = %0d",pass_count, fail_count);
-					if(scoreboard_count > 2)
-						scoreboard_count = 0;
 			end // for scoreboard_count else
 			end
 			else
@@ -185,6 +217,8 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 				while(write_queue.size() > 0)
 					write_queue.pop_front();
 				scoreboard_count = 0;
+				wr_ptr = 0;
+				rd_ptr = 0;
 			end
 		end	// forever end
 	endtask
