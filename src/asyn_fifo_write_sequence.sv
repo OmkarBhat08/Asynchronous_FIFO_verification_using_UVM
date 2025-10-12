@@ -9,7 +9,7 @@ class asyn_fifo_base_write_sequence extends uvm_sequence #(asyn_fifo_write_seque
 	virtual task body();
 		req = asyn_fifo_write_sequence_item::type_id::create("req");
 		wait_for_grant();
-		req.randomize();
+	req.randomize() with {winc == 1;};
 		send_request(req);
 		wait_for_item_done();
 	endtask

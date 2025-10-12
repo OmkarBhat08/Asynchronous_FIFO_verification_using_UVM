@@ -8,7 +8,7 @@ class asyn_fifo_base_read_sequence extends uvm_sequence #(asyn_fifo_read_sequenc
 	virtual task body();
 		req = asyn_fifo_read_sequence_item::type_id::create("req");
 		wait_for_grant();
-		req.randomize();
+	req.randomize() with {rinc == 1;};
 		send_request(req);
 		wait_for_item_done();
 	endtask
