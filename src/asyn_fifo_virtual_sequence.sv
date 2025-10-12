@@ -114,7 +114,7 @@ class asyn_fifo_base_virtual_sequence extends uvm_sequence;
 		$display("############################################################################################################################");
 		// For full
 		begin
-			repeat(8)
+			repeat(15)
 			begin
 				fork
 					normal_write_seq.start(p_sequencer.wr_seqr);

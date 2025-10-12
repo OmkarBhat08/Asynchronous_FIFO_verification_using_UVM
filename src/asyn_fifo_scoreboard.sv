@@ -86,6 +86,29 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 					read_packet = read_queue.pop_front();
 					//rd_ptr ++;
 				end
+				else if(write_queue[write_queue.size-1].wfull == 1)
+				begin
+					$display("Before Unique");
+					foreach(write_queue[i])
+						$write("%0d ",write_queue[i].wdata);
+					$display();
+
+					foreach(write_queue[i])
+						if(write_queue[i].wdata == write_queue[i+1].wdata)
+						begin
+							write_packet = write_queue.pop_front();
+							wr_ptr --;
+						end
+					// Displaying unique queue
+					$display("Unique write queue");
+					foreach(write_queue[i])
+						$write("%0d ",write_queue[i].wdata);
+					$display();
+
+					write_packet = write_queue.pop_back();
+					read_packet = read_queue.pop_back();
+
+				end
 				else
 				begin
 					$display("Before Unique");
@@ -161,8 +184,6 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 						begin
 							if(read_packet.rempty == 0)
 								$display("Read Reset TEST FAILED @ %0t because rempty is not set to 1", $time);
-							else
-								$display("Read Reset TEST FAILED @ %0t because rdata is not cleared", $time);
 							fail_count ++;
 						end
 					end
@@ -195,15 +216,32 @@ class asyn_fifo_scoreboard extends uvm_scoreboard();
 					$display("empty FLag = %0d",empty_flag);
 					$display("Full FLag = %0d",full_flag);
 
-					if(write_packet.wdata == read_packet.rdata && read_packet.rempty == empty_flag)
+					if(write_packet.wfull ==1)
 					begin
-						$display("TEST PASSED @ %0t", $time);
-						pass_count ++;
+						$display("FIFO is full");
+						if(write_packet.wfull == full_flag)
+						begin
+							$display("TEST PASSED @ %0t", $time);
+							pass_count ++;
+						end
+						else
+						begin
+							$display("TEST FAILED @ %0t", $time);
+							fail_count ++;
+						end
 					end
 					else
 					begin
-						$display("TEST FAILED @ %0t", $time);
-						fail_count ++;
+						if(write_packet.wdata == read_packet.rdata && read_packet.rempty == empty_flag)
+						begin
+							$display("TEST PASSED @ %0t", $time);
+							pass_count ++;
+						end
+						else
+						begin
+							$display("TEST FAILED @ %0t", $time);
+							fail_count ++;
+						end
 					end
 				end
 				$display("PASS count = %0d | FAIL count = %0d",pass_count, fail_count);
